@@ -392,6 +392,75 @@
     line-height: 1.7;
   }
 
+  .portfolio-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .portfolio-filter button {
+    border: 0.5px solid var(--gray-300);
+    background: transparent;
+    color: var(--gray-700);
+    padding: 0.85rem 1.2rem;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .portfolio-filter button.active,
+  .portfolio-filter button:hover {
+    border-color: var(--black);
+    color: var(--black);
+    background: var(--gray-100);
+  }
+  .portfolio-intro {
+    max-width: 680px;
+    margin-bottom: 2rem;
+    color: var(--gray-700);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .portfolio-card {
+    padding: 1.75rem;
+    border: 0.5px solid var(--gray-300);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .portfolio-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .portfolio-card .project-name {
+    margin-bottom: 0.85rem;
+  }
+  .portfolio-card .tag-list {
+    margin-bottom: 1rem;
+  }
+  .portfolio-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    border: 0.5px solid var(--gray-300);
+    padding: 4px 9px;
+    border-radius: 2px;
+    margin-top: 1rem;
+  }
+  .portfolio-card .btn {
+    margin-top: 1.5rem;
+  }
+
   /* EDUCATION */
   .edu-list {
     display: flex;
@@ -534,6 +603,7 @@
   <ul class="nav-links">
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#certifications">Certifications</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -726,6 +796,64 @@
   </div>
 </section>
 
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Work samples</span>
+      <h2>Portfolio</h2>
+    </div>
+    <p class="portfolio-intro">Practical artefacts and tools developed as part of AI Governance and Business Analysis practice.</p>
+    <div class="portfolio-filter" role="tablist" aria-label="Portfolio filters">
+      <button type="button" class="active" data-filter="all">All</button>
+      <button type="button" data-filter="ai-governance">AI Governance</button>
+      <button type="button" data-filter="business-analysis">Business Analysis</button>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card" data-category="ai-governance">
+        <div class="project-tag">AI Governance</div>
+        <div class="project-name">AISIA Interactive Tool</div>
+        <div class="tag-list">
+          <span class="tag">ISO 42001</span>
+          <span class="tag">EU AI Act</span>
+        </div>
+        <div class="project-desc">Interactive AI System Impact Assessment form aligned with ISO/IEC 42001:2023 and EU AI Act. Covers all 7 assessment sections with auto-scoring and PDF export.</div>
+        <a href="https://dorota-wasiak.github.io/aisia-tool/" target="_blank" class="btn btn-outline">Open tool</a>
+      </div>
+      <div class="portfolio-card" data-category="ai-governance">
+        <div class="project-tag">AI Governance</div>
+        <div class="project-name">AI Risk Register</div>
+        <div class="tag-list">
+          <span class="tag">ISO 42001</span>
+          <span class="tag">Risk management</span>
+        </div>
+        <div class="project-desc">Structured risk register template for tracking AI system risks, owners, mitigations and review cycles.</div>
+        <div class="portfolio-badge">Coming soon</div>
+      </div>
+      <div class="portfolio-card" data-category="ai-governance">
+        <div class="project-tag">AI Governance</div>
+        <div class="project-name">EU AI Act Classifier</div>
+        <div class="tag-list">
+          <span class="tag">EU AI Act</span>
+          <span class="tag">Annex III</span>
+        </div>
+        <div class="project-desc">Step-by-step classification tool to determine the risk category of an AI system under EU AI Act Annex I and Annex III.</div>
+        <div class="portfolio-badge">Coming soon</div>
+      </div>
+      <div class="portfolio-card" data-category="business-analysis">
+        <div class="project-tag">Business Analysis</div>
+        <div class="project-name">Requirements Template</div>
+        <div class="tag-list">
+          <span class="tag">IREB</span>
+          <span class="tag">Agile</span>
+        </div>
+        <div class="project-desc">Structured requirements documentation template following IREB standards — from stakeholder needs to acceptance criteria.</div>
+        <div class="portfolio-badge">Coming soon</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CERTIFICATIONS -->
 <section id="certifications">
   <div class="section-inner">
@@ -786,11 +914,6 @@
       <h2>Projects & Volunteer Work</h2>
     </div>
     <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-tag">AI Governance</div>
-        <div class="project-name">AI Governance Portfolio Development</div>
-        <div class="project-desc">Building expertise in AI governance and responsible AI by applying EU AI Act and ISO/IEC 42001:2023 frameworks to develop practical artefacts — including risk classification, AI system impact assessments, and organisational accountability structures. Self-initiated, 2025–present.</div>
-      </div>
       <div class="project-card">
         <div class="project-tag">Volunteer</div>
         <div class="project-name">RUNMAGEDDON</div>
@@ -884,5 +1007,23 @@
   <span class="footer-text">Senior Business Analyst · Digital Product Owner · Data & AI Governance</span>
 </footer>
 
+<script>
+  function setPortfolioFilter(category) {
+    document.querySelectorAll('.portfolio-filter button').forEach(function(button) {
+      button.classList.toggle('active', button.dataset.filter === category);
+    });
+    document.querySelectorAll('.portfolio-card').forEach(function(card) {
+      card.style.display = category === 'all' || card.dataset.category === category ? 'block' : 'none';
+    });
+  }
+
+  document.querySelectorAll('.portfolio-filter button').forEach(function(button) {
+    button.addEventListener('click', function() {
+      setPortfolioFilter(button.dataset.filter);
+    });
+  });
+
+  setPortfolioFilter('all');
+</script>
 </body>
 </html>
