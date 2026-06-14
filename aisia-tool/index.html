@@ -145,6 +145,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 
 /* Buttons */
 .nav-btns{display:flex;justify-content:space-between;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);gap:8px}
+.nav-actions{display:flex;gap:0.75rem;}
 .btn{padding:9px 20px;border:1px solid var(--border2);border-radius:var(--radius);background:var(--bg);color:var(--text);font-size:13px;cursor:pointer;font-family:inherit;transition:all .15s;font-weight:500}
 .btn:hover{background:var(--bg2)}
 .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
@@ -258,7 +259,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <div class="field"><label>System owner sign-off</label><input id="sysOwner" placeholder="Name — must confirm description accuracy"></div>
       </div>
     </div>
-    <div class="nav-btns"><span></span><button class="btn btn-primary" onclick="go(1)">Next: trigger conditions →</button></div>
+    <div class="nav-btns"><span></span><div class="nav-actions"><button class="btn btn-outline" onclick="resetAssessment()">Clear section</button><button class="btn btn-primary" onclick="go(1)">Next: trigger conditions →</button></div></div>
   </div>
 
   <!-- PANEL 2: Triggers -->
@@ -278,7 +279,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="card">
       <div class="field"><label>Conclusion</label><textarea id="trigConc" placeholder="Confirm AISIA is required and state primary trigger. If multiple triggers apply, list all." style="min-height:80px"></textarea></div>
     </div>
-    <div class="nav-btns"><button class="btn" onclick="go(0)">← Back</button><button class="btn btn-primary" onclick="go(2)">Next: impact matrix →</button></div>
+    <div class="nav-btns"><button class="btn" onclick="go(0)">← Back</button><div class="nav-actions"><button class="btn btn-outline" onclick="resetAssessment()">Clear section</button><button class="btn btn-primary" onclick="go(2)">Next: impact matrix →</button></div></div>
   </div>
 
   <!-- PANEL 3: Impacts -->
@@ -337,7 +338,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
       <div class="field" style="margin-bottom:12px"><label>Conditions for deployment</label><textarea id="conditions" placeholder="List all conditions that must be met before deployment is authorised — number each condition"></textarea></div>
       <div class="field"><label>Residual risk acceptance</label><textarea id="residual" placeholder="Who accepts residual risk and on what basis? What post-deployment monitoring compensates for residual risk?"></textarea></div>
     </div>
-    <div class="nav-btns"><button class="btn" onclick="go(2)">← Back</button><button class="btn btn-primary" onclick="go(4)">Next: GDPR / DPIA →</button></div>
+    <div class="nav-btns"><button class="btn" onclick="go(2)">← Back</button><div class="nav-actions"><button class="btn btn-outline" onclick="resetAssessment()">Clear section</button><button class="btn btn-primary" onclick="go(4)">Next: GDPR / DPIA →</button></div></div>
   </div>
 
   <!-- PANEL 5: GDPR -->
@@ -369,7 +370,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
       </div>
       <div class="field"><label>DPIA scope vs AISIA scope</label><textarea id="scopeDiff" placeholder="DPIA covers: lawful basis, data subject rights, retention, security controls. AISIA additionally covers: bias and fairness, societal impact, explainability, human oversight — describe how scopes complement each other"></textarea></div>
     </div>
-    <div class="nav-btns"><button class="btn" onclick="go(3)">← Back</button><button class="btn btn-primary" onclick="go(5)">Next: monitoring plan →</button></div>
+    <div class="nav-btns"><button class="btn" onclick="go(3)">← Back</button><div class="nav-actions"><button class="btn btn-outline" onclick="resetAssessment()">Clear section</button><button class="btn btn-primary" onclick="go(5)">Next: monitoring plan →</button></div></div>
   </div>
 
   <!-- PANEL 6: Monitoring -->
@@ -393,7 +394,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
       </div>
       <div class="field"><label>Material change triggers</label><textarea id="changeTrig" placeholder="e.g. new training data source; model retraining; change in intended use; change in affected population; new regulatory guidance"></textarea></div>
     </div>
-    <div class="nav-btns"><button class="btn" onclick="go(4)">← Back</button><button class="btn btn-primary" onclick="go(6)">Next: approval & export →</button></div>
+    <div class="nav-btns"><button class="btn" onclick="go(4)">← Back</button><div class="nav-actions"><button class="btn btn-outline" onclick="resetAssessment()">Clear section</button><button class="btn btn-primary" onclick="go(6)">Next: approval & export →</button></div></div>
   </div>
 
   <!-- PANEL 7: Approval -->
@@ -450,8 +451,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 "use strict";
 var cur=0;
 var imps=[];
+var locale=(navigator.language||navigator.userLanguage||'en').slice(0,2).toLowerCase();
+var STRINGS={
+  en:{
+    resetConfirmation:'Clear this section? This removes entered data from "{section}" and keeps the rest intact.'
+  },
+  pl:{
+    resetConfirmation:'Wyczyścić tylko bieżącą sekcję? Spowoduje to usunięcie wszystkich wprowadzonych danych z „{section}”, zachowując resztę oceny.'
+  }
+};
 var DIMS=['Fairness & Non-Discrimination','Privacy & Data Protection','Transparency & Explainability','Accountability','Safety & Reliability','Societal Impact','Human Oversight'];
 var STATUSES=['Not started','In progress','Implemented','Accepted'];
+
+function t(key, vars){
+  var msg=(STRINGS[locale]&&STRINGS[locale][key])||STRINGS.en[key]||'';
+  if(vars){
+    Object.keys(vars).forEach(function(k){
+      msg=msg.replace(new RegExp('\{'+k+'\}','g'),vars[k]);
+    });
+  }
+  return msg;
+}
 
 function go(n){
   document.getElementById('p'+cur).classList.remove('visible');
@@ -465,6 +485,41 @@ function go(n){
   if(n===3) syncMetrics();
   if(n===6) renderChecklist();
   window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function resetAssessment(){
+  var panel=document.querySelector('.panel.visible');
+  if(!panel) return;
+  var heading = panel.querySelector('h2');
+  var label = heading ? heading.textContent : (locale==='pl'?'tę sekcję':'this section');
+  var message = t('resetConfirmation',{section:label});
+  if(!confirm(message)) return;
+  resetPanel(panel);
+}
+
+function resetPanel(panel){
+  panel.querySelectorAll('input').forEach(function(input){
+    if(input.type==='checkbox' || input.type==='radio'){
+      input.checked=false;
+    } else {
+      input.value='';
+    }
+  });
+  panel.querySelectorAll('textarea').forEach(function(textarea){ textarea.value=''; });
+  panel.querySelectorAll('select').forEach(function(select){
+    select.selectedIndex=0;
+    if(typeof select.onchange==='function') select.onchange();
+  });
+
+  if(panel.id==='p2'){
+    imps.slice().forEach(function(id){
+      var card=document.getElementById(id);
+      if(card) card.remove();
+    });
+    imps=[];
+    document.getElementById('impSummary').innerHTML='';
+    addImp();
+  }
 }
 
 function updateRisk(){
