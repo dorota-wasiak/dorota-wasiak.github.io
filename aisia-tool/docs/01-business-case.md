@@ -39,7 +39,8 @@ This context creates a clear and immediate need for structured, accessible tools
 ## 3. Business Need
 
 Organisations deploying AI systems without a structured impact assessment process are exposed to consequences that extend well beyond regulatory non-compliance.
-Absence of audit trail and legal exposure
+
+***Absence of audit trail and legal exposure***
 
 Where an AI system influences decisions affecting individuals, such as recruitment, credit scoring, or access to services, organisations must be able to demonstrate on what basis those decisions were made. Without documented evidence of how the system was configured, what data it was trained on, and how outputs were monitored, organisations cannot conduct a meaningful investigation when a decision is challenged. In legal proceedings, the inability to produce this documentation significantly weakens the organisation's position and may be interpreted as evidence of negligence.
 
