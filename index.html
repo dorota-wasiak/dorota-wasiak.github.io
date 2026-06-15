@@ -461,6 +461,19 @@
     margin-top: 1.5rem;
   }
 
+  .portfolio-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .portfolio-actions .btn {
+    margin-top: 0;
+    flex: 1;
+    min-width: 140px;
+  }
+
   /* EDUCATION */
   .edu-list {
     display: flex;
@@ -818,7 +831,10 @@
           <span class="tag">EU AI Act</span>
         </div>
         <div class="project-desc">Interactive AI System Impact Assessment form aligned with ISO/IEC 42001:2023 and EU AI Act. Covers all 7 assessment sections with auto-scoring and PDF export.</div>
-        <a href="https://dorota-wasiak.github.io/aisia-tool/" target="_blank" class="btn btn-outline">Open tool</a>
+        <div class="portfolio-actions">
+          <a href="https://dorota-wasiak.github.io/aisia-tool/" target="_blank" class="btn btn-outline">Open tool</a>
+          <a href="https://github.com/dorota-wasiak/dorota-wasiak.github.io/blob/main/aisia-tool/docs/01-business-case.md" target="_blank" class="btn btn-outline">View documentation</a>
+        </div>
       </div>
       <div class="portfolio-card" data-category="ai-governance">
         <div class="project-tag">AI Governance</div>
