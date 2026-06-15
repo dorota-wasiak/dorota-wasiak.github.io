@@ -17,7 +17,19 @@ Organisations can gain documented evidence of due diligence, a clear audit trail
 
 ## 2. Background and Strategic Context
 
-[To be completed]
+Organisations across industries are accelerating AI adoption, integrating AI components into recruitment, customer service, forecasting, supply chain management and decision-support processes. However, the pace of deployment has consistently outpaced the development of governance frameworks to support it.
+
+In practice, many organisations deploy AI tools without establishing mechanisms to monitor output quality, detect bias in model behaviour, or measure whether results remain reliable over time. Governance procedures for AI systems are frequently absent, not because organisations are unaware of the risks, but because the path to implementing them is unclear.
+
+Several barriers contribute to this gap:
+	• Capability gap – most organisations do not have dedicated AI governance expertise within their teams. Responsibility for AI oversight is often distributed across existing roles without clear ownership, structured processes, or appropriate tools.
+	• Absence of accessible standards-based tools – while internationally recognised frameworks such as ISO/IEC 42001:2023 and the EU AI Act provide clear requirements, translating these into operational processes remains a significant challenge for organisations without specialist knowledge.
+	• Limited awareness – many business stakeholders are not yet familiar with what structured AI governance requires in practice, or how it differs from general IT risk management.
+	• Governance perceived as cost rather than investment – without a visible regulatory consequence or internal incident, AI governance is frequently deprioritised in favour of deployment speed and commercial objectives.
+	• Absence of internal accountability – without a dedicated AI Officer or equivalent role, no single function holds formal responsibility for AI governance, which means the topic consistently falls below the threshold of organisational priority.
+
+This context creates a clear and immediate need for structured, accessible tools that enable existing business roles to conduct meaningful AI impact assessments without requiring specialist expertise. Organisations that establish governance frameworks proactively will be significantly better positioned to adapt when regulatory obligations come into full effect, avoiding the cost and disruption of reactive compliance.
+
 
 ## 3. Business Need
 
