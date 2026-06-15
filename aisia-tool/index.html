@@ -172,6 +172,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
   .card{break-inside:avoid}
 }
 .page-footer{margin:0 auto;padding:1rem 1.25rem 2rem;color:var(--text2);font-size:12px;text-align:center;max-width:900px}
+.modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.65);display:none;align-items:center;justify-content:center;padding:1.5rem;z-index:9999}
+.modal-overlay.active{display:flex}
+.modal{background:var(--bg);border:1px solid var(--border);border-radius:calc(var(--radius)*1.2);max-width:520px;width:100%;box-shadow:0 24px 80px rgba(15,23,42,.18);overflow:hidden}
+.modal-header{padding:1.25rem 1.25rem 0}
+.modal-header h2{margin:0;font-size:18px;font-weight:700;color:var(--text)}
+.modal-body{padding:1rem 1.25rem 0;color:var(--text2);line-height:1.6}
+.modal-actions{display:flex;justify-content:flex-end;gap:0.75rem;padding:1.25rem;border-top:1px solid var(--border);background:var(--bg2)}
+.header-info{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--text2)}
+.auto-save-status{padding:4px 10px;background:var(--green-bg);border:1px solid var(--green-border);border-radius:var(--radius);color:var(--green-text);cursor:default;transition:opacity .3s}
+.auto-save-status.hidden{opacity:0;pointer-events:none}
+.clear-data-btn{padding:5px 12px;font-size:12px;border:1px solid var(--border2);border-radius:var(--radius);background:var(--bg);color:var(--text);cursor:pointer;transition:all .15s}
+.clear-data-btn:hover{background:var(--bg2);border-color:var(--red);color:var(--red)}
+.notification{position:fixed;top:80px;left:50%;transform:translateX(-50%);padding:12px 20px;border-radius:var(--radius);font-size:13px;z-index:10000;animation:slideDown .3s ease-out}
+.notification.success{background:var(--green-bg);border:1px solid var(--green-border);color:var(--green-text)}
+.notification.error{background:var(--red-bg);border:1px solid var(--red-border);color:var(--red-text)}
+@keyframes slideDown{from{opacity:0;transform:translateX(-50%) translateY(-20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+#fileInput{display:none}
 </style>
 </head>
 <body>
@@ -186,6 +203,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
       <span class="badge badge-blue">ISO/IEC 42001:2023</span>
       <span class="badge badge-blue">EU AI Act</span>
       <span class="badge badge-blue">GDPR Art. 35</span>
+    </div>
+    <div class="header-info">
+      <div class="auto-save-status hidden" id="autoSaveStatus">Auto-saved</div>
+      <button class="clear-data-btn" type="button" id="clearDataBtn" title="Delete all saved data">Clear saved data</button>
     </div>
   </div>
 </div>
@@ -426,6 +447,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
       <div class="card-title">Export</div>
       <p style="font-size:13px;color:var(--text2);margin-bottom:12px">Export your completed assessment for formal record-keeping and audit trail.</p>
       <div class="export-row">
+        <button class="exp-btn" onclick="importJSON()">
+          <svg viewBox="0 0 24 24"><path d="M21 15v-4a2 2 0 0 0-2-2h-7V7m0 10v6m0-6L9 7m3 0l3 3"/></svg>
+          Import JSON
+        </button>
         <button class="exp-btn" onclick="exportJSON()">
           <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
           Export JSON
@@ -445,33 +470,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 
 </div><!-- /page -->
 
+<div id="resetModal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="resetModalTitle" aria-describedby="resetModalMessage">
+  <div class="modal">
+    <div class="modal-header"><h2 id="resetModalTitle">Clear section</h2></div>
+    <div class="modal-body"><p id="resetModalMessage"></p></div>
+    <div class="modal-actions"><button class="btn" id="resetCancelBtn" type="button">Cancel</button><button class="btn btn-primary" id="resetConfirmBtn" type="button">Clear section</button></div>
+  </div>
+</div>
+
+<input type="file" id="fileInput" accept=".json">
+
 <footer class="page-footer">Built by Dorota Wasiak | AI Governance Portfolio | ISO/IEC 42001:2023</footer>
 
 <script>
 "use strict";
 var cur=0;
 var imps=[];
-var locale=(navigator.language||navigator.userLanguage||'en').slice(0,2).toLowerCase();
-var STRINGS={
-  en:{
-    resetConfirmation:'Clear this section? This removes entered data from "{section}" and keeps the rest intact.'
-  },
-  pl:{
-    resetConfirmation:'Wyczyścić tylko bieżącą sekcję? Spowoduje to usunięcie wszystkich wprowadzonych danych z „{section}”, zachowując resztę oceny.'
-  }
-};
+var pendingResetPanel=null;
 var DIMS=['Fairness & Non-Discrimination','Privacy & Data Protection','Transparency & Explainability','Accountability','Safety & Reliability','Societal Impact','Human Oversight'];
 var STATUSES=['Not started','In progress','Implemented','Accepted'];
-
-function t(key, vars){
-  var msg=(STRINGS[locale]&&STRINGS[locale][key])||STRINGS.en[key]||'';
-  if(vars){
-    Object.keys(vars).forEach(function(k){
-      msg=msg.replace(new RegExp('\{'+k+'\}','g'),vars[k]);
-    });
-  }
-  return msg;
-}
 
 function go(n){
   document.getElementById('p'+cur).classList.remove('visible');
@@ -490,11 +507,31 @@ function go(n){
 function resetAssessment(){
   var panel=document.querySelector('.panel.visible');
   if(!panel) return;
+  openResetModal(panel);
+}
+
+function openResetModal(panel){
+  pendingResetPanel=panel;
   var heading = panel.querySelector('h2');
-  var label = heading ? heading.textContent : (locale==='pl'?'tę sekcję':'this section');
-  var message = t('resetConfirmation',{section:label});
-  if(!confirm(message)) return;
-  resetPanel(panel);
+  var title = heading ? 'Clear section: '+heading.textContent : 'Clear section';
+  document.getElementById('resetModalTitle').textContent=title;
+  document.getElementById('resetModalMessage').textContent='This removes entered data from this section and keeps the rest intact.';
+  var modal=document.getElementById('resetModal');
+  modal.classList.add('active');
+  modal.setAttribute('aria-hidden','false');
+}
+
+function closeResetModal(){
+  var modal=document.getElementById('resetModal');
+  modal.classList.remove('active');
+  modal.setAttribute('aria-hidden','true');
+  pendingResetPanel=null;
+}
+
+function confirmReset(){
+  if(!pendingResetPanel) return;
+  resetPanel(pendingResetPanel);
+  closeResetModal();
 }
 
 function resetPanel(panel){
@@ -697,6 +734,231 @@ function copyJSON(){
   });
 }
 
+// Auto-save and notifications
+var autoSaveTimeout;
+function showNotification(msg,type){
+  var ntf=document.createElement('div');
+  ntf.className='notification '+type;
+  ntf.textContent=msg;
+  document.body.appendChild(ntf);
+  setTimeout(function(){
+    ntf.style.opacity='0';
+    setTimeout(function(){ntf.remove();},300);
+  },3500);
+}
+
+function updateAutoSaveIndicator(){
+  var status=document.getElementById('autoSaveStatus');
+  var now=new Date();
+  var h=String(now.getHours()).padStart(2,'0');
+  var m=String(now.getMinutes()).padStart(2,'0');
+  status.textContent='Auto-saved '+h+':'+m;
+  status.classList.remove('hidden');
+  clearTimeout(autoSaveTimeout);
+  autoSaveTimeout=setTimeout(function(){
+    status.classList.add('hidden');
+  },3000);
+}
+
+function autoSave(){
+  var data=getData();
+  localStorage.setItem('aisiaData',JSON.stringify(data));
+  updateAutoSaveIndicator();
+}
+
+function restoreFromStorage(){
+  var stored=localStorage.getItem('aisiaData');
+  if(!stored) return;
+  try{
+    var data=JSON.parse(stored);
+    if(!data.meta) return;
+    
+    // Restore basic fields
+    document.getElementById('ref').value=data.meta.reference||'';
+    document.getElementById('sysName').value=data.meta.systemName||'';
+    document.getElementById('sysId').value=data.meta.systemId||'';
+    document.getElementById('depDate').value=data.meta.deploymentDate||'';
+    document.getElementById('assessors').value=data.meta.assessors||'';
+    document.getElementById('assessDate').value=data.meta.assessmentDate||'';
+    document.getElementById('sysOwner').value=data.meta.systemOwner||'';
+    
+    document.getElementById('sysDesc').value=data.system.description||'';
+    document.getElementById('purpose').value=data.system.intendedPurpose||'';
+    document.getElementById('modelType').value=data.system.modelType||'';
+    document.getElementById('depCtx').value=data.system.deploymentContext||'';
+    document.getElementById('dataIn').value=data.system.dataInputs||'';
+    document.getElementById('sysOut').value=data.system.systemOutput||'';
+    document.getElementById('riskCls').value=data.system.riskClassification||'';
+    updateRisk();
+    document.getElementById('annexRef').value=data.system.annexReference||'';
+    document.getElementById('direct').value=data.system.affectedPartiesDirect||'';
+    document.getElementById('indirect').value=data.system.affectedPartiesIndirect||'';
+    
+    document.getElementById('t1').value=data.triggers.highRisk||'';
+    document.getElementById('t2').value=data.triggers.vulnerableGroups||'';
+    document.getElementById('t3').value=data.triggers.rightsInfluence||'';
+    document.getElementById('t4').value=data.triggers.scale||'';
+    document.getElementById('t5').value=data.triggers.materialChange||'';
+    document.getElementById('trigConc').value=data.triggers.conclusion||'';
+    
+    // Restore impacts
+    imps=[];
+    document.getElementById('impList').innerHTML='';
+    if(data.impacts&&data.impacts.length>0){
+      data.impacts.forEach(function(imp){
+        addImp(imp);
+      });
+    } else {
+      addImp();
+    }
+    renderSummary();
+    
+    document.getElementById('overallRating').value=data.deployment.overallRating||'';
+    document.getElementById('depRec').value=data.deployment.recommendation||'';
+    document.getElementById('conditions').value=data.deployment.conditions||'';
+    document.getElementById('residual').value=data.deployment.residualRisk||'';
+    
+    document.getElementById('dpiaReq').value=data.gdpr.dpiaRequired||'';
+    document.getElementById('dpiaRef').value=data.gdpr.dpiaReference||'';
+    document.getElementById('joint').value=data.gdpr.jointAssessment||'';
+    document.getElementById('dpoRev').value=data.gdpr.dpoReview||'';
+    document.getElementById('scopeDiff').value=data.gdpr.scopeDifference||'';
+    
+    document.getElementById('monFair').value=data.monitoring.fairness||'';
+    document.getElementById('monPerf').value=data.monitoring.performance||'';
+    document.getElementById('monHuman').value=data.monitoring.humanOversight||'';
+    document.getElementById('reviewDate').value=data.monitoring.reviewDate||'';
+    document.getElementById('monOwner').value=data.monitoring.owner||'';
+    document.getElementById('incTrig').value=data.monitoring.incidentTrigger||'';
+    document.getElementById('retention').value=data.monitoring.retention||'';
+    document.getElementById('changeTrig').value=data.monitoring.changeTriggers||'';
+    
+    document.getElementById('prepBy').value=data.approval.preparedBy||'';
+    document.getElementById('techRev').value=data.approval.technicalReviewer||'';
+    document.getElementById('legalRev').value=data.approval.legalReviewer||'';
+    document.getElementById('boardApp').value=data.approval.boardApproval||'';
+    document.getElementById('ownerAck').value=data.approval.ownerAcknowledgement||'';
+    document.getElementById('nextRev').value=data.approval.nextReview||'';
+  }catch(e){
+    console.warn('Failed to restore data:',e);
+  }
+}
+
+function attachAutoSaveListeners(){
+  // Attach listeners to all form fields
+  document.querySelectorAll('input[type=\"text\"],input[type=\"date\"],textarea,select').forEach(function(el){
+    el.addEventListener('change',autoSave);
+    el.addEventListener('blur',autoSave);
+  });
+  // Also save on input for textareas and text inputs (as user types)
+  document.querySelectorAll('input[type=\"text\"],textarea').forEach(function(el){
+    el.addEventListener('input',function(){
+      clearTimeout(autoSaveTimeout);
+      autoSaveTimeout=setTimeout(autoSave,1000);
+    });
+  });
+}
+
+function importJSON(){
+  document.getElementById('fileInput').click();
+}
+
+document.getElementById('fileInput').addEventListener('change',function(e){
+  var file=e.target.files[0];
+  if(!file) return;
+  var reader=new FileReader();
+  reader.onload=function(evt){
+    try{
+      var data=JSON.parse(evt.target.result);
+      if(!data.meta||!data.system||!data.triggers||!data.impacts){
+        showNotification('Invalid file. Please import a valid AISIA JSON export.','error');
+        return;
+      }
+      // Restore all data
+      document.getElementById('ref').value=data.meta.reference||'';
+      document.getElementById('sysName').value=data.meta.systemName||'';
+      document.getElementById('sysId').value=data.meta.systemId||'';
+      document.getElementById('depDate').value=data.meta.deploymentDate||'';
+      document.getElementById('assessors').value=data.meta.assessors||'';
+      document.getElementById('assessDate').value=data.meta.assessmentDate||'';
+      document.getElementById('sysOwner').value=data.meta.systemOwner||'';
+      
+      document.getElementById('sysDesc').value=data.system.description||'';
+      document.getElementById('purpose').value=data.system.intendedPurpose||'';
+      document.getElementById('modelType').value=data.system.modelType||'';
+      document.getElementById('depCtx').value=data.system.deploymentContext||'';
+      document.getElementById('dataIn').value=data.system.dataInputs||'';
+      document.getElementById('sysOut').value=data.system.systemOutput||'';
+      document.getElementById('riskCls').value=data.system.riskClassification||'';
+      updateRisk();
+      document.getElementById('annexRef').value=data.system.annexReference||'';
+      document.getElementById('direct').value=data.system.affectedPartiesDirect||'';
+      document.getElementById('indirect').value=data.system.affectedPartiesIndirect||'';
+      
+      document.getElementById('t1').value=data.triggers.highRisk||'';
+      document.getElementById('t2').value=data.triggers.vulnerableGroups||'';
+      document.getElementById('t3').value=data.triggers.rightsInfluence||'';
+      document.getElementById('t4').value=data.triggers.scale||'';
+      document.getElementById('t5').value=data.triggers.materialChange||'';
+      document.getElementById('trigConc').value=data.triggers.conclusion||'';
+      
+      // Restore impacts
+      imps=[];
+      document.getElementById('impList').innerHTML='';
+      if(data.impacts&&data.impacts.length>0){
+        data.impacts.forEach(function(imp){
+          addImp(imp);
+        });
+      } else {
+        addImp();
+      }
+      renderSummary();
+      
+      document.getElementById('overallRating').value=data.deployment.overallRating||'';
+      document.getElementById('depRec').value=data.deployment.recommendation||'';
+      document.getElementById('conditions').value=data.deployment.conditions||'';
+      document.getElementById('residual').value=data.deployment.residualRisk||'';
+      
+      document.getElementById('dpiaReq').value=data.gdpr.dpiaRequired||'';
+      document.getElementById('dpiaRef').value=data.gdpr.dpiaReference||'';
+      document.getElementById('joint').value=data.gdpr.jointAssessment||'';
+      document.getElementById('dpoRev').value=data.gdpr.dpoReview||'';
+      document.getElementById('scopeDiff').value=data.gdpr.scopeDifference||'';
+      
+      document.getElementById('monFair').value=data.monitoring.fairness||'';
+      document.getElementById('monPerf').value=data.monitoring.performance||'';
+      document.getElementById('monHuman').value=data.monitoring.humanOversight||'';
+      document.getElementById('reviewDate').value=data.monitoring.reviewDate||'';
+      document.getElementById('monOwner').value=data.monitoring.owner||'';
+      document.getElementById('incTrig').value=data.monitoring.incidentTrigger||'';
+      document.getElementById('retention').value=data.monitoring.retention||'';
+      document.getElementById('changeTrig').value=data.monitoring.changeTriggers||'';
+      
+      document.getElementById('prepBy').value=data.approval.preparedBy||'';
+      document.getElementById('techRev').value=data.approval.technicalReviewer||'';
+      document.getElementById('legalRev').value=data.approval.legalReviewer||'';
+      document.getElementById('boardApp').value=data.approval.boardApproval||'';
+      document.getElementById('ownerAck').value=data.approval.ownerAcknowledgement||'';
+      document.getElementById('nextRev').value=data.approval.nextReview||'';
+      
+      autoSave();
+      showNotification('Assessment loaded successfully.','success');
+      go(0);
+    }catch(e){
+      showNotification('Invalid file. Please import a valid AISIA JSON export.','error');
+    }
+  };
+  reader.readAsText(file);
+  e.target.value='';
+});
+
+document.getElementById('clearDataBtn').addEventListener('click',function(){
+  if(confirm('Are you sure? This will delete all saved progress.')){
+    localStorage.removeItem('aisiaData');
+    location.reload();
+  }
+});
+
 // Keyboard navigation for stepper
 document.querySelectorAll('.step').forEach(function(el,i){
   el.addEventListener('keydown',function(e){
@@ -704,8 +966,19 @@ document.querySelectorAll('.step').forEach(function(el,i){
   });
 });
 
+document.getElementById('resetConfirmBtn').addEventListener('click',confirmReset);
+document.getElementById('resetCancelBtn').addEventListener('click',closeResetModal);
+
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape' && document.getElementById('resetModal').classList.contains('active')){
+    closeResetModal();
+  }
+});
+
 // Init
-addImp();
+restoreFromStorage();
+attachAutoSaveListeners();
+if(imps.length===0) addImp();
 </script>
 </body>
 </html>
