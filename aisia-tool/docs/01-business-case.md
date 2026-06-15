@@ -23,22 +23,41 @@ In practice, many organisations deploy AI tools without establishing mechanisms 
 
 Several barriers contribute to this gap:
 
-• Capability gap – most organisations do not have dedicated AI governance expertise within their teams. Responsibility for AI oversight is often distributed across existing roles without clear ownership, structured processes, or appropriate tools.
+ - Capability gap – most organisations do not have dedicated AI governance expertise within their teams. Responsibility for AI oversight is often distributed across existing roles without clear ownership, structured processes, or appropriate tools.
 
-• Absence of accessible standards-based tools – while internationally recognised frameworks such as ISO/IEC 42001:2023 and the EU AI Act provide clear requirements, translating these into operational processes remains a significant challenge for organisations without specialist knowledge.
+ - Absence of accessible standards-based tools – while internationally recognised frameworks such as ISO/IEC 42001:2023 and the EU AI Act provide clear requirements, translating these into operational processes remains a significant challenge for organisations without specialist knowledge.
 
-• Limited awareness – many business stakeholders are not yet familiar with what structured AI governance requires in practice, or how it differs from general IT risk management.
+ - Limited awareness – many business stakeholders are not yet familiar with what structured AI governance requires in practice, or how it differs from general IT risk management.
 
-• Governance perceived as cost rather than investment – without a visible regulatory consequence or internal incident, AI governance is frequently deprioritised in favour of deployment speed and commercial objectives.
+ - Governance perceived as cost rather than investment – without a visible regulatory consequence or internal incident, AI governance is frequently deprioritised in favour of deployment speed and commercial objectives.
 
-• Absence of internal accountability – without a dedicated AI Officer or equivalent role, no single function holds formal responsibility for AI governance, which means the topic consistently falls below the threshold of organisational priority.
+ - Absence of internal accountability – without a dedicated AI Officer or equivalent role, no single function holds formal responsibility for AI governance, which means the topic consistently falls below the threshold of organisational priority.
 
 This context creates a clear and immediate need for structured, accessible tools that enable existing business roles to conduct meaningful AI impact assessments without requiring specialist expertise. Organisations that establish governance frameworks proactively will be significantly better positioned to adapt when regulatory obligations come into full effect, avoiding the cost and disruption of reactive compliance.
 
 
 ## 3. Business Need
 
-[To be completed]
+Organisations deploying AI systems without a structured impact assessment process are exposed to consequences that extend well beyond regulatory non-compliance.
+Absence of audit trail and legal exposure
+
+Where an AI system influences decisions affecting individuals, such as recruitment, credit scoring, or access to services, organisations must be able to demonstrate on what basis those decisions were made. Without documented evidence of how the system was configured, what data it was trained on, and how outputs were monitored, organisations cannot conduct a meaningful investigation when a decision is challenged. In legal proceedings, the inability to produce this documentation significantly weakens the organisation's position and may be interpreted as evidence of negligence.
+
+***Regulatory consequences***
+
+EU AI Act obligations apply to both providers and deployers of AI systems. Organisations that cannot demonstrate compliance, including maintaining logs, conducting impact assessments, and implementing human oversight for high-risk systems, face significant financial penalties. The absence of governance documentation does not reduce liability; it compounds it.
+
+***Reputational damage***
+
+Incidents involving biased or unexplainable AI decisions attract public attention rapidly. Negative coverage and commentary spread quickly and have a lasting effect on organisational reputation, customer trust, and the ability to attract talent and partners. Reputational damage of this kind is difficult to quantify and harder to reverse than a regulatory fine.
+
+***The cost of reactive compliance***
+
+Organisations that delay governance investment until a regulatory deadline or incident forces action face significantly higher costs than those who establish frameworks proactively. Reactive compliance requires emergency resourcing, external consultants, and accelerated implementation under pressure, often while simultaneously managing an active investigation or public scrutiny.
+
+***What structured impact assessment provides***
+
+Organisations that conduct a structured AI impact assessment before deployment gain documented evidence of due diligence, a clear basis for investigating incidents, defined ownership of risks and mitigations, and an audit trail that demonstrates responsible AI governance. This positions them to respond to regulatory scrutiny, legal challenges, and public questions from a position of transparency rather than exposure.
 
 ## 4. Proposed Solution and Scope
 
