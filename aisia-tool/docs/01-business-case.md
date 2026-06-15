@@ -62,7 +62,36 @@ Organisations that conduct a structured AI impact assessment before deployment g
 
 ## 4. Proposed Solution and Scope
 
-[To be completed]
+***Solution overview***
+The AISIA Interactive Tool is a browser-based assessment instrument that guides users through a structured, step-by-step evaluation of an AI system prior to deployment. The tool does not passively collect information; it actively prompts users to verify that all necessary inputs are in place, consider risks across multiple dimensions, identify and assign ownership for each risk, and reach an informed deployment decision supported by complete documentation.
+The tool calculates a risk score for each identified impact based on severity and likelihood ratings provided by the assessor. It highlights which AI systems carry high risk and require additional attention, more granular metrics, and enhanced monitoring arrangements. The tool does not make deployment decisions on behalf of the organisation; it presents a structured evidence base that enables the responsible person signing off on the assessment to make an informed and documented decision.
+
+***In scope***
+
+Guided completion of a full AI System Impact Assessment across seven structured sections
+Risk scoring matrix with automatic calculation of severity and likelihood scores
+Identification and flagging of high-risk impacts requiring mandatory mitigation before deployment
+Assignment of risk ownership and mitigation status for each identified impact
+Linkage to GDPR/DPIA obligations and EU AI Act Annex III classification
+Post-deployment monitoring plan documentation
+Formal approval and sign-off section with completion checklist
+Export of completed assessment as JSON and plain text for manual use in other tools or systems
+Auto-save functionality to preserve assessment progress within a browser session
+Import of previously exported JSON to resume or review a saved assessment
+
+***Out of scope***
+
+Long-term storage of assessment data; the tool does not retain data between sessions beyond browser local storage
+Integration with third-party systems such as JIRA, ServiceNow, or GRC platforms; export files can be manually imported into such systems
+Automated monitoring of AI systems post-deployment; the tool documents the monitoring plan but does not execute it
+Generation of regulatory submissions or reports formatted for direct submission to supervisory authorities
+Legal or compliance advice; the tool supports structured documentation but does not replace the judgement of a DPO, legal counsel, or qualified compliance officer
+
+***Future development considerations***
+
+API integration with GRC and project management platforms is identified as a potential future development, as is a dedicated PDF export function generating a formatted assessment report. Both are outside the scope of 
+the current version.
+
 
 ## 5. Security and Compliance Considerations
 
