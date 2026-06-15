@@ -93,9 +93,71 @@ API integration with GRC and project management platforms is identified as a pot
 the current version.
 
 
+
 ## 5. Security and Compliance Considerations
 
-[To be completed]
+The AISIA Interactive Tool is designed to support compliance with the following regulatory and standards requirements:
+
+***EU AI Act***
+
+The tool directly addresses the following obligations:
+
+ - Article 9 – Risk management system: guides organisations through establishing and documenting a structured risk management process for high-risk AI systems, including identification, assessment, and mitigation of risks across multiple dimensions
+ - Article 10 – Data governance: prompts documentation of training, validation and test data sources, quality assessment, and verification that data is free from bias and appropriately secured
+ - Article 13 – Transparency and provision of information: requires that high-risk AI systems are sufficiently transparent to enable deployers to interpret outputs; the tool documents explainability measures and the basis on which the system produces decisions or recommendations
+ - Article 14 – Human oversight: documents human-in-the-loop arrangements for high-risk systems, including designated oversight roles and escalation procedures
+ - Article 17 – Quality management system: supports documentation of policies and procedures governing AI system deployment, monitoring, and incident response
+ - Article 18 – Documentation retention: completed AISIA assessments constitute part of the technical documentation required to be retained for a minimum of 10 years by providers and 3 years by deployers of high-risk AI systems after the system is taken out of service
+ - Article 72 – Confidentiality: completed AISIA documents contain sensitive organisational information and must be treated as confidential, with access restricted to authorised roles
+ - Annex III – High-risk AI system classification: the tool guides users through classification of AI systems against Annex III categories to determine whether high-risk obligations apply
+
+***ISO/IEC 42001:2023***
+
+The tool is structured around the following Annex A.5 controls:
+
+ - A.5.2 – AI system impact assessment: the tool operationalises the pre-deployment impact assessment requirement, guiding users through all required assessment dimensions
+ - A.5.3 – AI system impact assessment review: the monitoring plan section documents scheduled review dates, material change triggers, and responsibilities for post-deployment review
+ - A.5.4 – Documentation of AI system impacts: all identified impacts are documented with dimension, severity, likelihood, score, mitigation measure, owner and status
+ - A.5.5 – Treatment of adverse impacts: the tool requires mitigation measures for all identified impacts and flags critical impacts requiring mandatory action before deployment is authorised
+
+***GDPR – Article 35 – Data Protection Impact Assessment***
+
+Where an AI system processes personal data and may pose a high risk to the rights and freedoms of individuals, a DPIA is required under GDPR Article 35. The tool includes a dedicated section linking the AISIA to the DPIA process, documenting whether a joint assessment has been conducted, the DPO review status, and the relationship between data protection scope and broader AI impact scope. The tool does not itself process personal data of individuals assessed by the AI system; however, it processes organisational data including system descriptions, risk owners, and governance structures, which should be handled in accordance with the organisation's data protection policy.
+
+
+***Supporting frameworks***
+
+The following standards provide broader context for the governance approach embedded in the tool:
+
+ - ISO 31000 – Risk management: the impact scoring methodology applies general risk management principles of likelihood and consequence assessment consistent with ISO 31000
+ - ISO/IEC 27001 – Information security: assessment outputs, including exported JSON and PDF files, contain sensitive organisational information and should be classified and handled in accordance with the organisation's information security policy
+ - NIST AI Risk Management Framework: referenced as a complementary framework for organisations operating globally; while not a European regulatory requirement, NIST AI RMF provides additional risk categorisation and governance guidance consistent with the approach taken in AISIA
+
+
+### Security considerations
+
+***Data processed by the tool***
+
+The AISIA tool processes sensitive organisational information including AI system descriptions, risk assessments, data governance arrangements, and named individuals in ownership and approval roles. This information should be treated as confidential throughout the assessment lifecycle.
+
+***Access control***
+
+Access to a completed AISIA assessment should be restricted to authorised roles only. Recommended access includes: System Owner, DPO and Legal/Compliance, AI Ethics Board or equivalent governance function, and internal or external auditors where required. Broad distribution of completed assessments is not recommended given the sensitivity of the information contained.
+Local storage
+
+The tool uses browser local storage to preserve assessment progress between sessions on the same device. Organisations should ensure that AISIA assessments are completed on dedicated corporate devices with individual user authentication. Upon completion and export, users should clear saved data using the built-in "Clear saved data" function to prevent residual data remaining accessible on shared or unattended devices. The tool does not currently implement automatic session clearance; this is a known limitation of the current version.
+
+***Export and document management***
+
+The tool produces two export formats:
+
+JSON – working file for editing and reimporting; should be stored securely with access restricted to the assessment team and treated as a draft document
+PDF with confidentiality watermark – final approved version for archiving, audit, and regulatory purposes; should be stored in the organisation's document management system with role-based access control
+
+Exported files should not be stored on unmanaged personal devices, shared drives without access controls, or transmitted via unsecured channels. Retention of completed AISIA documents should comply with EU AI Act Article 18 requirements: minimum 10 years for providers of high-risk AI systems, minimum 3 years for deployers, measured from the date the system is taken out of service.
+Future development
+
+Integration with GRC platforms via API is identified as a future development that would eliminate local file export and provide centralised, access-controlled storage of assessment records with a full audit trail.
 
 ## 6. Development Phases
 
