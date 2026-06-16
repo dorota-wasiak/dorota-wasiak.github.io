@@ -158,7 +158,8 @@ The AISIA tool processes sensitive organisational information including AI syste
 ***Access control***
 
 Access to a completed AISIA assessment should be restricted to authorised roles only. Recommended access includes: System Owner, DPO and Legal/Compliance, AI Ethics Board or equivalent governance function, and internal or external auditors where required. Broad distribution of completed assessments is not recommended given the sensitivity of the information contained.
-Local storage
+
+***Local storage***
 
 The tool uses browser local storage to preserve assessment progress between sessions on the same device. Organisations should ensure that AISIA assessments are completed on dedicated corporate devices with individual user authentication. Upon completion and export, users should clear saved data using the built-in "Clear saved data" function to prevent residual data remaining accessible on shared or unattended devices. The tool does not currently implement automatic session clearance; this is a known limitation of the current version.
 
