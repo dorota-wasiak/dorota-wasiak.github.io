@@ -334,35 +334,40 @@ This section documents known risks to the successful adoption and use of the AIS
 
 **Project and adoption risks**
 
-**Risk 1: 
-Checkbox compliance**
+### Risk 1: 
+
+**Checkbox compliance**
 The most significant adoption risk is that organisations complete the assessment mechanically to produce a document, without genuine consideration of the risks and impacts involved. The tool cannot technically prevent this; the quality of an AISIA assessment is directly dependent on the knowledge, honesty, and accountability of the people completing it. Mitigation relies on organisational culture, AI literacy, and clear assignment of personal accountability for each section of the assessment.
 
 *Mitigation: AI literacy programme for all assessment participants; named accountability for each section; quality review by AI Ethics Board or equivalent before approval.*
 
-**Risk 2: 
-Insufficient AI literacy among assessment participants**
+### Risk 2: 
+
+**Insufficient AI literacy among assessment participants**
 
 EU AI Act Article 4 requires organisations to ensure that staff working with AI systems possess an appropriate level of AI literacy. Where Business Owners, Product Owners, or other assessment participants lack sufficient understanding of the AI system being assessed, the quality of risk identification and scoring will be compromised. Gaps in understanding lead to underestimated risks, missed impacts, and incomplete mitigation plans.
 
 *Mitigation: mandatory AI literacy training before assessment participation; involvement of IT and Solution Architect to provide technical context; DPO and Legal review of completed assessment.*
 
-**Risk 3: 
-Unidentified risks emerging post-deployment**
+### Risk 3: 
+
+** Unidentified risks emerging post-deployment**
 
 Despite thorough pre-deployment assessment, new risks may emerge after a system goes live — including risks that were not foreseeable at the time of the original assessment. A single AISIA assessment does not provide ongoing protection; it must be supplemented by active post-deployment monitoring and reviewed whenever a material change occurs or an unexpected incident is identified.
 
 *Mitigation: post-deployment monitoring plan completed as part of Section 6 of the assessment; AISIA review triggered by material changes, incidents, or new regulatory guidance; annual scheduled review for all active high-risk systems.*
 
-**Risk 4: 
-Regulatory and standards evolution**
+### Risk 4: 
+
+**Regulatory and standards evolution**
 
 The EU AI Act and ISO/IEC 42001:2023 are subject to amendment, supplementary guidance, and national implementation variations. Assessment questions, risk classifications, and compliance requirements embedded in the current version of the tool may become outdated as regulations evolve. Organisations must ensure that the tool is reviewed and updated in line with regulatory developments.
 
 *Mitigation: designated owner responsible for monitoring regulatory changes and initiating tool updates; version history maintained in release notes; organisations using the tool should verify alignment with current regulatory requirements before each major assessment cycle.*
 
-**Risk 5: 
-Retrospective assessment of existing systems**
+### Risk 5: 
+
+**Retrospective assessment of existing systems**
 
 EU AI Act Article 26 requires deployers of high-risk AI systems to ensure compliance even for systems deployed before the regulation came into full effect. Organisations that have not conducted an AISIA assessment for existing systems are exposed to regulatory risk. Retrospective assessments should be prioritised for all high-risk systems currently in production.
 
