@@ -161,7 +161,60 @@ Integration with GRC platforms via API is identified as a future development tha
 
 ## 6. Development Phases
 
-[To be completed]
+The AISIA Interactive Tool is developed iteratively, with each phase delivering a functional increment that builds on the previous version. This approach enables early validation of core assessment functionality before introducing integrations and advanced features.
+
+| Phase | Version | Scope | Status |
+|---|---|---|---|
+| Phase 1 | v0.1 | Core assessment tool | Released |
+| Phase 2 | v0.2 | PDF export with confidentiality watermark | Planned |
+| Phase 3 | v0.3 | API integration with external GRC platforms | Future |
+| Phase 4 | v0.4 | Internal documentation integration | Future |
+
+
+### Phase 1 – v0.1 – Core assessment tool
+The first release delivers a fully functional browser-based AISIA form covering all seven assessment sections defined by ISO/IEC 42001:2023 Annex A.5. The tool guides users through structured completion of all required fields, including dropdown selections for risk dimensions, severity and likelihood ratings, mitigation status, and approval sign-off.
+Core functionality delivered in v0.1:
+
+Seven-section guided assessment form with structured field validation
+ - Risk scoring matrix with automatic severity × likelihood calculation
+ - Automatic flagging of critical impacts requiring mandatory mitigation
+ - Completion checklist with progress indicator
+ - Auto-save via browser local storage to preserve session progress
+ - Clear saved data function to remove residual data from shared devices
+ - Export to JSON as working file for editing and reimporting
+ - Export to plain text for manual use in external tools
+ - Import from JSON to resume or review a previously saved assessment
+ - Footer with portfolio attribution
+
+---
+
+### Phase 2 – v0.2 – PDF export with confidentiality watermark
+The second release introduces a dedicated PDF export function generating a formatted assessment report marked as confidential. The PDF serves as the final approved version of the assessment for archiving, audit trail, and regulatory purposes.
+Planned functionality in v0.2:
+
+Export to PDF with confidentiality watermark including system name, assessment date, and classification marking
+Formatted layout optimised for print and digital archiving
+PDF suitable for manual import into external document management systems and GRC platforms
+
+---
+
+### Phase 3 – v0.3 – API integration with external systems
+The third release introduces API connectivity enabling assessment outputs to be automatically transferred to external GRC and project management platforms, eliminating manual file handling and providing centralised, access-controlled storage of assessment records.
+Planned functionality in v0.3:
+
+API integration with GRC platforms such as ServiceNow, Archer, or equivalent
+Automated transfer of completed assessment data to external systems
+Elimination of local file export as primary output mechanism
+
+---
+
+### Phase 4 – v0.4 – Internal documentation integration
+The fourth release extends integration to internal organisational documentation, enabling the tool to connect with existing governance artefacts and streamline the assessment process for organisations with established AI governance functions.
+Planned functionality in v0.4:
+
+Integration with internal documentation systems including DPIA records and risk metrics
+Directory-based selection of responsible persons for assessment sign-off and mitigation ownership, replacing manual name entry
+Linkage to organisational role directories to assign accountability across assessment stages
 
 ## 7. Benefits and Impact
 
