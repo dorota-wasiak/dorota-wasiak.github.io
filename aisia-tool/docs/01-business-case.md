@@ -1,5 +1,5 @@
 # Business Case - AISIA Interactive Tool
-*v0.1 | Dorota Wasiak | AI Governance Portfolio*
+*v1.0 | Dorota Wasiak | AI Governance Portfolio*
 
 ## Table of Contents
 
