@@ -207,9 +207,9 @@ Seven-section guided assessment form with structured field validation
 The second release introduces a dedicated PDF export function generating a formatted assessment report marked as confidential. The PDF serves as the final approved version of the assessment for archiving, audit trail, and regulatory purposes.
 Planned functionality in v0.2:
 
-Export to PDF with confidentiality watermark including system name, assessment date, and classification marking
-Formatted layout optimised for print and digital archiving
-PDF suitable for manual import into external document management systems and GRC platforms
+ - Export to PDF with confidentiality watermark including system name, assessment date, and classification marking
+ - Formatted layout optimised for print and digital archiving
+ - PDF suitable for manual import into external document management systems and GRC platforms
 
 ---
 
@@ -217,9 +217,9 @@ PDF suitable for manual import into external document management systems and GRC
 The third release introduces API connectivity enabling assessment outputs to be automatically transferred to external GRC and project management platforms, eliminating manual file handling and providing centralised, access-controlled storage of assessment records.
 Planned functionality in v0.3:
 
-API integration with GRC platforms such as ServiceNow, Archer, or equivalent
-Automated transfer of completed assessment data to external systems
-Elimination of local file export as primary output mechanism
+ - API integration with GRC platforms such as ServiceNow, Archer, or equivalent
+ - Automated transfer of completed assessment data to external systems
+ - Elimination of local file export as primary output mechanism
 
 ---
 <!-- 
@@ -402,7 +402,7 @@ Assessment progress is saved in browser local storage. This data can be lost if 
 
 ### Limitation 2 
 
-**No meritorical validation of responses**
+**No substantive validation of responses**
 
 The tool validates that required fields are completed but does not validate whether responses are substantively correct or sufficient. A user may enter inadequate mitigation measures for a critical impact and the tool will accept the response. This means the quality of the assessment output is entirely dependent on the knowledge and diligence of the assessor.
 
