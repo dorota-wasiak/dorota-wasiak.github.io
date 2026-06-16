@@ -248,7 +248,83 @@ Summarising, AISIA transforms AI governance from a compliance obligation into an
 
 ## 8. Performance Metrics
 
-[To be completed]
+Success of the AISIA Interactive Tool is measured across two dimensions: 
+the quality and completeness of the assessment process itself, and the 
+governance outcomes achieved by organisations using the tool.
+
+---
+
+**Assessment completeness metrics**
+
+| Metric | Target |
+|---|---|
+| All seven assessment sections completed before export | 100% of submitted assessments |
+| Every identified impact has severity and likelihood scores assigned | 100% |
+| Every critical impact (score ≥9) has a mitigation measure and named owner | 100% |
+| Deployment recommendation recorded and signed off by System Owner | 100% |
+| Monitoring plan completed with scheduled review date and named owner | 100% |
+| DPIA linkage documented where personal data is processed | 100% of assessments involving personal data |
+
+---
+
+**Assessment lifecycle metrics**
+
+| Metric | Target |
+|---|---|
+| AISIA assessment completed before every new AI system deployment | 100% |
+| AISIA review conducted upon material change to existing system | 100% of material changes |
+| Annual review completed within scheduled timeframe | 100% of deployed systems |
+
+---
+
+**Governance outcome metrics**
+
+| Metric | Target |
+|---|---|
+| All affected parties identified — internal and external — before deployment | 100% of assessments |
+| All high-risk systems classified against EU AI Act Annex III before deployment | 100% |
+| Data governance documentation in place — training, validation and test data inventoried and quality-assessed | Confirmed for all high-risk systems |
+| Logging and log retention policy implemented in accordance with EU AI Act Article 18 | Confirmed for all high-risk systems |
+| Transparency and explainability measures documented for all AI system outputs | 100% of high-risk systems |
+| Bias assessment completed confirming absence of discriminatory patterns across gender, race, origin and age | 100% of high-risk systems |
+| Named accountability assigned for each risk, mitigation, and escalation path | 100% of identified risks |
+| Post-deployment monitoring active and first review conducted within scheduled timeframe | Confirmed per assessment monitoring plan |
+
+---
+
+**Human oversight metrics**
+
+| Metric | Target |
+|---|---|
+| Human oversight role named and confirmed for all high-risk systems | 100% |
+| Override mechanism documented and tested before deployment | 100% of high-risk systems |
+
+---
+
+**Incident response readiness metrics**
+
+| Metric | Target |
+|---|---|
+| Escalation path defined for all critical impacts | 100% |
+| Incident response procedure documented and owner assigned | 100% of high-risk systems |
+| Maximum response time defined for critical AI system deviation | Defined per system in monitoring plan |
+
+---
+
+**Audit readiness indicators**
+
+An organisation using AISIA can demonstrate audit readiness when the 
+following evidence is available:
+
+- Completed and signed AISIA assessment document for each deployed AI system
+- Data inventory documenting training, validation and test datasets with quality and bias assessment results
+- Named owners for all risks, mitigations, and escalation procedures
+- Log retention policy aligned with EU AI Act Article 18 requirements
+- Transparency and explainability documentation for all high-risk system outputs
+- Human oversight role confirmed and override mechanism tested for all high-risk systems
+- Evidence that all affected parties — including individuals directly assessed by the AI system — have been identified and their rights considered
+- Incident response procedure in place with defined response times for critical deviations
+- Scheduled post-deployment review dates recorded and adhered to
 
 ## 9. Risks and Limitations
 
