@@ -207,7 +207,7 @@ Automated transfer of completed assessment data to external systems
 Elimination of local file export as primary output mechanism
 
 ---
-
+<!-- 
 ### Phase 4 – v0.4 – Internal documentation integration
 The fourth release extends integration to internal organisational documentation, enabling the tool to connect with existing governance artefacts and streamline the assessment process for organisations with established AI governance functions.
 Planned functionality in v0.4:
@@ -215,6 +215,8 @@ Planned functionality in v0.4:
 Integration with internal documentation systems including DPIA records and risk metrics
 Directory-based selection of responsible persons for assessment sign-off and mitigation ownership, replacing manual name entry
 Linkage to organisational role directories to assign accountability across assessment stages
+-->
+
 
 ## 7. Benefits and Impact
 
