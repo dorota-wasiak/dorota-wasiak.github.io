@@ -1,4 +1,4 @@
-# Business Case — AISIA Interactive Tool
+# Business Case - AISIA Interactive Tool
 *Draft v0.1 | Dorota Wasiak | AI Governance Portfolio*
 
 ## 1. Executive Summary
@@ -281,9 +281,9 @@ governance outcomes achieved by organisations using the tool.
 
 | Metric | Target |
 |---|---|
-| All affected parties identified — internal and external — before deployment | 100% of assessments |
+| All affected parties identified - internal and external - before deployment | 100% of assessments |
 | All high-risk systems classified against EU AI Act Annex III before deployment | 100% |
-| Data governance documentation in place — training, validation and test data inventoried and quality-assessed | Confirmed for all high-risk systems |
+| Data governance documentation in place - training, validation and test data inventoried and quality-assessed | Confirmed for all high-risk systems |
 | Logging and log retention policy implemented in accordance with EU AI Act Article 18 | Confirmed for all high-risk systems |
 | Transparency and explainability measures documented for all AI system outputs | 100% of high-risk systems |
 | Bias assessment completed confirming absence of discriminatory patterns across gender, race, origin and age | 100% of high-risk systems |
@@ -322,7 +322,7 @@ following evidence is available:
 - Log retention policy aligned with EU AI Act Article 18 requirements
 - Transparency and explainability documentation for all high-risk system outputs
 - Human oversight role confirmed and override mechanism tested for all high-risk systems
-- Evidence that all affected parties — including individuals directly assessed by the AI system — have been identified and their rights considered
+- Evidence that all affected parties - including individuals directly assessed by the AI system - have been identified and their rights considered
 - Incident response procedure in place with defined response times for critical deviations
 - Scheduled post-deployment review dates recorded and adhered to
 
@@ -353,7 +353,7 @@ EU AI Act Article 4 requires organisations to ensure that staff working with AI 
 
 ** Unidentified risks emerging post-deployment**
 
-Despite thorough pre-deployment assessment, new risks may emerge after a system goes live — including risks that were not foreseeable at the time of the original assessment. A single AISIA assessment does not provide ongoing protection; it must be supplemented by active post-deployment monitoring and reviewed whenever a material change occurs or an unexpected incident is identified.
+Despite thorough pre-deployment assessment, new risks may emerge after a system goes live - including risks that were not foreseeable at the time of the original assessment. A single AISIA assessment does not provide ongoing protection; it must be supplemented by active post-deployment monitoring and reviewed whenever a material change occurs or an unexpected incident is identified.
 
 *Mitigation: post-deployment monitoring plan completed as part of Section 6 of the assessment; AISIA review triggered by material changes, incidents, or new regulatory guidance; annual scheduled review for all active high-risk systems.*
 
@@ -375,7 +375,7 @@ EU AI Act Article 26 requires deployers of high-risk AI systems to ensure compli
 
 ---
 
-## **Technical limitations — current version**
+## **Technical limitations - current version**
 
 ### Limitation 1 
 
@@ -391,7 +391,7 @@ Assessment progress is saved in browser local storage. This data can be lost if 
 
 The tool validates that required fields are completed but does not validate whether responses are substantively correct or sufficient. A user may enter inadequate mitigation measures for a critical impact and the tool will accept the response. This means the quality of the assessment output is entirely dependent on the knowledge and diligence of the assessor.
 
-*Known limitation of v0.1. Conditional validation logic — for example, blocking export when a critical impact has no documented mitigation - is identified as a v0.2 enhancement.*
+*Known limitation of v0.1. Conditional validation logic - for example, blocking export when a critical impact has no documented mitigation - is identified as a v0.2 enhancement.*
 
 ### Limitation 3 
 
@@ -411,4 +411,14 @@ Assessment data is stored in browser local storage and exported to local files. 
 
 ## 10. Conclusion
 
-[To be completed]
+AI systems, like all complex technical systems, require structured governance to remain trustworthy and fit for purpose over time. A system built without ongoing oversight, without the ability to introduce controlled changes, and without documented accountability will rapidly lose the trust of the people who depend on its outputs - regardless of how well it was built at the outset. The AISIA Interactive Tool exists to prevent exactly this: to ensure that organisations do not treat AI deployment as a one-time event, but as an ongoing responsibility.
+
+The tool provides a structured, accessible, and standards-aligned process for evaluating AI systems before deployment and maintaining governance throughout their lifecycle. By guiding existing business roles through a comprehensive impact assessment - covering risk identification, stakeholder impact, data governance, human oversight, transparency, and regulatory compliance - AISIA transforms governance from an abstract obligation into a practical, documented, and auditable organisational capability.
+
+The current version delivers core assessment functionality aligned with ISO/IEC 42001:2023 and EU AI Act requirements. Planned development phases will extend the tool with PDF export, API integration with GRC platforms, and enhanced validation logic - progressively closing the gap between assessment documentation and operational governance systems.
+
+Organisations that invest in structured AI governance now will be better positioned to adapt as regulatory requirements evolve, to respond to incidents with confidence, and to build the kind of trust in their AI systems that makes those systems genuinely valuable - to the organisation, to the people who use them, and to the people they affect.
+
+This project was developed as part of an AI Governance portfolio by a Senior Business Analyst with fifteen years of experience delivering digital and data solutions across automotive, logistics, supply chain, and healthcare sectors. It reflects a conviction that responsible AI governance is not a specialist function reserved for dedicated compliance teams - it is a core competency for every business and technology professional working with AI systems today.
+
+Organisations seeking to establish or strengthen their AI governance capability are invited to use, adapt, and build upon the AISIA Interactive Tool as a starting point for their own assessment practice.
