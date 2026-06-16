@@ -332,7 +332,7 @@ This section documents known risks to the successful adoption and use of the AIS
 
 ---
 
-**Project and adoption risks**
+## **Project and adoption risks**
 
 ### Risk 1: 
 
@@ -375,27 +375,35 @@ EU AI Act Article 26 requires deployers of high-risk AI systems to ensure compli
 
 ---
 
-**Technical limitations — current version**
+## **Technical limitations — current version**
 
-**Limitation 1 — Local storage vulnerability**
+### Limitation 1 
+
+**Local storage vulnerability**
 
 Assessment progress is saved in browser local storage. This data can be lost if the user clears browser cache, if organisational IT policies automatically clear browser data, or if the browser is updated or reinstalled. Users who have not exported a JSON file will lose all progress without warning.
 
 *Known limitation of v0.1. Mitigation: users should export JSON regularly during long assessment sessions. A reminder to export before closing the session is identified as a v0.2 enhancement.*
 
-**Limitation 2 — No meritorical validation of responses**
+### Limitation 2 
+
+**No meritorical validation of responses**
 
 The tool validates that required fields are completed but does not validate whether responses are substantively correct or sufficient. A user may enter inadequate mitigation measures for a critical impact and the tool will accept the response. This means the quality of the assessment output is entirely dependent on the knowledge and diligence of the assessor.
 
 *Known limitation of v0.1. Conditional validation logic — for example, blocking export when a critical impact has no documented mitigation - is identified as a v0.2 enhancement.*
 
-**Limitation 3 — Language**
+### Limitation 3 
+
+**Language**
 
 The tool is available in English only. For organisations operating in non-English speaking environments, language may be a barrier to full comprehension of assessment questions and the implications of responses, particularly for business roles that do not work primarily in English.
 
 *Known limitation of v0.1. Multilingual support is a potential future development.*
 
-**Limitation 4 — No server-side storage or access control**
+### Limitation 4 
+
+**No server-side storage or access control**
 
 Assessment data is stored in browser local storage and exported to local files. There is no server-side storage, user authentication, or role-based access control in the current version. Organisations are responsible for managing the security and access control of exported assessment files in accordance with their information security policy.
 
