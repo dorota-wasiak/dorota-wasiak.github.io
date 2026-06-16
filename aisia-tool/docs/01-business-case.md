@@ -220,7 +220,31 @@ Linkage to organisational role directories to assign accountability across asses
 
 ## 7. Benefits and Impact
 
-[To be completed]
+### ***Organisational benefits***
+
+Organisations that implement AISIA as part of their AI deployment process can be confident that all necessary aspects of responsible AI governance have been addressed before a system goes live. The structured assessment process consolidates existing knowledge, identifies gaps and ensures that nothing critical is overlooked amid the complexity of a deployment project.
+
+Instead of allowing governance knowledge and accountability to remain distributed across teams, AISIA centralises documentation in a single, traceable record. In response to a regulatory inquiry, legal challenge or internal incident, the organisation can immediately identify who is responsible for each element of the system, the decisions that have been made and the basis on which they were made, and the monitoring that is in place. This significantly reduces the time and reputational cost of responding to critical situations.
+
+Organisations that proactively establish structured AI governance will outperform those that don't, in terms of both operational maturity and regulatory readiness. When future obligations come into full effect, organisations that have completed AISIA assessments will be able to demonstrate compliance immediately, rather than having to develop procedures at the last moment under pressure. This proactive approach signals process maturity to regulators, partners and the market, creating a genuine competitive advantage.
+
+Under the EU AI Act, organisations that deploy non-compliant high-risk AI systems face fines of up to 3% of their global annual turnover or €15 million, whichever is higher. Penalties for prohibited AI practices reach 7% of global turnover or €35 million. These figures transform AI governance investment from an operational cost to a risk mitigation measure with clear, quantifiable financial justification.
+
+### ***Benefits for assessment participants***
+
+Business Owners, Product Owners, DPOs and others involved in the assessment process gain clarity and confidence that every stage of deployment, monitoring and incident response has been documented and assigned. Instead of relying on informal knowledge or assuming that others have addressed particular risks, each participant knows exactly who is responsible for which part of the process and who to contact for any deviations or incidents.
+
+The tool clarifies governance by making ownership explicit and traceable. This protects both individuals and the organisation: when accountability is clearly documented, no single person is exposed to disproportionate liability in the event of an incident.
+
+Demonstrating AI governance maturity also supports talent acquisition, as experienced professionals are increasingly evaluating prospective employers based on their responsible technology practices. In a competitive market, organisations that can demonstrate structured AI governance are better positioned to attract and retain senior talent.
+
+### ***Benefits for individuals affected by AI systems***
+
+Those whose data is processed, or whose access to services, employment or other opportunities is affected by an AI system, can benefit from the assurance that the system has been thoroughly evaluated before deployment. They can be confident that the organisation has verified the quality and integrity of the training data used, established mechanisms for human oversight and documented a process for investigating and explaining system outputs if necessary.
+
+When questions arise about a decision influenced by AI, individuals interacting with an organisation that has completed an AISIA assessment can request an explanation and expect a structured, evidence-based response. They can trust that the system has been developed in accordance with the requirements of the EU AI Act and ISO governance standards, that their data is secure and is being handled responsibly, and that the organisation deploying the system is taking its obligations seriously.
+
+Summarising, AISIA transforms AI governance from a compliance obligation into an operational capability that protects the organisation, empowers those responsible for AI systems and builds trust with those affected by them.
 
 ## 8. Performance Metrics
 
