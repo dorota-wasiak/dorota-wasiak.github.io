@@ -21,6 +21,7 @@
   --border:#ddeaed;
   --bg:#ffffff;
   --bg2:#f8fafb;
+  --bg-gray:#f0f0ed;
   --green-dark:#2d5a1a;
   --purple-dark:#4a2d7a;
   --purple-bg:#f0edf8;
@@ -32,6 +33,7 @@
 html{scroll-behavior:smooth}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6}
 
+/* NAV */
 .topnav{background:var(--bg);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .topnav-links{display:flex;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}
 .topnav-links::-webkit-scrollbar{display:none}
@@ -40,60 +42,71 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .topnav-item.active{color:var(--teal-dark);border-bottom-color:var(--teal-dark);font-weight:500}
 .topnav-cta{padding:7px 14px;background:var(--amber);color:#fff;font-size:12px;font-weight:500;border-radius:4px;white-space:nowrap;flex-shrink:0;letter-spacing:.02em}
 
-.hero{background:var(--teal-dark);padding:2.5rem 2rem;display:grid;grid-template-columns:1fr 1.3fr auto;gap:2.5rem;align-items:center}
-.hero-name{font-family:'Playfair Display',serif;line-height:.95}
-.hero-firstname{display:block;font-size:46px;font-weight:700;color:#fff;letter-spacing:-1px}
-.hero-lastname{display:block;font-size:46px;font-style:italic;font-weight:400;color:rgba(255,255,255,0.38);letter-spacing:-1px}
-.hero-quote-box{border-left:1px solid rgba(255,255,255,0.15);padding-left:2rem}
-.hero-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:16px;line-height:1.55;color:rgba(255,255,255,0.85);font-weight:400}
-.amber-em{color:var(--amber);font-style:italic}
-.hero-stats{display:flex;flex-direction:column;border-left:1px solid rgba(255,255,255,0.15);padding-left:2rem}
-.hero-stat{text-align:right;padding:8px 0}
+/* HERO */
+.hero{background:var(--teal-dark);padding:2.5rem 2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+.hero-name{font-family:'Playfair Display',serif;line-height:.95;margin-bottom:1.25rem}
+.hero-firstname{display:block;font-size:52px;font-weight:700;color:#fff;letter-spacing:-1.5px}
+.hero-lastname{display:block;font-size:52px;font-style:italic;font-weight:400;color:rgba(255,255,255,0.38);letter-spacing:-1.5px}
+.hero-tagline{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.75;max-width:440px}
+.hero-tagline em{color:var(--amber);font-style:normal}
+.hero-right{display:flex;flex-direction:column;align-items:flex-end;border-left:1px solid rgba(255,255,255,0.12);padding-left:2rem;gap:0}
+.hero-stat{text-align:right;padding:10px 0}
 .hero-stat+.hero-stat{border-top:1px solid rgba(255,255,255,0.1)}
-.hero-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#fff;display:block;line-height:1}
-.hero-stat-label{font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;display:block}
+.hero-stat-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:#fff;display:block;line-height:1}
+.hero-stat-label{font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.07em;margin-top:3px;display:block}
 
+/* SUMMARY */
+.summary-band{background:var(--bg-gray);padding:1.75rem 2rem;border-bottom:1px solid var(--border)}
+.summary-eyebrow{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;font-weight:500}
+.summary-text{font-size:13px;color:var(--text2);line-height:1.85;max-width:700px}
+
+/* SECTIONS */
 .section{padding:2rem;border-bottom:1px solid var(--border)}
 .section:last-of-type{border-bottom:none}
-.sec-header{display:flex;align-items:baseline;gap:1.25rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.sec-header{display:flex;align-items:baseline;gap:1.25rem;margin-bottom:1.75rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
 .sec-eyebrow{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--amber);font-weight:500;white-space:nowrap}
 .sec-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--text)}
-.profile-text{font-size:13px;line-height:1.85;color:var(--text2);max-width:900px}
+.subsec-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid var(--border)}
 
-.subsec{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);margin:1.75rem 0 1rem;padding-bottom:7px;border-bottom:1px solid var(--border)}
-.subsec:first-of-type{margin-top:0}
-.tc-block{margin-bottom:14px}
-.tc-title{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-bottom:9px;display:flex;align-items:center;gap:8px}
-.tc-title::after{content:'';flex:1;height:1px;background:var(--border)}
-.pills{display:flex;flex-wrap:wrap;gap:7px}
-.pill{font-size:12px;padding:6px 13px;border-radius:16px;font-weight:500}
-.tc-teal .tc-title{color:var(--teal-dark)}
-.tc-teal .pill{background:#dcedf2;color:var(--teal-dark);border:1px solid #b8d6e0}
-.tc-amber .tc-title{color:var(--amber-dark)}
-.tc-amber .pill{background:#fbeed1;color:var(--amber-dark);border:1px solid #ecce8f}
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:1.75rem}
+.skill-group{border-left:3px solid var(--teal-dark);padding:.75rem 0 .75rem 1rem}
+.skill-group.amber{border-left-color:var(--amber)}
+.skill-group-title{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--teal-dark);margin-bottom:8px}
+.skill-group.amber .skill-group-title{color:var(--amber-dark)}
+.skill-item{font-size:12px;color:var(--text2);padding:3px 0;border-bottom:1px solid var(--border)}
+.skill-item:last-child{border-bottom:none}
 
+/* PORTFOLIO */
 .tabs{display:flex;gap:6px;margin-bottom:1.5rem;flex-wrap:wrap}
 .tab{padding:6px 14px;border-radius:20px;font-size:12px;border:1px solid var(--border);color:var(--text3);cursor:pointer;background:transparent;font-family:inherit;transition:all .15s}
 .tab:hover{border-color:var(--teal);color:var(--teal)}
 .tab.active{background:var(--teal-light);border-color:var(--teal);color:var(--teal-dark);font-weight:500}
-.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.port-card{border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color .2s}
+.port-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.port-card{border-radius:12px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;transition:border-color .2s}
 .port-card:hover{border-color:var(--teal)}
+.port-card.featured{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr}
+.port-card.dashed{border-style:dashed;opacity:.8}
+.port-card[data-category]{transition:opacity .2s,display .2s}
 .port-card.hidden{display:none}
-.port-visual{padding:1rem;min-height:90px;display:flex;flex-direction:column;justify-content:space-between}
+.port-visual{padding:1.75rem;display:flex;flex-direction:column;justify-content:space-between;min-height:170px}
 .pv-teal{background:var(--teal-dark)}
 .pv-amber{background:var(--amber-dark)}
 .pv-green{background:var(--green-dark)}
-.port-icon{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
-.port-vtitle{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#fff}
-.port-body{padding:12px 14px;display:flex;flex-direction:column;gap:8px}
-.port-desc{font-size:11.5px;color:var(--text2);line-height:1.55}
-.port-footer{display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px solid var(--border);font-size:11px}
-.port-live{color:var(--text3)}
-.port-link{color:var(--teal-dark);font-weight:500;text-decoration:none}
+.port-visual-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.port-icon{width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff}
+.port-live{font-size:10px;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);border:1px solid rgba(255,255,255,0.25);letter-spacing:.04em}
+.port-visual-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#fff;line-height:1.3}
+.port-body{padding:1.25rem;background:var(--bg);flex:1;display:flex;flex-direction:column;gap:10px}
+.port-name{font-size:13px;font-weight:500;color:var(--text)}
+.port-desc{font-size:12px;color:var(--text2);line-height:1.65;flex:1}
+.port-footer{display:flex;align-items:center;justify-content:space-between;padding-top:8px;border-top:1px solid var(--border)}
+.port-tag{font-size:11px;color:var(--text3)}
+.port-link{font-size:12px;color:var(--teal-dark);font-weight:500;text-decoration:none}
 .port-link:hover{text-decoration:underline}
-.port-soon{color:var(--amber-dark);background:var(--amber-light);padding:2px 8px;border-radius:10px;border:1px solid var(--amber)}
+.port-soon{font-size:11px;color:var(--amber-dark);background:var(--amber-light);padding:2px 8px;border-radius:12px;border:1px solid var(--amber)}
 
+/* TIMELINE */
 .timeline{position:relative;padding-left:24px}
 .timeline::before{content:'';position:absolute;left:0;top:10px;bottom:0;width:1px;background:var(--border)}
 .t-entry{position:relative;margin-bottom:2.5rem}
@@ -123,23 +136,27 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .tags{display:flex;gap:5px;flex-wrap:wrap}
 .tag{font-size:11px;padding:2px 9px;border-radius:12px;background:var(--bg2);border:1px solid var(--border);color:var(--text2)}
 
+/* PROJECTS VOLUNTEER */
 .proj-vol-item{padding:.875rem 0;border-bottom:1px solid var(--border)}
 .proj-vol-item:last-child{border-bottom:none}
 .proj-vol-name{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px}
 .proj-vol-desc{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:4px}
 .proj-vol-tag{font-size:11px;color:var(--amber);font-weight:500}
 
+/* CERTIFICATIONS */
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
 .cert{border-left:3px solid var(--amber);padding:.6rem 0 .6rem 1rem}
 .cert-name{font-size:12px;font-weight:500;color:var(--text);margin-bottom:2px;line-height:1.4}
 .cert-issuer{font-size:11px;color:var(--text3)}
 
+/* EDUCATION */
 .edu-item{display:flex;justify-content:space-between;align-items:flex-start;padding:.875rem 0;border-bottom:1px solid var(--border);gap:12px}
 .edu-item:last-child{border-bottom:none}
 .edu-degree{font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px}
 .edu-school{font-size:12px;color:var(--teal)}
 .edu-date{font-size:12px;color:var(--text3);white-space:nowrap;flex-shrink:0}
 
+/* CONTACT */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
 .contact-heading{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--text);line-height:1.15;margin-bottom:10px}
 .contact-heading em{font-style:italic;color:var(--text3)}
@@ -154,25 +171,29 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .contact-value{font-size:13px;color:var(--teal-dark);text-decoration:none}
 .contact-value:hover{text-decoration:underline}
 
+/* FOOTER */
 footer{padding:1.25rem 2rem;background:var(--teal-dark);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .footer-name{font-size:12px;color:rgba(255,255,255,0.45);font-family:'Playfair Display',serif;font-style:italic}
 .footer-links{display:flex;gap:16px}
 .footer-link{font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none}
 .footer-link:hover{color:var(--amber)}
 
+/* RESPONSIVE */
 @media(max-width:640px){
-  .hero{grid-template-columns:1fr;gap:1.25rem}
-  .hero-firstname,.hero-lastname{font-size:36px}
-  .hero-quote-box,.hero-stats{border-left:none;padding-left:0;border-top:1px solid rgba(255,255,255,0.12);padding-top:1rem}
-  .hero-stats{flex-direction:row;gap:1.5rem}
+  .hero{grid-template-columns:1fr;gap:1.5rem}
+  .hero-firstname,.hero-lastname{font-size:38px}
+  .hero-right{border-left:none;padding-left:0;border-top:1px solid rgba(255,255,255,0.12);padding-top:1rem;flex-direction:row;gap:1.5rem;align-items:flex-start}
   .hero-stat{text-align:left}
   .hero-stat+.hero-stat{border-top:none;border-left:1px solid rgba(255,255,255,0.1);padding-left:1.5rem}
   .port-grid{grid-template-columns:1fr}
+  .port-card.featured{grid-column:span 1;display:flex;flex-direction:column}
   .contact-grid{grid-template-columns:1fr;gap:2rem}
+  .skills-grid{grid-template-columns:1fr}
   .cert-grid{grid-template-columns:1fr}
   .t-header{flex-direction:column;gap:6px}
   .topnav{padding:0 1rem}
   .section{padding:1.5rem}
+  .summary-band{padding:1.25rem 1.5rem}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -197,14 +218,14 @@ footer{padding:1.25rem 2rem;background:var(--teal-dark);display:flex;align-items
 
 <section id="profile">
   <div class="hero">
-    <div class="hero-name">
-      <span class="hero-firstname">Dorota</span>
-      <span class="hero-lastname">Wasiak</span>
+    <div class="hero-left">
+      <div class="hero-name">
+        <span class="hero-firstname">Dorota</span>
+        <span class="hero-lastname">Wasiak</span>
+      </div>
+      <p class="hero-tagline">Senior Business Analyst bridging <em>human behaviour</em> with technical systems — delivering in automotive, logistics, supply chain and healthcare across <em>15 years</em> in IT.</p>
     </div>
-    <div class="hero-quote-box">
-      <p class="hero-quote">As a <span class="amber-em">T-shaped</span> professional, I stay close to the solution and take ownership of delivery outcomes alongside the development team.</p>
-    </div>
-    <div class="hero-stats">
+    <div class="hero-right">
       <div class="hero-stat">
         <span class="hero-stat-num">15</span>
         <span class="hero-stat-label">years in IT</span>
@@ -216,12 +237,9 @@ footer{padding:1.25rem 2rem;background:var(--teal-dark);display:flex;align-items
     </div>
   </div>
 
-  <div class="section">
-    <div class="sec-header">
-      <span class="sec-eyebrow">Who I am</span>
-      <h2 class="sec-title">About me</h2>
-    </div>
-    <p class="profile-text">Senior Business Analyst and Digital Product Owner with 15 years' experience in IT, delivering digital and data solutions in automotive, logistics, supply chain, and healthcare sectors. I specialise in ERP digitalisation, information architecture, and platform transformation initiatives. I am actively developing expertise in AI governance and responsible AI, with focus on EU AI Act compliance and ethical AI frameworks.</p>
+  <div class="summary-band">
+    <div class="summary-eyebrow">Profile</div>
+    <p class="summary-text">Senior Business Analyst and Digital Product Owner with 15 years' experience in IT, delivering digital and data solutions in automotive, logistics, supply chain, and healthcare sectors. I specialise in ERP digitalisation, information architecture, and platform transformation initiatives. As a T-shaped professional, I stay close to the solution and take ownership of delivery outcomes alongside the development team. I am actively developing expertise in AI governance and responsible AI, with focus on EU AI Act compliance and ethical AI frameworks.</p>
   </div>
 </section>
 
@@ -231,64 +249,56 @@ footer{padding:1.25rem 2rem;background:var(--teal-dark);display:flex;align-items
     <h2 class="sec-title">Skills &amp; Tools</h2>
   </div>
 
-  <div class="subsec">Skills</div>
-  <div class="tc-block tc-teal">
-    <div class="tc-title">Business Analysis</div>
-    <div class="pills">
-      <span class="pill">Process Mapping &amp; Gap Analysis</span>
-      <span class="pill">Requirements Gathering &amp; Validation</span>
-      <span class="pill">Solution Design &amp; Specification</span>
-      <span class="pill">User Story Writing &amp; Acceptance Criteria</span>
-      <span class="pill">UAT &amp; Testing Coordination</span>
+  <div class="subsec-label">Skills</div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Business Analysis</div>
+      <div class="skill-item">Business Process Mapping &amp; Gap Analysis</div>
+      <div class="skill-item">Requirements Gathering &amp; Validation</div>
+      <div class="skill-item">Solution Design &amp; Specification</div>
+      <div class="skill-item">User Story Writing &amp; Acceptance Criteria</div>
+      <div class="skill-item">UAT &amp; Testing Coordination</div>
     </div>
-  </div>
-  <div class="tc-block tc-teal">
-    <div class="tc-title">Product Ownership</div>
-    <div class="pills">
-      <span class="pill">Product Backlog Management</span>
-      <span class="pill">Stakeholder Management</span>
-      <span class="pill">ERP &amp; Platform Transformation</span>
-      <span class="pill">System Integration (API, REST)</span>
-      <span class="pill">Cross-functional Collaboration</span>
+    <div class="skill-group">
+      <div class="skill-group-title">Product Ownership</div>
+      <div class="skill-item">Product Backlog Management</div>
+      <div class="skill-item">Stakeholder Management</div>
+      <div class="skill-item">ERP &amp; Platform Transformation</div>
+      <div class="skill-item">System Integration (API, REST)</div>
+      <div class="skill-item">Cross-functional Collaboration</div>
     </div>
-  </div>
-  <div class="tc-block tc-teal">
-    <div class="tc-title">AI &amp; Data Governance</div>
-    <div class="pills">
-      <span class="pill">AI Governance &amp; Risk Assessment</span>
-      <span class="pill">EU AI Act Compliance</span>
-      <span class="pill">Regulatory Compliance (GDPR)</span>
-      <span class="pill">Data Modelling &amp; Analysis</span>
-      <span class="pill">Knowledge Sharing &amp; Training</span>
+    <div class="skill-group">
+      <div class="skill-group-title">AI &amp; Data Governance</div>
+      <div class="skill-item">AI Governance &amp; Risk Assessment</div>
+      <div class="skill-item">EU AI Act Compliance</div>
+      <div class="skill-item">Regulatory Compliance (GDPR)</div>
+      <div class="skill-item">Data Modelling &amp; Analysis</div>
+      <div class="skill-item">Knowledge Sharing &amp; Training</div>
     </div>
   </div>
 
-  <div class="subsec">Tools &amp; Methodologies</div>
-  <div class="tc-block tc-amber">
-    <div class="tc-title">Project &amp; Collaboration</div>
-    <div class="pills">
-      <span class="pill">Azure DevOps</span>
-      <span class="pill">Jira · Confluence</span>
-      <span class="pill">Miro · Microsoft 365</span>
-      <span class="pill">ServiceNow · Salesforce</span>
+  <div class="subsec-label">Tools &amp; Methodologies</div>
+  <div class="skills-grid">
+    <div class="skill-group amber">
+      <div class="skill-group-title">Project &amp; Collaboration</div>
+      <div class="skill-item">Azure DevOps</div>
+      <div class="skill-item">Jira · Confluence</div>
+      <div class="skill-item">Miro · Microsoft 365</div>
+      <div class="skill-item">ServiceNow · Salesforce</div>
     </div>
-  </div>
-  <div class="tc-block tc-amber">
-    <div class="tc-title">Design &amp; Analysis</div>
-    <div class="pills">
-      <span class="pill">Figma · MS Visio</span>
-      <span class="pill">Enterprise Architect</span>
-      <span class="pill">Power BI · Tableau</span>
-      <span class="pill">SQL Server · Postman</span>
+    <div class="skill-group amber">
+      <div class="skill-group-title">Design &amp; Analysis</div>
+      <div class="skill-item">Figma · MS Visio</div>
+      <div class="skill-item">Enterprise Architect</div>
+      <div class="skill-item">Power BI · Tableau</div>
+      <div class="skill-item">SQL Server · Postman</div>
     </div>
-  </div>
-  <div class="tc-block tc-amber">
-    <div class="tc-title">Methodologies</div>
-    <div class="pills">
-      <span class="pill">SAFe 6 · Agile Development</span>
-      <span class="pill">ITIL 4 · IREB</span>
-      <span class="pill">Business &amp; Technical Documentation</span>
-      <span class="pill">API / REST Integration</span>
+    <div class="skill-group amber">
+      <div class="skill-group-title">Methodologies</div>
+      <div class="skill-item">SAFe 6 · Agile Development</div>
+      <div class="skill-item">ITIL 4 · IREB</div>
+      <div class="skill-item">Business &amp; Technical Documentation</div>
+      <div class="skill-item">API / REST Integration</div>
     </div>
   </div>
 </section>
@@ -306,43 +316,51 @@ footer{padding:1.25rem 2rem;background:var(--teal-dark);display:flex;align-items
   </div>
 
   <div class="port-grid">
-    <div class="port-card" data-category="ai-governance">
+    <div class="port-card featured" data-category="ai-governance">
       <div class="port-visual pv-teal">
-        <div class="port-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
-        <div class="port-vtitle">AISIA Tool</div>
+        <div class="port-visual-top">
+          <div class="port-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
+          <span class="port-live">Live</span>
+        </div>
+        <div class="port-visual-title">AISIA Interactive Tool</div>
       </div>
       <div class="port-body">
-        <p class="port-desc">AI System Impact Assessment — ISO/IEC 42001:2023 and EU AI Act. Seven structured sections with auto-scoring and export.</p>
+        <div class="port-name">AI System Impact Assessment</div>
+        <p class="port-desc">A fully interactive assessment tool aligned with ISO/IEC 42001:2023 Annex A.5 and EU AI Act. Seven structured sections covering risk identification, stakeholder impact, data governance, human oversight and regulatory compliance — with auto-scoring, export to JSON and plain text, and import of saved assessments.</p>
         <div class="port-footer">
-          <span class="port-live">Live</span>
+          <span class="port-tag">ISO 42001 · EU AI Act · GDPR</span>
           <a href="/aisia-tool/" class="port-link" target="_blank" rel="noopener">Open tool →</a>
         </div>
       </div>
     </div>
 
-    <div class="port-card" data-category="ai-governance">
+    <div class="port-card dashed" data-category="ai-governance">
       <div class="port-visual pv-amber">
-        <div class="port-icon"><i class="ti ti-list-check" aria-hidden="true"></i></div>
-        <div class="port-vtitle">Risk Register</div>
+        <div class="port-visual-top">
+          <div class="port-icon"><i class="ti ti-list-check" aria-hidden="true"></i></div>
+        </div>
+        <div class="port-visual-title">AI Risk Register</div>
       </div>
       <div class="port-body">
-        <p class="port-desc">Structured risk register for tracking AI system risks, owners and mitigations.</p>
+        <p class="port-desc">Structured risk register template for tracking AI system risks, owners, mitigations and review cycles across an organisation.</p>
         <div class="port-footer">
-          <span></span>
+          <span class="port-tag">ISO 42001 · Risk management</span>
           <span class="port-soon">Coming soon</span>
         </div>
       </div>
     </div>
 
-    <div class="port-card" data-category="business-analysis">
+    <div class="port-card dashed" data-category="business-analysis">
       <div class="port-visual pv-green">
-        <div class="port-icon"><i class="ti ti-sitemap" aria-hidden="true"></i></div>
-        <div class="port-vtitle">Requirements</div>
+        <div class="port-visual-top">
+          <div class="port-icon"><i class="ti ti-sitemap" aria-hidden="true"></i></div>
+        </div>
+        <div class="port-visual-title">Requirements Template</div>
       </div>
       <div class="port-body">
-        <p class="port-desc">IREB-based requirements documentation — from stakeholder needs to acceptance criteria.</p>
+        <p class="port-desc">Structured requirements documentation following IREB standards — from stakeholder needs to acceptance criteria.</p>
         <div class="port-footer">
-          <span></span>
+          <span class="port-tag">IREB · Agile</span>
           <span class="port-soon">Coming soon</span>
         </div>
       </div>
@@ -648,6 +666,7 @@ footer{padding:1.25rem 2rem;background:var(--teal-dark);display:flex;align-items
 </footer>
 
 <script>
+// Portfolio filter tabs
 const tabs = document.querySelectorAll('.tab');
 const cards = document.querySelectorAll('.port-card[data-category]');
 
@@ -659,6 +678,15 @@ tabs.forEach(tab => {
     cards.forEach(card => {
       if (filter === 'all' || card.dataset.category === filter) {
         card.classList.remove('hidden');
+        if (filter !== 'all' && card.classList.contains('featured')) {
+          card.style.gridColumn = 'span 1';
+          card.style.display = 'flex';
+          card.style.flexDirection = 'column';
+        } else if (filter === 'all') {
+          card.style.gridColumn = '';
+          card.style.display = '';
+          card.style.flexDirection = '';
+        }
       } else {
         card.classList.add('hidden');
       }
@@ -666,7 +694,8 @@ tabs.forEach(tab => {
   });
 });
 
-const sections = document.querySelectorAll('section[id]');
+// Active nav on scroll
+const sections = document.querySelectorAll('section[id], footer');
 const navItems = document.querySelectorAll('.topnav-item');
 
 const observer = new IntersectionObserver(entries => {
