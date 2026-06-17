@@ -30,9 +30,11 @@
 }
 
 html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6}
+body{font-family:'Inter',system-ui,sans-serif;background:#f5f5f3;color:var(--text);font-size:14px;line-height:1.6}
 
-.topnav{background:var(--bg);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.page-wrap{max-width:1080px;margin:0 auto;background:var(--bg);box-shadow:0 0 40px rgba(0,0,0,0.04)}
+
+.topnav{background:var(--bg);border-bottom:1px solid var(--border);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .topnav-links{display:flex;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}
 .topnav-links::-webkit-scrollbar{display:none}
 .topnav-item{padding:14px 14px;font-size:13px;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;text-decoration:none;display:block;transition:color .15s}
@@ -40,7 +42,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .topnav-item.active{color:var(--teal-dark);border-bottom-color:var(--teal-dark);font-weight:500}
 .topnav-cta{padding:7px 14px;background:var(--amber);color:#fff;font-size:12px;font-weight:500;border-radius:4px;white-space:nowrap;flex-shrink:0;letter-spacing:.02em}
 
-.hero{background:var(--teal-dark);padding:2.5rem 2rem;display:grid;grid-template-columns:auto 1fr 1.3fr auto;gap:2.5rem;align-items:center}
+.hero{background:var(--teal-dark);padding:2.5rem 2.5rem;display:grid;grid-template-columns:auto 1fr 1.3fr auto;gap:1.75rem;align-items:center}
 .hero-photo{
   width:88px;
   height:88px;
@@ -61,7 +63,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .hero-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#fff;display:block;line-height:1}
 .hero-stat-label{font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;display:block}
 
-.section{padding:2rem;border-bottom:1px solid var(--border)}
+.section{padding:2.5rem 2.5rem;border-bottom:1px solid var(--border)}
 .section:last-of-type{border-bottom:none}
 .sec-header{display:flex;align-items:baseline;gap:1.25rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
 .sec-eyebrow{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--amber);font-weight:500;white-space:nowrap}
@@ -102,26 +104,22 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .port-link:hover{text-decoration:underline}
 .port-soon{color:var(--amber-dark);background:var(--amber-light);padding:2px 8px;border-radius:10px;border:1px solid var(--amber)}
 
-.timeline{position:relative;padding-left:24px}
-.timeline::before{content:'';position:absolute;left:0;top:10px;bottom:0;width:1px;background:var(--border)}
-.t-entry{position:relative;margin-bottom:2.5rem}
-.t-entry:last-child{margin-bottom:0}
-.t-entry::before{content:'';position:absolute;left:-28px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--teal-dark);border:2px solid var(--bg)}
-.t-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:4px}
-.t-company{font-size:17px;font-weight:500;color:var(--text)}
-.t-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
-.t-dates{font-size:12px;color:var(--text3);white-space:nowrap}
-.sector-pill{font-size:11px;padding:2px 10px;border-radius:20px;font-weight:500;white-space:nowrap;border:1px solid}
+.timeline{display:flex;flex-direction:column;gap:2.5rem}
+.t-entry{display:grid;grid-template-columns:170px 1fr;gap:2.5rem}
+.t-meta{}
+.t-dates{font-size:13px;font-weight:500;color:var(--text);margin-bottom:4px}
+.t-location{font-size:12px;color:var(--text3);margin-bottom:14px}
+.sector-pill{font-size:11px;padding:2px 10px;border-radius:20px;font-weight:500;white-space:nowrap;border:1px solid;display:inline-block;margin-bottom:12px}
 .sp-auto{background:var(--teal-light);color:var(--teal-dark);border-color:var(--teal)}
 .sp-fin{background:var(--amber-light);color:var(--amber-dark);border-color:var(--amber)}
 .sp-cons{background:var(--purple-bg);color:var(--purple-dark);border-color:var(--purple-border)}
 .sp-tech{background:var(--green-bg);color:var(--green-dark);border-color:var(--green-border)}
-.t-role{font-size:13px;color:var(--text2);margin-bottom:3px}
-.t-location{font-size:12px;color:var(--text3);margin-bottom:.875rem}
-.metrics-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem}
-.metric{border:1px solid var(--border);border-radius:8px;padding:7px 13px;text-align:center}
+.metrics-row{display:flex;flex-direction:column;gap:8px}
+.metric{border:1px solid var(--border);border-radius:8px;padding:8px 12px;text-align:center}
 .metric-num{font-size:15px;font-weight:500;color:var(--teal-dark);display:block;line-height:1}
-.metric-lbl{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-top:2px;display:block}
+.metric-lbl{font-size:9.5px;color:var(--text3);text-transform:uppercase;letter-spacing:.04em;margin-top:3px;display:block}
+.t-company{font-size:17px;font-weight:500;color:var(--text);margin-bottom:2px}
+.t-role{font-size:13px;color:var(--text2);margin-bottom:1.25rem}
 .projects{display:flex;flex-direction:column;gap:14px}
 .proj{border-left:3px solid var(--teal);padding:.6rem 0 .6rem 1.25rem}
 .proj.amber{border-left-color:var(--amber)}
@@ -178,7 +176,7 @@ footer{padding:1.25rem 2rem;background:var(--teal-dark);display:flex;align-items
   .port-grid{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr;gap:2rem}
   .cert-grid{grid-template-columns:1fr}
-  .t-header{flex-direction:column;gap:6px}
+  .t-entry{grid-template-columns:1fr;gap:1rem}
   .topnav{padding:0 1rem}
   .section{padding:1.5rem}
 }
@@ -190,6 +188,7 @@ footer{padding:1.25rem 2rem;background:var(--teal-dark);display:flex;align-items
 </head>
 <body>
 
+<div class="page-wrap">
 <nav class="topnav" aria-label="Main navigation">
   <div class="topnav-links">
     <a href="#profile" class="topnav-item active">Profile</a>
@@ -368,151 +367,141 @@ footer{padding:1.25rem 2rem;background:var(--teal-dark);display:flex;align-items
   <div class="timeline">
 
     <div class="t-entry">
-      <div class="t-header">
-        <div>
-          <div class="t-company">SII Sweden AB / Volvo</div>
-          <div class="t-role">Business System Analyst / Product Owner</div>
-          <div class="t-location">Göteborg, Sweden</div>
-        </div>
-        <div class="t-right">
-          <span class="t-dates">2022.08 — 2026.01</span>
-          <span class="sector-pill sp-auto">Automotive</span>
+      <div class="t-meta">
+        <div class="t-dates">2022.08 — 2026.01</div>
+        <div class="t-location">Göteborg, Sweden</div>
+        <span class="sector-pill sp-auto">Automotive</span>
+        <div class="metrics-row">
+          <div class="metric"><span class="metric-num">3.5yr</span><span class="metric-lbl">delivery</span></div>
+          <div class="metric"><span class="metric-num">2</span><span class="metric-lbl">projects</span></div>
+          <div class="metric"><span class="metric-num">24mo</span><span class="metric-lbl">Agile backlog</span></div>
         </div>
       </div>
-      <div class="metrics-row">
-        <div class="metric"><span class="metric-num">3.5yr</span><span class="metric-lbl">delivery</span></div>
-        <div class="metric"><span class="metric-num">2</span><span class="metric-lbl">projects</span></div>
-        <div class="metric"><span class="metric-num">24mo</span><span class="metric-lbl">Agile backlog</span></div>
-      </div>
-      <div class="projects">
-        <div class="proj">
-          <div class="proj-client">Volvo Group · Digital &amp; IT</div>
-          <div class="proj-impact">Tier-N Supplier Platform | Sub-supplier chain visibility and delivery risk detection</div>
-          <p class="proj-desc">Working within Volvo Group Digital & IT, led the analysis of requirements and end-to-end delivery of the Tier-N supplier platform as a digital product, owning the product backlog and driving prioritisation based on dependencies and business impact. The platform improved
+      <div>
+        <div class="t-company">SII Sweden AB / Volvo</div>
+        <div class="t-role">Business System Analyst / Product Owner</div>
+        <div class="projects">
+          <div class="proj">
+            <div class="proj-client">Volvo Group · Digital &amp; IT</div>
+            <div class="proj-impact">Tier-N Supplier Platform | Sub-supplier chain visibility and delivery risk detection</div>
+            <p class="proj-desc">Working within Volvo Group Digital & IT, led the analysis of requirements and end-to-end delivery of the Tier-N supplier platform as a digital product, owning the product backlog and driving prioritisation based on dependencies and business impact. The platform improved
 sub-supplier chain visibility, risk estimation and early detection of delivery delays. This involved defining requirements for component decomposition, parts traceability and supplier mapping, collaborating with solution and data architects on scalable digital infrastructure. Championed the product vision with stakeholders and the stable team, ensuring alignment between business objectives and technical delivery. Conducted UAT cycles, delivered end-user training and supported go-live. Acted as the main point of contact for post-go-live
 enhancements.</p>
-          <div class="tags">
-            <span class="tag">Azure DevOps</span><span class="tag">SAFe Agile</span><span class="tag">Data Modelling</span><span class="tag">UAT</span><span class="tag">Supply Chain</span>
+            <div class="tags">
+              <span class="tag">Azure DevOps</span><span class="tag">SAFe Agile</span><span class="tag">Data Modelling</span><span class="tag">UAT</span><span class="tag">Supply Chain</span>
+            </div>
           </div>
-        </div>
-        <div class="proj">
-          <div class="proj-client">Volvo Cars · Interim Consultant</div>
-          <div class="proj-impact">Customs Clearance Data-flow | Automated supplier verification and shipment compliance</div>
-          <p class="proj-desc">Analysed business requirements to optimise intercontinental delivery processes. Managed data exchange integration with MIC (Customs Compliance Software) for automated supplier verification and shipment compliance checks. Coordinated work planning between internal and external teams.</p>
-          <div class="tags">
-            <span class="tag">API Integration</span><span class="tag">Customs Compliance</span><span class="tag">Stakeholder Mgmt</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="t-entry">
-      <div class="t-header">
-        <div>
-          <div class="t-company">SII Poland / Credit Suisse</div>
-          <div class="t-role">Business Analyst Consultant</div>
-          <div class="t-location">Warsaw, Poland</div>
-        </div>
-        <div class="t-right">
-          <span class="t-dates">2022.01 — 2022.08</span>
-          <span class="sector-pill sp-fin">Finance</span>
-        </div>
-      </div>
-      <div class="projects">
-        <div class="proj amber">
-          <div class="proj-client">Credit Suisse · Data Compliance</div>
-          <div class="proj-impact">GDPR Compliance Platform | Rapid identification of inappropriately stored sensitive data</div>
-          <p class="proj-desc">Analysed data storage requirements for GDPR compliance. Established communication workflows and monitoring system to track remediation actions. Collaborated with stakeholders to document security controls, enhancing privacy protection and regulatory compliance.</p>
-          <div class="tags">
-            <span class="tag">GDPR</span><span class="tag">Data Protection</span><span class="tag">Remediation Tracking</span><span class="tag">Security Controls</span>
+          <div class="proj">
+            <div class="proj-client">Volvo Cars · Interim Consultant</div>
+            <div class="proj-impact">Customs Clearance Data-flow | Automated supplier verification and shipment compliance</div>
+            <p class="proj-desc">Analysed business requirements to optimise intercontinental delivery processes. Managed data exchange integration with MIC (Customs Compliance Software) for automated supplier verification and shipment compliance checks. Coordinated work planning between internal and external teams.</p>
+            <div class="tags">
+              <span class="tag">API Integration</span><span class="tag">Customs Compliance</span><span class="tag">Stakeholder Mgmt</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="t-entry">
-      <div class="t-header">
-        <div>
-          <div class="t-company">Bit Peak</div>
-          <div class="t-role">Business System Analyst</div>
-          <div class="t-location">Warsaw, Poland</div>
-        </div>
-        <div class="t-right">
-          <span class="t-dates">2021.08 — 2022.01</span>
-          <span class="sector-pill sp-tech">Tech / Pharma</span>
-        </div>
+      <div class="t-meta">
+        <div class="t-dates">2022.01 — 2022.08</div>
+        <div class="t-location">Warsaw, Poland</div>
+        <span class="sector-pill sp-fin">Finance</span>
       </div>
-      <div class="projects">
-        <div class="proj amber">
-          <div class="proj-client">Client 1 · PropTech</div>
-          <div class="proj-impact">Office Space Rental Platform | End-to-end delivery from requirements to go-live</div>
-          <p class="proj-desc">Led end-to-end implementation including backlog management, test scenario preparation, bug tracking and end-user documentation.</p>
-          <div class="tags">
-            <span class="tag">Backlog Mgmt</span><span class="tag">UAT</span><span class="tag">Documentation</span>
-          </div>
-        </div>
-        <div class="proj amber">
-          <div class="proj-client">Client 2 · Pharmaceutical</div>
-          <div class="proj-impact">ETL Database &amp; Data Catalogue | Enabling system integration and data governance</div>
-          <p class="proj-desc">Co-designed an ETL database and data catalogue for a pharmaceutical company, enabling system integration and data governance.</p>
-          <div class="tags">
-            <span class="tag">ETL</span><span class="tag">Data Catalogue</span><span class="tag">Data Governance</span><span class="tag">System Integration</span>
+      <div>
+        <div class="t-company">SII Poland / Credit Suisse</div>
+        <div class="t-role">Business Analyst Consultant</div>
+        <div class="projects">
+          <div class="proj amber">
+            <div class="proj-client">Credit Suisse · Data Compliance</div>
+            <div class="proj-impact">GDPR Compliance Platform | Rapid identification of inappropriately stored sensitive data</div>
+            <p class="proj-desc">Analysed data storage requirements for GDPR compliance. Established communication workflows and monitoring system to track remediation actions. Collaborated with stakeholders to document security controls, enhancing privacy protection and regulatory compliance.</p>
+            <div class="tags">
+              <span class="tag">GDPR</span><span class="tag">Data Protection</span><span class="tag">Remediation Tracking</span><span class="tag">Security Controls</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="t-entry">
-      <div class="t-header">
-        <div>
-          <div class="t-company">PwC Poland</div>
-          <div class="t-role">Senior Business System Specialist</div>
-          <div class="t-location">Warsaw, Poland</div>
-        </div>
-        <div class="t-right">
-          <span class="t-dates">2017.02 — 2021.07</span>
-          <span class="sector-pill sp-cons">Consulting</span>
-        </div>
+      <div class="t-meta">
+        <div class="t-dates">2021.08 — 2022.01</div>
+        <div class="t-location">Warsaw, Poland</div>
+        <span class="sector-pill sp-tech">Tech / Pharma</span>
       </div>
-      <div class="metrics-row">
-        <div class="metric"><span class="metric-num">EMEA</span><span class="metric-lbl">rollout</span></div>
-        <div class="metric"><span class="metric-num">4yr</span><span class="metric-lbl">engagement</span></div>
-      </div>
-      <div class="projects">
-        <div class="proj">
-          <div class="proj-client">PwC · Digital Transformation</div>
-          <div class="proj-impact">Salesforce CRM Migration | Leads and Opportunity modules across EMEA</div>
-          <p class="proj-desc">Supported the final implementation and testing phase of a Salesforce CRM migration from an internally built system. Verified data completeness and consistency, coordinated resolution with Salesforce support. Post go-live operational support across EMEA and participation in the Digital Accelerator Programme.</p>
-          <div class="tags">
-            <span class="tag">Salesforce</span><span class="tag">CRM Migration</span><span class="tag">Data Quality</span><span class="tag">EMEA</span><span class="tag">Digital Accelerator</span>
+      <div>
+        <div class="t-company">Bit Peak</div>
+        <div class="t-role">Business System Analyst</div>
+        <div class="projects">
+          <div class="proj amber">
+            <div class="proj-client">Client 1 · PropTech</div>
+            <div class="proj-impact">Office Space Rental Platform | End-to-end delivery from requirements to go-live</div>
+            <p class="proj-desc">Led end-to-end implementation including backlog management, test scenario preparation, bug tracking and end-user documentation.</p>
+            <div class="tags">
+              <span class="tag">Backlog Mgmt</span><span class="tag">UAT</span><span class="tag">Documentation</span>
+            </div>
+          </div>
+          <div class="proj amber">
+            <div class="proj-client">Client 2 · Pharmaceutical</div>
+            <div class="proj-impact">ETL Database &amp; Data Catalogue | Enabling system integration and data governance</div>
+            <p class="proj-desc">Co-designed an ETL database and data catalogue for a pharmaceutical company, enabling system integration and data governance.</p>
+            <div class="tags">
+              <span class="tag">ETL</span><span class="tag">Data Catalogue</span><span class="tag">Data Governance</span><span class="tag">System Integration</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="t-entry">
-      <div class="t-header">
-        <div>
-          <div class="t-company">Cel-NET / AVIAT Networks</div>
-          <div class="t-role">Implementation Consultant</div>
-          <div class="t-location">Warsaw, Poland</div>
-        </div>
-        <div class="t-right">
-          <span class="t-dates">2008.10 — 2014.11</span>
-          <span class="sector-pill sp-tech">Telecom</span>
+      <div class="t-meta">
+        <div class="t-dates">2017.02 — 2021.07</div>
+        <div class="t-location">Warsaw, Poland</div>
+        <span class="sector-pill sp-cons">Consulting</span>
+        <div class="metrics-row">
+          <div class="metric"><span class="metric-num">EMEA</span><span class="metric-lbl">rollout</span></div>
+          <div class="metric"><span class="metric-num">4yr</span><span class="metric-lbl">engagement</span></div>
         </div>
       </div>
-      <div class="metrics-row">
-        <div class="metric"><span class="metric-num">6yr</span><span class="metric-lbl">full lifecycle</span></div>
-        <div class="metric"><span class="metric-num">SCM</span><span class="metric-lbl">systems</span></div>
+      <div>
+        <div class="t-company">PwC Poland</div>
+        <div class="t-role">Senior Business System Specialist</div>
+        <div class="projects">
+          <div class="proj">
+            <div class="proj-client">PwC · Digital Transformation</div>
+            <div class="proj-impact">Salesforce CRM Migration | Leads and Opportunity modules across EMEA</div>
+            <p class="proj-desc">Supported the final implementation and testing phase of a Salesforce CRM migration from an internally built system. Verified data completeness and consistency, coordinated resolution with Salesforce support. Post go-live operational support across EMEA and participation in the Digital Accelerator Programme.</p>
+            <div class="tags">
+              <span class="tag">Salesforce</span><span class="tag">CRM Migration</span><span class="tag">Data Quality</span><span class="tag">EMEA</span><span class="tag">Digital Accelerator</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="projects">
-        <div class="proj">
-          <div class="proj-client">AVIAT Networks · SCM</div>
-          <div class="proj-impact">SCM System Implementation | Full delivery lifecycle from requirements to post-go-live support</div>
-          <p class="proj-desc">Involved in the full software delivery lifecycle — requirements gathering, system specification, testing, implementation and post-go-live support. Collaborated with external clients, managed data integration via SQL-based reports, executed UAT and delivered end-user training.</p>
-          <div class="tags">
-            <span class="tag">SCM</span><span class="tag">SQL</span><span class="tag">Requirements</span><span class="tag">UAT</span><span class="tag">Training</span>
+    </div>
+
+    <div class="t-entry">
+      <div class="t-meta">
+        <div class="t-dates">2008.10 — 2014.11</div>
+        <div class="t-location">Warsaw, Poland</div>
+        <span class="sector-pill sp-tech">Telecom</span>
+        <div class="metrics-row">
+          <div class="metric"><span class="metric-num">6yr</span><span class="metric-lbl">full lifecycle</span></div>
+          <div class="metric"><span class="metric-num">SCM</span><span class="metric-lbl">systems</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="t-company">Cel-NET / AVIAT Networks</div>
+        <div class="t-role">Implementation Consultant</div>
+        <div class="projects">
+          <div class="proj">
+            <div class="proj-client">AVIAT Networks · SCM</div>
+            <div class="proj-impact">SCM System Implementation | Full delivery lifecycle from requirements to post-go-live support</div>
+            <p class="proj-desc">Involved in the full software delivery lifecycle — requirements gathering, system specification, testing, implementation and post-go-live support. Collaborated with external clients, managed data integration via SQL-based reports, executed UAT and delivered end-user training.</p>
+            <div class="tags">
+              <span class="tag">SCM</span><span class="tag">SQL</span><span class="tag">Requirements</span><span class="tag">UAT</span><span class="tag">Training</span>
+            </div>
           </div>
         </div>
       </div>
@@ -657,6 +646,8 @@ enhancements.</p>
     <a href="https://github.com/dorota-wasiak" class="footer-link" target="_blank" rel="noopener">GitHub</a>
   </div>
 </footer>
+
+</div>
 
 <script>
 const tabs = document.querySelectorAll('.tab');
