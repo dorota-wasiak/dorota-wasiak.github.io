@@ -40,7 +40,15 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .topnav-item.active{color:var(--teal-dark);border-bottom-color:var(--teal-dark);font-weight:500}
 .topnav-cta{padding:7px 14px;background:var(--amber);color:#fff;font-size:12px;font-weight:500;border-radius:4px;white-space:nowrap;flex-shrink:0;letter-spacing:.02em}
 
-.hero{background:var(--teal-dark);padding:2.5rem 2rem;display:grid;grid-template-columns:1fr 1.3fr auto;gap:2.5rem;align-items:center}
+.hero{background:var(--teal-dark);padding:2.5rem 2rem;display:grid;grid-template-columns:auto1fr 1.3fr auto;gap:2.5rem;align-items:center}
+.hero-photo{
+  width:88px;
+  height:88px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid rgba(255,255,255,0.25);
+  flex-shrink:0;
+}
 .hero-name{font-family:'Playfair Display',serif;line-height:.95}
 .hero-firstname{display:block;font-size:46px;font-weight:700;color:#fff;letter-spacing:-1px}
 .hero-lastname{display:block;font-size:46px;font-style:italic;font-weight:400;color:rgba(255,255,255,0.38);letter-spacing:-1px}
@@ -197,6 +205,7 @@ footer{padding:1.25rem 2rem;background:var(--teal-dark);display:flex;align-items
 
 <section id="profile">
   <div class="hero">
+	<img src="images/dorota-profile.jpg" alt="Dorota Wasiak" class="hero-photo">
     <div class="hero-name">
       <span class="hero-firstname">Dorota</span>
       <span class="hero-lastname">Wasiak</span>
