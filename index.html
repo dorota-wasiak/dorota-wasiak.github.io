@@ -3,1043 +3,712 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dorota Wasiak — Senior Business Analyst · Digital Product Owner</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<title>Dorota Wasiak — Senior Business Analyst | AI Governance | Göteborg</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal-dark:#0d4d63;
+  --teal:#1a6b87;
+  --teal-light:#e4f3f8;
+  --amber:#f0a020;
+  --amber-dark:#7a4e00;
+  --amber-light:#fff8e8;
+  --text:#1a2a30;
+  --text2:#4a6570;
+  --text3:#8aa5ad;
+  --border:#ddeaed;
+  --bg:#ffffff;
+  --bg2:#f8fafb;
+  --bg-gray:#f0f0ed;
+  --green-dark:#2d5a1a;
+  --purple-dark:#4a2d7a;
+  --purple-bg:#f0edf8;
+  --purple-border:#c4b5e8;
+  --green-bg:#edf5e8;
+  --green-border:#b5d49f;
+}
 
-  :root {
-    --black: #111110;
-    --white: #fafaf8;
-    --gray-100: #f1efe8;
-    --gray-300: #c8c6bc;
-    --gray-500: #888780;
-    --gray-700: #4a4946;
-    --accent: #1a4a6b;
-    --accent-light: #e8f0f7;
-  }
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6}
 
-  html { scroll-behavior: smooth; }
+/* NAV */
+.topnav{background:var(--bg);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.topnav-links{display:flex;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}
+.topnav-links::-webkit-scrollbar{display:none}
+.topnav-item{padding:14px 14px;font-size:13px;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;text-decoration:none;display:block;transition:color .15s}
+.topnav-item:hover{color:var(--text2)}
+.topnav-item.active{color:var(--teal-dark);border-bottom-color:var(--teal-dark);font-weight:500}
+.topnav-cta{padding:7px 14px;background:var(--amber);color:#fff;font-size:12px;font-weight:500;border-radius:4px;white-space:nowrap;flex-shrink:0;letter-spacing:.02em}
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
-    background: var(--white);
-    color: var(--black);
-    font-size: 16px;
-    line-height: 1.6;
-  }
+/* HERO */
+.hero{background:var(--teal-dark);padding:2.5rem 2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+.hero-name{font-family:'Playfair Display',serif;line-height:.95;margin-bottom:1.25rem}
+.hero-firstname{display:block;font-size:52px;font-weight:700;color:#fff;letter-spacing:-1.5px}
+.hero-lastname{display:block;font-size:52px;font-style:italic;font-weight:400;color:rgba(255,255,255,0.38);letter-spacing:-1.5px}
+.hero-tagline{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.75;max-width:440px}
+.hero-tagline em{color:var(--amber);font-style:normal}
+.hero-right{display:flex;flex-direction:column;align-items:flex-end;border-left:1px solid rgba(255,255,255,0.12);padding-left:2rem;gap:0}
+.hero-stat{text-align:right;padding:10px 0}
+.hero-stat+.hero-stat{border-top:1px solid rgba(255,255,255,0.1)}
+.hero-stat-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:#fff;display:block;line-height:1}
+.hero-stat-label{font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.07em;margin-top:3px;display:block}
 
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(250,250,248,0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 0.5px solid var(--gray-300);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2.5rem;
-    height: 56px;
-  }
-  .nav-logo {
-    font-family: 'DM Serif Display', serif;
-    font-size: 17px;
-    color: var(--black);
-    text-decoration: none;
-    letter-spacing: -0.2px;
-  }
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray-500);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--black); }
+/* SUMMARY */
+.summary-band{background:var(--bg-gray);padding:1.75rem 2rem;border-bottom:1px solid var(--border)}
+.summary-eyebrow{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;font-weight:500}
+.summary-text{font-size:13px;color:var(--text2);line-height:1.85;max-width:700px}
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 56px;
-  }
-  .hero-left {
-    padding: 5rem 3rem 4rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-right: 0.5px solid var(--gray-300);
-  }
-  .hero-eyebrow {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--gray-500);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .hero-eyebrow::before {
-    content: '';
-    display: block;
-    width: 24px;
-    height: 0.5px;
-    background: var(--gray-500);
-  }
-  h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(44px, 6vw, 68px);
-    line-height: 1.0;
-    letter-spacing: -2px;
-    margin-bottom: 1.5rem;
-  }
-  h1 em {
-    font-style: italic;
-    color: var(--gray-500);
-  }
-  .hero-bio {
-    font-size: 15px;
-    line-height: 1.8;
-    color: var(--gray-700);
-    max-width: 420px;
-    margin-bottom: 2.5rem;
-  }
-  .hero-cta {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .btn {
-    display: inline-block;
-    padding: 11px 24px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 1px;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-  .btn-dark {
-    background: var(--black);
-    color: var(--white);
-    border: 1px solid var(--black);
-  }
-  .btn-dark:hover { background: var(--gray-700); border-color: var(--gray-700); }
-  .btn-outline {
-    background: transparent;
-    color: var(--black);
-    border: 1px solid var(--gray-300);
-  }
-  .btn-outline:hover { border-color: var(--black); }
+/* SECTIONS */
+.section{padding:2rem;border-bottom:1px solid var(--border)}
+.section:last-of-type{border-bottom:none}
+.sec-header{display:flex;align-items:baseline;gap:1.25rem;margin-bottom:1.75rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.sec-eyebrow{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--amber);font-weight:500;white-space:nowrap}
+.sec-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--text)}
+.subsec-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid var(--border)}
 
-  .hero-right {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-  }
-  .hero-right-top {
-    border-bottom: 0.5px solid var(--gray-300);
-    padding: 3rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .hero-right-top p {
-    font-size: 14px;
-    line-height: 1.8;
-    color: var(--gray-700);
-    font-style: italic;
-    font-family: 'DM Serif Display', serif;
-    font-size: 18px;
-    line-height: 1.5;
-    color: var(--gray-700);
-  }
-  .hero-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  .stat {
-    padding: 2rem 2.5rem;
-    border-top: 0.5px solid var(--gray-300);
-  }
-  .stat:nth-child(odd) { border-right: 0.5px solid var(--gray-300); }
-  .stat-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 38px;
-    letter-spacing: -1.5px;
-    margin-bottom: 4px;
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--gray-500);
-  }
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:1.75rem}
+.skill-group{border-left:3px solid var(--teal-dark);padding:.75rem 0 .75rem 1rem}
+.skill-group.amber{border-left-color:var(--amber)}
+.skill-group-title{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--teal-dark);margin-bottom:8px}
+.skill-group.amber .skill-group-title{color:var(--amber-dark)}
+.skill-item{font-size:12px;color:var(--text2);padding:3px 0;border-bottom:1px solid var(--border)}
+.skill-item:last-child{border-bottom:none}
 
-  /* SECTIONS */
-  section {
-    border-top: 0.5px solid var(--gray-300);
-  }
-  .section-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 5rem 2.5rem;
-  }
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1.25rem;
-    margin-bottom: 3rem;
-  }
-  .section-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gray-500);
-    flex-shrink: 0;
-  }
-  h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(26px, 4vw, 36px);
-    letter-spacing: -0.8px;
-    line-height: 1.1;
-  }
+/* PORTFOLIO */
+.tabs{display:flex;gap:6px;margin-bottom:1.5rem;flex-wrap:wrap}
+.tab{padding:6px 14px;border-radius:20px;font-size:12px;border:1px solid var(--border);color:var(--text3);cursor:pointer;background:transparent;font-family:inherit;transition:all .15s}
+.tab:hover{border-color:var(--teal);color:var(--teal)}
+.tab.active{background:var(--teal-light);border-color:var(--teal);color:var(--teal-dark);font-weight:500}
+.port-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.port-card{border-radius:12px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;transition:border-color .2s}
+.port-card:hover{border-color:var(--teal)}
+.port-card.featured{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr}
+.port-card.dashed{border-style:dashed;opacity:.8}
+.port-card[data-category]{transition:opacity .2s,display .2s}
+.port-card.hidden{display:none}
+.port-visual{padding:1.75rem;display:flex;flex-direction:column;justify-content:space-between;min-height:170px}
+.pv-teal{background:var(--teal-dark)}
+.pv-amber{background:var(--amber-dark)}
+.pv-green{background:var(--green-dark)}
+.port-visual-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.port-icon{width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff}
+.port-live{font-size:10px;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);border:1px solid rgba(255,255,255,0.25);letter-spacing:.04em}
+.port-visual-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#fff;line-height:1.3}
+.port-body{padding:1.25rem;background:var(--bg);flex:1;display:flex;flex-direction:column;gap:10px}
+.port-name{font-size:13px;font-weight:500;color:var(--text)}
+.port-desc{font-size:12px;color:var(--text2);line-height:1.65;flex:1}
+.port-footer{display:flex;align-items:center;justify-content:space-between;padding-top:8px;border-top:1px solid var(--border)}
+.port-tag{font-size:11px;color:var(--text3)}
+.port-link{font-size:12px;color:var(--teal-dark);font-weight:500;text-decoration:none}
+.port-link:hover{text-decoration:underline}
+.port-soon{font-size:11px;color:var(--amber-dark);background:var(--amber-light);padding:2px 8px;border-radius:12px;border:1px solid var(--amber)}
 
-  /* SKILLS */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-  }
-  .skill-group-title {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray-500);
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 0.5px solid var(--gray-300);
-  }
-  .tag-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .tag {
-    font-size: 12px;
-    padding: 5px 11px;
-    border: 0.5px solid var(--gray-300);
-    background: var(--gray-100);
-    color: var(--gray-700);
-    border-radius: 2px;
-    font-weight: 400;
-  }
-  .tag-accent {
-    border-color: var(--accent);
-    background: var(--accent-light);
-    color: var(--accent);
-  }
+/* TIMELINE */
+.timeline{position:relative;padding-left:24px}
+.timeline::before{content:'';position:absolute;left:0;top:10px;bottom:0;width:1px;background:var(--border)}
+.t-entry{position:relative;margin-bottom:2.5rem}
+.t-entry:last-child{margin-bottom:0}
+.t-entry::before{content:'';position:absolute;left:-28px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--teal-dark);border:2px solid var(--bg)}
+.t-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:4px}
+.t-company{font-size:17px;font-weight:500;color:var(--text)}
+.t-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+.t-dates{font-size:12px;color:var(--text3);white-space:nowrap}
+.sector-pill{font-size:11px;padding:2px 10px;border-radius:20px;font-weight:500;white-space:nowrap;border:1px solid}
+.sp-auto{background:var(--teal-light);color:var(--teal-dark);border-color:var(--teal)}
+.sp-fin{background:var(--amber-light);color:var(--amber-dark);border-color:var(--amber)}
+.sp-cons{background:var(--purple-bg);color:var(--purple-dark);border-color:var(--purple-border)}
+.sp-tech{background:var(--green-bg);color:var(--green-dark);border-color:var(--green-border)}
+.t-role{font-size:13px;color:var(--text2);margin-bottom:3px}
+.t-location{font-size:12px;color:var(--text3);margin-bottom:.875rem}
+.metrics-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem}
+.metric{border:1px solid var(--border);border-radius:8px;padding:7px 13px;text-align:center}
+.metric-num{font-size:15px;font-weight:500;color:var(--teal-dark);display:block;line-height:1}
+.metric-lbl{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-top:2px;display:block}
+.projects{display:flex;flex-direction:column;gap:14px}
+.proj{border-left:3px solid var(--teal);padding:.6rem 0 .6rem 1.25rem}
+.proj.amber{border-left-color:var(--amber)}
+.proj-client{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px;font-weight:500}
+.proj-impact{font-size:13px;font-weight:500;color:var(--text);margin-bottom:5px;line-height:1.4}
+.proj-desc{font-size:12px;color:var(--text2);line-height:1.65;margin-bottom:9px}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tag{font-size:11px;padding:2px 9px;border-radius:12px;background:var(--bg2);border:1px solid var(--border);color:var(--text2)}
 
-  /* EXPERIENCE */
-  .exp-item {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 2.5rem;
-    padding: 2rem 0;
-    border-top: 0.5px solid var(--gray-300);
-  }
-  .exp-date {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    color: var(--gray-500);
-    padding-top: 4px;
-  }
-  .exp-location {
-    font-size: 11px;
-    color: var(--gray-500);
-    margin-top: 4px;
-  }
-  .exp-company {
-    font-weight: 500;
-    font-size: 16px;
-    margin-bottom: 2px;
-  }
-  .exp-role {
-    font-size: 13px;
-    color: var(--gray-500);
-    margin-bottom: 10px;
-  }
-  .exp-desc {
-    font-size: 14px;
-    color: var(--gray-700);
-    line-height: 1.75;
-  }
-  .exp-projects {
-    margin-top: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .exp-project {
-    padding: 12px 14px;
-    background: var(--gray-100);
-    border-left: 2px solid var(--accent);
-  }
-  .exp-project-name {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--accent);
-    margin-bottom: 4px;
-    letter-spacing: 0.03em;
-  }
-  .exp-project-desc {
-    font-size: 13px;
-    color: var(--gray-700);
-    line-height: 1.65;
-  }
+/* PROJECTS VOLUNTEER */
+.proj-vol-item{padding:.875rem 0;border-bottom:1px solid var(--border)}
+.proj-vol-item:last-child{border-bottom:none}
+.proj-vol-name{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px}
+.proj-vol-desc{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:4px}
+.proj-vol-tag{font-size:11px;color:var(--amber);font-weight:500}
 
-  /* CERTIFICATIONS */
-  .certs-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0;
-    border: 0.5px solid var(--gray-300);
-  }
-  .cert-item {
-    padding: 1.5rem 2rem;
-    border-bottom: 0.5px solid var(--gray-300);
-    border-right: 0.5px solid var(--gray-300);
-  }
-  .cert-item:nth-child(even) { border-right: none; }
-  .cert-item:nth-last-child(-n+2) { border-bottom: none; }
-  .cert-year {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    color: var(--gray-500);
-    margin-bottom: 5px;
-    text-transform: uppercase;
-  }
-  .cert-name {
-    font-weight: 500;
-    font-size: 14px;
-    margin-bottom: 3px;
-    line-height: 1.4;
-  }
-  .cert-issuer {
-    font-size: 12px;
-    color: var(--gray-500);
-  }
-  .cert-item.cert-ai {
-    background: var(--accent-light);
-  }
-  .cert-item.cert-ai .cert-year { color: var(--accent); }
+/* CERTIFICATIONS */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.cert{border-left:3px solid var(--amber);padding:.6rem 0 .6rem 1rem}
+.cert-name{font-size:12px;font-weight:500;color:var(--text);margin-bottom:2px;line-height:1.4}
+.cert-issuer{font-size:11px;color:var(--text3)}
 
-  /* PROJECTS */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-  .project-card {
-    padding: 1.75rem;
-    border: 0.5px solid var(--gray-300);
-    transition: border-color 0.2s;
-  }
-  .project-card:hover { border-color: var(--accent); }
-  .project-tag {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    background: var(--accent-light);
-    color: var(--accent);
-    border-radius: 2px;
-    margin-bottom: 0.75rem;
-  }
-  .project-name {
-    font-weight: 500;
-    font-size: 15px;
-    margin-bottom: 8px;
-    line-height: 1.4;
-  }
-  .project-desc {
-    font-size: 13px;
-    color: var(--gray-700);
-    line-height: 1.7;
-  }
+/* EDUCATION */
+.edu-item{display:flex;justify-content:space-between;align-items:flex-start;padding:.875rem 0;border-bottom:1px solid var(--border);gap:12px}
+.edu-item:last-child{border-bottom:none}
+.edu-degree{font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px}
+.edu-school{font-size:12px;color:var(--teal)}
+.edu-date{font-size:12px;color:var(--text3);white-space:nowrap;flex-shrink:0}
 
-  .portfolio-filter {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-bottom: 2rem;
-  }
-  .portfolio-filter button {
-    border: 0.5px solid var(--gray-300);
-    background: transparent;
-    color: var(--gray-700);
-    padding: 0.85rem 1.2rem;
-    border-radius: 2px;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .portfolio-filter button.active,
-  .portfolio-filter button:hover {
-    border-color: var(--black);
-    color: var(--black);
-    background: var(--gray-100);
-  }
-  .portfolio-intro {
-    max-width: 680px;
-    margin-bottom: 2rem;
-    color: var(--gray-700);
-    font-size: 14px;
-    line-height: 1.8;
-  }
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-  .portfolio-card {
-    padding: 1.75rem;
-    border: 0.5px solid var(--gray-300);
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .portfolio-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-  }
-  .portfolio-card .project-name {
-    margin-bottom: 0.85rem;
-  }
-  .portfolio-card .tag-list {
-    margin-bottom: 1rem;
-  }
-  .portfolio-badge {
-    display: inline-flex;
-    align-items: center;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--gray-500);
-    border: 0.5px solid var(--gray-300);
-    padding: 4px 9px;
-    border-radius: 2px;
-    margin-top: 1rem;
-  }
-  .portfolio-card .btn {
-    margin-top: 1.5rem;
-  }
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.contact-heading{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--text);line-height:1.15;margin-bottom:10px}
+.contact-heading em{font-style:italic;color:var(--text3)}
+.contact-sub{font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:1.25rem}
+.contact-btn{display:inline-block;background:var(--teal-dark);color:#fff;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:10px 20px;border-radius:4px;text-decoration:none;margin-bottom:1.25rem}
+.contact-btn:hover{background:var(--teal)}
+.lang-pills{display:flex;gap:8px;flex-wrap:wrap}
+.lang-pill{padding:4px 14px;border-radius:20px;font-size:12px;border:1px solid var(--border);color:var(--text2)}
+.contact-rows{display:flex;flex-direction:column;gap:14px;padding-top:4px}
+.contact-row{display:flex;gap:14px;align-items:flex-start}
+.contact-label{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--text3);min-width:68px;padding-top:2px;flex-shrink:0}
+.contact-value{font-size:13px;color:var(--teal-dark);text-decoration:none}
+.contact-value:hover{text-decoration:underline}
 
-  .portfolio-actions {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
-  }
+/* FOOTER */
+footer{padding:1.25rem 2rem;background:var(--teal-dark);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.footer-name{font-size:12px;color:rgba(255,255,255,0.45);font-family:'Playfair Display',serif;font-style:italic}
+.footer-links{display:flex;gap:16px}
+.footer-link{font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none}
+.footer-link:hover{color:var(--amber)}
 
-  .portfolio-actions .btn {
-    margin-top: 0;
-    flex: 1;
-    min-width: 140px;
-  }
+/* RESPONSIVE */
+@media(max-width:640px){
+  .hero{grid-template-columns:1fr;gap:1.5rem}
+  .hero-firstname,.hero-lastname{font-size:38px}
+  .hero-right{border-left:none;padding-left:0;border-top:1px solid rgba(255,255,255,0.12);padding-top:1rem;flex-direction:row;gap:1.5rem;align-items:flex-start}
+  .hero-stat{text-align:left}
+  .hero-stat+.hero-stat{border-top:none;border-left:1px solid rgba(255,255,255,0.1);padding-left:1.5rem}
+  .port-grid{grid-template-columns:1fr}
+  .port-card.featured{grid-column:span 1;display:flex;flex-direction:column}
+  .contact-grid{grid-template-columns:1fr;gap:2rem}
+  .skills-grid{grid-template-columns:1fr}
+  .cert-grid{grid-template-columns:1fr}
+  .t-header{flex-direction:column;gap:6px}
+  .topnav{padding:0 1rem}
+  .section{padding:1.5rem}
+  .summary-band{padding:1.25rem 1.5rem}
+}
 
-  /* EDUCATION */
-  .edu-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .edu-item {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 2.5rem;
-    padding: 1.5rem 0;
-    border-top: 0.5px solid var(--gray-300);
-    align-items: start;
-  }
-  .edu-years {
-    font-size: 12px;
-    color: var(--gray-500);
-    font-weight: 500;
-    letter-spacing: 0.04em;
-  }
-  .edu-degree {
-    font-weight: 500;
-    font-size: 14px;
-    margin-bottom: 2px;
-  }
-  .edu-school {
-    font-size: 13px;
-    color: var(--gray-500);
-  }
-
-  /* CONTACT */
-  .contact-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
-  .contact-headline {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(28px, 4vw, 42px);
-    letter-spacing: -1px;
-    line-height: 1.15;
-    margin-bottom: 1.25rem;
-  }
-  .contact-headline em {
-    font-style: italic;
-    color: var(--gray-500);
-  }
-  .contact-sub {
-    font-size: 14px;
-    color: var(--gray-700);
-    line-height: 1.75;
-    margin-bottom: 2rem;
-  }
-  .contact-details {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-  .contact-row {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    font-size: 14px;
-  }
-  .contact-row-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--gray-500);
-    width: 70px;
-    flex-shrink: 0;
-  }
-  .contact-row a {
-    color: var(--black);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-color: var(--gray-300);
-    transition: text-decoration-color 0.2s;
-  }
-  .contact-row a:hover { text-decoration-color: var(--black); }
-  .langs {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-  .lang-pill {
-    font-size: 12px;
-    padding: 5px 14px;
-    border: 0.5px solid var(--gray-300);
-    border-radius: 100px;
-    color: var(--gray-700);
-  }
-
-  footer {
-    border-top: 0.5px solid var(--gray-300);
-    padding: 1.5rem 2.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .footer-text {
-    font-size: 12px;
-    color: var(--gray-500);
-    letter-spacing: 0.04em;
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { padding: 0 1.25rem; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 3rem 1.25rem 2rem; border-right: none; border-bottom: 0.5px solid var(--gray-300); }
-    .hero-right-top { padding: 2rem 1.25rem; }
-    .stat { padding: 1.5rem 1.25rem; }
-    .section-inner { padding: 3rem 1.25rem; }
-    .skills-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
-    .certs-grid { grid-template-columns: 1fr; }
-    .cert-item { border-right: none !important; border-bottom: 0.5px solid var(--gray-300) !important; }
-    .cert-item:last-child { border-bottom: none !important; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
-    .edu-item { grid-template-columns: 1fr; gap: 0.25rem; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; }
-  }
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important}
+}
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="#" class="nav-logo">Dorota Wasiak</a>
-  <ul class="nav-links">
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#certifications">Certifications</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+<nav class="topnav" aria-label="Main navigation">
+  <div class="topnav-links">
+    <a href="#profile" class="topnav-item active">Profile</a>
+    <a href="#skills" class="topnav-item">Skills</a>
+    <a href="#portfolio" class="topnav-item">Portfolio</a>
+    <a href="#experience" class="topnav-item">Experience</a>
+    <a href="#certifications" class="topnav-item">Certifications</a>
+    <a href="#education" class="topnav-item">Education</a>
+    <a href="#contact" class="topnav-item">Contact</a>
+  </div>
+  <span class="topnav-cta">Open to work</span>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-left">
-    <div class="hero-eyebrow">Senior Business Analyst · Digital Product Owner</div>
-    <h1>Dorota<br><em>Wasiak</em></h1>
-    <p class="hero-bio">Bridging business needs and technical solutions for over 15 years — across automotive, logistics, supply chain, and healthcare. Currently developing expertise in AI governance and responsible AI.</p>
-    <div class="hero-cta">
-      <a href="#contact" class="btn btn-dark">Get in touch</a>
-      <a href="https://www.linkedin.com/in/dorota-wasiak/" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+<section id="profile">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-name">
+        <span class="hero-firstname">Dorota</span>
+        <span class="hero-lastname">Wasiak</span>
+      </div>
+      <p class="hero-tagline">Senior Business Analyst bridging <em>human behaviour</em> with technical systems — delivering in automotive, logistics, supply chain and healthcare across <em>15 years</em> in IT.</p>
     </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-right-top">
-      <p>"As a T-shaped professional, I stay close to the solution and take ownership of delivery outcomes alongside the development team."</p>
-    </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num">15+</div>
-        <div class="stat-label">Years in IT</div>
+    <div class="hero-right">
+      <div class="hero-stat">
+        <span class="hero-stat-num">15</span>
+        <span class="hero-stat-label">years in IT</span>
       </div>
-      <div class="stat">
-        <div class="stat-num">EMEA</div>
-        <div class="stat-label">Project reach</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">7+</div>
-        <div class="stat-label">Certifications</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">AI</div>
-        <div class="stat-label">Governance focus</div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">5</span>
+        <span class="hero-stat-label">industries</span>
       </div>
     </div>
   </div>
-</div>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-label">Competencies</span>
-      <h2>Skills & Tools</h2>
+  <div class="summary-band">
+    <div class="summary-eyebrow">Profile</div>
+    <p class="summary-text">Senior Business Analyst and Digital Product Owner with 15 years' experience in IT, delivering digital and data solutions in automotive, logistics, supply chain, and healthcare sectors. I specialise in ERP digitalisation, information architecture, and platform transformation initiatives. As a T-shaped professional, I stay close to the solution and take ownership of delivery outcomes alongside the development team. I am actively developing expertise in AI governance and responsible AI, with focus on EU AI Act compliance and ethical AI frameworks.</p>
+  </div>
+</section>
+
+<section id="skills" class="section">
+  <div class="sec-header">
+    <span class="sec-eyebrow">Core competencies</span>
+    <h2 class="sec-title">Skills &amp; Tools</h2>
+  </div>
+
+  <div class="subsec-label">Skills</div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Business Analysis</div>
+      <div class="skill-item">Business Process Mapping &amp; Gap Analysis</div>
+      <div class="skill-item">Requirements Gathering &amp; Validation</div>
+      <div class="skill-item">Solution Design &amp; Specification</div>
+      <div class="skill-item">User Story Writing &amp; Acceptance Criteria</div>
+      <div class="skill-item">UAT &amp; Testing Coordination</div>
     </div>
-    <div class="skills-grid">
-      <div>
-        <div class="skill-group-title">Business & Product</div>
-        <div class="tag-list">
-          <span class="tag">Business Process Mapping</span>
-          <span class="tag">Requirements Gathering</span>
-          <span class="tag">Solution Design</span>
-          <span class="tag">Product Backlog Management</span>
-          <span class="tag">UAT & Testing</span>
-          <span class="tag">User Story Writing</span>
-          <span class="tag">Stakeholder Management</span>
-          <span class="tag">ERP & Platform Transformation</span>
-          <span class="tag tag-accent">AI Governance</span>
-          <span class="tag tag-accent">EU AI Act Compliance</span>
-          <span class="tag tag-accent">Regulatory Compliance</span>
+    <div class="skill-group">
+      <div class="skill-group-title">Product Ownership</div>
+      <div class="skill-item">Product Backlog Management</div>
+      <div class="skill-item">Stakeholder Management</div>
+      <div class="skill-item">ERP &amp; Platform Transformation</div>
+      <div class="skill-item">System Integration (API, REST)</div>
+      <div class="skill-item">Cross-functional Collaboration</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">AI &amp; Data Governance</div>
+      <div class="skill-item">AI Governance &amp; Risk Assessment</div>
+      <div class="skill-item">EU AI Act Compliance</div>
+      <div class="skill-item">Regulatory Compliance (GDPR)</div>
+      <div class="skill-item">Data Modelling &amp; Analysis</div>
+      <div class="skill-item">Knowledge Sharing &amp; Training</div>
+    </div>
+  </div>
+
+  <div class="subsec-label">Tools &amp; Methodologies</div>
+  <div class="skills-grid">
+    <div class="skill-group amber">
+      <div class="skill-group-title">Project &amp; Collaboration</div>
+      <div class="skill-item">Azure DevOps</div>
+      <div class="skill-item">Jira · Confluence</div>
+      <div class="skill-item">Miro · Microsoft 365</div>
+      <div class="skill-item">ServiceNow · Salesforce</div>
+    </div>
+    <div class="skill-group amber">
+      <div class="skill-group-title">Design &amp; Analysis</div>
+      <div class="skill-item">Figma · MS Visio</div>
+      <div class="skill-item">Enterprise Architect</div>
+      <div class="skill-item">Power BI · Tableau</div>
+      <div class="skill-item">SQL Server · Postman</div>
+    </div>
+    <div class="skill-group amber">
+      <div class="skill-group-title">Methodologies</div>
+      <div class="skill-item">SAFe 6 · Agile Development</div>
+      <div class="skill-item">ITIL 4 · IREB</div>
+      <div class="skill-item">Business &amp; Technical Documentation</div>
+      <div class="skill-item">API / REST Integration</div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio" class="section">
+  <div class="sec-header">
+    <span class="sec-eyebrow">Work samples</span>
+    <h2 class="sec-title">Portfolio</h2>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Filter portfolio">
+    <button class="tab active" data-filter="all" role="tab">All</button>
+    <button class="tab" data-filter="ai-governance" role="tab">AI Governance</button>
+    <button class="tab" data-filter="business-analysis" role="tab">Business Analysis</button>
+  </div>
+
+  <div class="port-grid">
+    <div class="port-card featured" data-category="ai-governance">
+      <div class="port-visual pv-teal">
+        <div class="port-visual-top">
+          <div class="port-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
+          <span class="port-live">Live</span>
+        </div>
+        <div class="port-visual-title">AISIA Interactive Tool</div>
+      </div>
+      <div class="port-body">
+        <div class="port-name">AI System Impact Assessment</div>
+        <p class="port-desc">A fully interactive assessment tool aligned with ISO/IEC 42001:2023 Annex A.5 and EU AI Act. Seven structured sections covering risk identification, stakeholder impact, data governance, human oversight and regulatory compliance — with auto-scoring, export to JSON and plain text, and import of saved assessments.</p>
+        <div class="port-footer">
+          <span class="port-tag">ISO 42001 · EU AI Act · GDPR</span>
+          <a href="/aisia-tool/" class="port-link" target="_blank" rel="noopener">Open tool →</a>
         </div>
       </div>
-      <div>
-        <div class="skill-group-title">Tools</div>
-        <div class="tag-list">
-          <span class="tag">Azure DevOps</span>
-          <span class="tag">Jira</span>
-          <span class="tag">Confluence</span>
-          <span class="tag">Figma</span>
-          <span class="tag">Miro</span>
-          <span class="tag">Salesforce</span>
-          <span class="tag">Power BI</span>
-          <span class="tag">Tableau</span>
-          <span class="tag">SQL Server</span>
-          <span class="tag">Postman</span>
-          <span class="tag">Enterprise Architect</span>
-          <span class="tag">Ms Visio</span>
-          <span class="tag">ServiceNow</span>
-          <span class="tag">Microsoft 365</span>
+    </div>
+
+    <div class="port-card dashed" data-category="ai-governance">
+      <div class="port-visual pv-amber">
+        <div class="port-visual-top">
+          <div class="port-icon"><i class="ti ti-list-check" aria-hidden="true"></i></div>
+        </div>
+        <div class="port-visual-title">AI Risk Register</div>
+      </div>
+      <div class="port-body">
+        <p class="port-desc">Structured risk register template for tracking AI system risks, owners, mitigations and review cycles across an organisation.</p>
+        <div class="port-footer">
+          <span class="port-tag">ISO 42001 · Risk management</span>
+          <span class="port-soon">Coming soon</span>
         </div>
       </div>
-      <div>
-        <div class="skill-group-title">Methodologies</div>
-        <div class="tag-list">
-          <span class="tag">SAFe 6</span>
-          <span class="tag">Agile / SCRUM</span>
-          <span class="tag">ITIL 4</span>
-          <span class="tag">IREB</span>
-          <span class="tag">System Integration (API, REST)</span>
-          <span class="tag">Data Modelling</span>
-          <span class="tag tag-accent">ISO/IEC 42001:2023</span>
+    </div>
+
+    <div class="port-card dashed" data-category="business-analysis">
+      <div class="port-visual pv-green">
+        <div class="port-visual-top">
+          <div class="port-icon"><i class="ti ti-sitemap" aria-hidden="true"></i></div>
+        </div>
+        <div class="port-visual-title">Requirements Template</div>
+      </div>
+      <div class="port-body">
+        <p class="port-desc">Structured requirements documentation following IREB standards — from stakeholder needs to acceptance criteria.</p>
+        <div class="port-footer">
+          <span class="port-tag">IREB · Agile</span>
+          <span class="port-soon">Coming soon</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-label">Career</span>
-      <h2>Work Experience</h2>
-    </div>
+<section id="experience" class="section">
+  <div class="sec-header">
+    <span class="sec-eyebrow">Career</span>
+    <h2 class="sec-title">Work Experience</h2>
+  </div>
 
-    <div class="exp-item">
-      <div>
-        <div class="exp-date">2022.08 — 2026.01</div>
-        <div class="exp-location">Gothenburg, Sweden</div>
+  <div class="timeline">
+
+    <div class="t-entry">
+      <div class="t-header">
+        <div>
+          <div class="t-company">SII Sweden AB / Volvo</div>
+          <div class="t-role">Business System Analyst / Product Owner</div>
+          <div class="t-location">Göteborg, Sweden</div>
+        </div>
+        <div class="t-right">
+          <span class="t-dates">2022.08 — 2026.01</span>
+          <span class="sector-pill sp-auto">Automotive</span>
+        </div>
       </div>
-      <div>
-        <div class="exp-company">SII Sweden AB / Volvo</div>
-        <div class="exp-role">Business System Analyst / Product Owner</div>
-        <div class="exp-projects">
-          <div class="exp-project">
-            <div class="exp-project-name">Volvo Group | Tier-N Supplier Platform</div>
-            <div class="exp-project-desc">Led end-to-end requirements analysis and delivery of the Tier-N supplier platform — improving sub-supplier chain visibility, risk estimation, and early detection of delivery delays. Defined component decomposition requirements, designed supplier mapping forms, and contributed to the data model for manufacturing supply chain visibility. Managed Azure DevOps backlog across 24 months of Agile delivery, conducted UAT, delivered end-user training, and supported go-live. Main contact for post-go-live enhancements.</div>
+      <div class="metrics-row">
+        <div class="metric"><span class="metric-num">3.5yr</span><span class="metric-lbl">delivery</span></div>
+        <div class="metric"><span class="metric-num">2</span><span class="metric-lbl">projects</span></div>
+        <div class="metric"><span class="metric-num">24mo</span><span class="metric-lbl">Agile backlog</span></div>
+      </div>
+      <div class="projects">
+        <div class="proj">
+          <div class="proj-client">Volvo Group · Digital &amp; IT</div>
+          <div class="proj-impact">Tier-N Supplier Platform — sub-supplier chain visibility and delivery risk detection</div>
+          <p class="proj-desc">Led end-to-end requirements analysis and delivery of the Tier-N supplier platform. Defined component decomposition requirements, designed supplier mapping forms, and contributed to the data model for manufacturing supply chain visibility. Managed Azure DevOps backlog across 24 months of Agile delivery, conducted UAT, delivered end-user training and supported go-live. Main contact for post-go-live enhancements.</p>
+          <div class="tags">
+            <span class="tag">Azure DevOps</span><span class="tag">SAFe Agile</span><span class="tag">Data Modelling</span><span class="tag">UAT</span><span class="tag">Supply Chain</span>
           </div>
-          <div class="exp-project">
-            <div class="exp-project-name">Volvo Cars | Customs Clearance Data-flow</div>
-            <div class="exp-project-desc">Analysed business requirements to optimise intercontinental delivery processes, including data exchange integration with MIC (Customs Compliance Software) for automated supplier verification and shipment compliance checks. Coordinated work planning between internal and external teams.</div>
+        </div>
+        <div class="proj">
+          <div class="proj-client">Volvo Cars · Interim Consultant</div>
+          <div class="proj-impact">Customs Clearance Data-flow — automated supplier verification and shipment compliance</div>
+          <p class="proj-desc">Analysed business requirements to optimise intercontinental delivery processes. Managed data exchange integration with MIC (Customs Compliance Software) for automated supplier verification and shipment compliance checks. Coordinated work planning between internal and external teams.</p>
+          <div class="tags">
+            <span class="tag">API Integration</span><span class="tag">Customs Compliance</span><span class="tag">Stakeholder Mgmt</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="exp-item">
-      <div>
-        <div class="exp-date">2022.01 — 2022.08</div>
-        <div class="exp-location">Warsaw, Poland</div>
-      </div>
-      <div>
-        <div class="exp-company">SII Poland / Credit Suisse</div>
-        <div class="exp-role">Business Analyst Consultant</div>
-        <div class="exp-desc">Analysed data storage requirements for GDPR compliance — implementing a platform for rapid identification of inappropriately stored sensitive data. Established communication workflows and monitoring system to track remediation actions. Documented security controls to enhance privacy protection and regulatory compliance.</div>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <div>
-        <div class="exp-date">2021.08 — 2022.01</div>
-        <div class="exp-location">Warsaw, Poland</div>
-      </div>
-      <div>
-        <div class="exp-company">Bit Peak</div>
-        <div class="exp-role">Business System Analyst</div>
-        <div class="exp-desc">Led end-to-end implementation of an office space rental platform for one client (backlog management, test scenarios, bug tracking, end-user documentation). For a second client in pharmaceuticals, co-designed an ETL database and data catalogue enabling system integration and data governance.</div>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <div>
-        <div class="exp-date">2017.02 — 2021.07</div>
-        <div class="exp-location">Warsaw, Poland</div>
-      </div>
-      <div>
-        <div class="exp-company">PwC Poland</div>
-        <div class="exp-role">Senior Business System Specialist</div>
-        <div class="exp-desc">Supported Salesforce CRM migration from an internal system covering Leads and Opportunity modules across EMEA. Verified data completeness during migration, identified misalignments, and coordinated resolution. Provided ongoing EMEA operational support and performed root cause analysis on Salesforce integration issues. Participated in the Digital Accelerator Programme.</div>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <div>
-        <div class="exp-date">2016.01 — 2016.11</div>
-        <div class="exp-location">Warsaw, Poland</div>
-      </div>
-      <div>
-        <div class="exp-company">Polish Stem Cells Bank</div>
-        <div class="exp-role">Business and System Analyst</div>
-        <div class="exp-desc">Managed SugarCRM system upgrade for a healthcare/biotech organisation, ensuring business process continuity. Built automated test suite using Selenium IDE. Implemented mobile version enabling real-time case updates from client sites.</div>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <div>
-        <div class="exp-date">2008.10 — 2014.11</div>
-        <div class="exp-location">Warsaw, Poland</div>
-      </div>
-      <div>
-        <div class="exp-company">Cel-NET / AVIAT Networks</div>
-        <div class="exp-role">Implementation Consultant</div>
-        <div class="exp-desc">Involved in the full software delivery lifecycle — from requirements gathering and system specification to testing, implementation, and post-go-live support. Managed data integration and quality verification for SCM system via SQL-based reports. Gathered functional requirements from external clients and delivered end-user training.</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- PORTFOLIO -->
-<section id="portfolio">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-label">Work samples</span>
-      <h2>Portfolio</h2>
-    </div>
-    <p class="portfolio-intro">Practical artefacts and tools developed as part of AI Governance and Business Analysis practice.</p>
-    <div class="portfolio-filter" role="tablist" aria-label="Portfolio filters">
-      <button type="button" class="active" data-filter="all">All</button>
-      <button type="button" data-filter="ai-governance">AI Governance</button>
-      <button type="button" data-filter="business-analysis">Business Analysis</button>
-    </div>
-    <div class="portfolio-grid">
-      <div class="portfolio-card" data-category="ai-governance">
-        <div class="project-tag">AI Governance</div>
-        <div class="project-name">AISIA Interactive Tool</div>
-        <div class="tag-list">
-          <span class="tag">ISO 42001</span>
-          <span class="tag">EU AI Act</span>
-        </div>
-        <div class="project-desc">Interactive AI System Impact Assessment form aligned with ISO/IEC 42001:2023 and EU AI Act. Covers all 7 assessment sections with auto-scoring and PDF export.</div>
-        <div class="portfolio-actions">
-          <a href="https://dorota-wasiak.github.io/aisia-tool/" target="_blank" class="btn btn-outline">Open tool</a>
-          <a href="https://github.com/dorota-wasiak/dorota-wasiak.github.io/blob/main/aisia-tool/docs/01-business-case.md" target="_blank" class="btn btn-outline">View documentation</a>
-        </div>
-      </div>
-      <div class="portfolio-card" data-category="ai-governance">
-        <div class="project-tag">AI Governance</div>
-        <div class="project-name">AI Risk Register</div>
-        <div class="tag-list">
-          <span class="tag">ISO 42001</span>
-          <span class="tag">Risk management</span>
-        </div>
-        <div class="project-desc">Structured risk register template for tracking AI system risks, owners, mitigations and review cycles.</div>
-        <div class="portfolio-badge">Coming soon</div>
-      </div>
-      <div class="portfolio-card" data-category="ai-governance">
-        <div class="project-tag">AI Governance</div>
-        <div class="project-name">EU AI Act Classifier</div>
-        <div class="tag-list">
-          <span class="tag">EU AI Act</span>
-          <span class="tag">Annex III</span>
-        </div>
-        <div class="project-desc">Step-by-step classification tool to determine the risk category of an AI system under EU AI Act Annex I and Annex III.</div>
-        <div class="portfolio-badge">Coming soon</div>
-      </div>
-      <div class="portfolio-card" data-category="business-analysis">
-        <div class="project-tag">Business Analysis</div>
-        <div class="project-name">Requirements Template</div>
-        <div class="tag-list">
-          <span class="tag">IREB</span>
-          <span class="tag">Agile</span>
-        </div>
-        <div class="project-desc">Structured requirements documentation template following IREB standards — from stakeholder needs to acceptance criteria.</div>
-        <div class="portfolio-badge">Coming soon</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CERTIFICATIONS -->
-<section id="certifications">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-label">Credentials</span>
-      <h2>Certifications</h2>
-    </div>
-    <div class="certs-grid">
-      <div class="cert-item cert-ai">
-        <div class="cert-year">2026 · New</div>
-        <div class="cert-name">AI Fundamentals: Foundations for Understanding AI</div>
-        <div class="cert-issuer">IBM SkillsBuild</div>
-      </div>
-      <div class="cert-item cert-ai">
-        <div class="cert-year">2026 · New</div>
-        <div class="cert-name">AI Security & Governance</div>
-        <div class="cert-issuer">Securiti AI</div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-year">2025</div>
-        <div class="cert-name">Certified SAFe 6 Agilist</div>
-        <div class="cert-issuer">Scaled Agile, Inc.</div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-year">2025</div>
-        <div class="cert-name">IREB® Certified Professional for Requirements Engineering</div>
-        <div class="cert-issuer">SJSI</div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-year">2021</div>
-        <div class="cert-name">RPA Developer with UiPath</div>
-        <div class="cert-issuer">Udacity</div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-year">2021</div>
-        <div class="cert-name">Business Analytics</div>
-        <div class="cert-issuer">Udacity</div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-year">2017</div>
-        <div class="cert-name">ITIL Foundation — IT Service Management</div>
-        <div class="cert-issuer">AXELOS</div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-year">2016–2017</div>
-        <div class="cert-name">Post-graduate — Management Information Systems & Services</div>
-        <div class="cert-issuer">SGH Warsaw School of Economics</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-label">Self-initiated</span>
-      <h2>Projects & Volunteer Work</h2>
-    </div>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-tag">Volunteer</div>
-        <div class="project-name">RUNMAGEDDON</div>
-        <div class="project-desc">Obstacle construction and event support for one of Poland's largest obstacle race events. 2021.</div>
-      </div>
-      <div class="project-card">
-        <div class="project-tag">Volunteer</div>
-        <div class="project-name">WATCH DOCS Film Festival</div>
-        <div class="project-desc">Volunteer during the International Human Rights Film Festival WATCH DOCS, Warsaw. 2012.</div>
-      </div>
-      <div class="project-card">
-        <div class="project-tag">Logistics</div>
-        <div class="project-name">International Airshow Góraszka</div>
-        <div class="project-desc">Logistics coordination for one of Poland's premier airshow events. 2008–2010.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section id="education">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-label">Academic</span>
-      <h2>Education</h2>
-    </div>
-    <div class="edu-list">
-      <div class="edu-item">
-        <div class="edu-years">2016 – 2017</div>
+    <div class="t-entry">
+      <div class="t-header">
         <div>
-          <div class="edu-degree">Post-graduate studies — Management Information Systems and Services</div>
-          <div class="edu-school">SGH Warsaw School of Economics</div>
+          <div class="t-company">SII Poland / Credit Suisse</div>
+          <div class="t-role">Business Analyst Consultant</div>
+          <div class="t-location">Warsaw, Poland</div>
+        </div>
+        <div class="t-right">
+          <span class="t-dates">2022.01 — 2022.08</span>
+          <span class="sector-pill sp-fin">Finance</span>
         </div>
       </div>
-      <div class="edu-item">
-        <div class="edu-years">2009 – 2011</div>
+      <div class="projects">
+        <div class="proj amber">
+          <div class="proj-client">Credit Suisse · Data Compliance</div>
+          <div class="proj-impact">GDPR Compliance Platform — rapid identification of inappropriately stored sensitive data</div>
+          <p class="proj-desc">Analysed data storage requirements for GDPR compliance. Established communication workflows and monitoring system to track remediation actions. Collaborated with stakeholders to document security controls, enhancing privacy protection and regulatory compliance.</p>
+          <div class="tags">
+            <span class="tag">GDPR</span><span class="tag">Data Protection</span><span class="tag">Remediation Tracking</span><span class="tag">Security Controls</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-entry">
+      <div class="t-header">
         <div>
-          <div class="edu-degree">Master's degree — Social Psychology</div>
-          <div class="edu-school">Collegium Civitas, Warsaw</div>
+          <div class="t-company">Bit Peak</div>
+          <div class="t-role">Business System Analyst</div>
+          <div class="t-location">Warsaw, Poland</div>
+        </div>
+        <div class="t-right">
+          <span class="t-dates">2021.08 — 2022.01</span>
+          <span class="sector-pill sp-tech">Tech / Pharma</span>
         </div>
       </div>
-      <div class="edu-item">
-        <div class="edu-years">2004 – 2007</div>
+      <div class="projects">
+        <div class="proj amber">
+          <div class="proj-client">Client 1 · PropTech</div>
+          <div class="proj-impact">Office Space Rental Platform — end-to-end delivery from requirements to go-live</div>
+          <p class="proj-desc">Led end-to-end implementation including backlog management, test scenario preparation, bug tracking and end-user documentation.</p>
+          <div class="tags">
+            <span class="tag">Backlog Mgmt</span><span class="tag">UAT</span><span class="tag">Documentation</span>
+          </div>
+        </div>
+        <div class="proj amber">
+          <div class="proj-client">Client 2 · Pharmaceutical</div>
+          <div class="proj-impact">ETL Database &amp; Data Catalogue — enabling system integration and data governance</div>
+          <p class="proj-desc">Co-designed an ETL database and data catalogue for a pharmaceutical company, enabling system integration and data governance.</p>
+          <div class="tags">
+            <span class="tag">ETL</span><span class="tag">Data Catalogue</span><span class="tag">Data Governance</span><span class="tag">System Integration</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-entry">
+      <div class="t-header">
         <div>
-          <div class="edu-degree">Bachelor's degree — Political Marketing</div>
-          <div class="edu-school">Łukaszewski University, Warsaw</div>
+          <div class="t-company">PwC Poland</div>
+          <div class="t-role">Senior Business System Specialist</div>
+          <div class="t-location">Warsaw, Poland</div>
+        </div>
+        <div class="t-right">
+          <span class="t-dates">2017.02 — 2021.07</span>
+          <span class="sector-pill sp-cons">Consulting</span>
         </div>
       </div>
+      <div class="metrics-row">
+        <div class="metric"><span class="metric-num">EMEA</span><span class="metric-lbl">rollout</span></div>
+        <div class="metric"><span class="metric-num">4yr</span><span class="metric-lbl">engagement</span></div>
+      </div>
+      <div class="projects">
+        <div class="proj">
+          <div class="proj-client">PwC · Digital Transformation</div>
+          <div class="proj-impact">Salesforce CRM Migration — Leads and Opportunity modules across EMEA</div>
+          <p class="proj-desc">Supported the final implementation and testing phase of a Salesforce CRM migration from an internally built system. Verified data completeness and consistency, coordinated resolution with Salesforce support. Post go-live operational support across EMEA and participation in the Digital Accelerator Programme.</p>
+          <div class="tags">
+            <span class="tag">Salesforce</span><span class="tag">CRM Migration</span><span class="tag">Data Quality</span><span class="tag">EMEA</span><span class="tag">Digital Accelerator</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-entry">
+      <div class="t-header">
+        <div>
+          <div class="t-company">Cel-NET / AVIAT Networks</div>
+          <div class="t-role">Implementation Consultant</div>
+          <div class="t-location">Warsaw, Poland</div>
+        </div>
+        <div class="t-right">
+          <span class="t-dates">2008.10 — 2014.11</span>
+          <span class="sector-pill sp-tech">Telecom</span>
+        </div>
+      </div>
+      <div class="metrics-row">
+        <div class="metric"><span class="metric-num">6yr</span><span class="metric-lbl">full lifecycle</span></div>
+        <div class="metric"><span class="metric-num">SCM</span><span class="metric-lbl">systems</span></div>
+      </div>
+      <div class="projects">
+        <div class="proj">
+          <div class="proj-client">AVIAT Networks · SCM</div>
+          <div class="proj-impact">SCM System Implementation — full delivery lifecycle from requirements to post-go-live support</div>
+          <p class="proj-desc">Involved in the full software delivery lifecycle — requirements gathering, system specification, testing, implementation and post-go-live support. Collaborated with external clients, managed data integration via SQL-based reports, executed UAT and delivered end-user training.</p>
+          <div class="tags">
+            <span class="tag">SCM</span><span class="tag">SQL</span><span class="tag">Requirements</span><span class="tag">UAT</span><span class="tag">Training</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <div class="sec-header">
+    <span class="sec-eyebrow">Community</span>
+    <h2 class="sec-title">Projects &amp; Volunteer Work</h2>
+  </div>
+  <div class="proj-vol-item">
+    <div class="proj-vol-name">AI Governance Portfolio Development</div>
+    <p class="proj-vol-desc">Building expertise in AI governance and responsible AI by applying EU AI Act and ISO/IEC 42001:2023 frameworks to develop practical artefacts, including risk classification, AI system impact assessment and organisational accountability structures.</p>
+    <div class="proj-vol-tag">Self-initiated · 2025 – present</div>
+  </div>
+  <div class="proj-vol-item">
+    <div class="proj-vol-name">RUNMAGEDDON</div>
+    <p class="proj-vol-desc">Obstacle construction and event support.</p>
+    <div class="proj-vol-tag">Volunteer · 2021</div>
+  </div>
+  <div class="proj-vol-item">
+    <div class="proj-vol-name">WATCH DOCS International Film Festival</div>
+    <p class="proj-vol-desc">Volunteer during the International Film Festival WATCH DOCS, Warsaw.</p>
+    <div class="proj-vol-tag">Volunteer · 2012</div>
+  </div>
+  <div class="proj-vol-item">
+    <div class="proj-vol-name">International Airshow Góraszka</div>
+    <p class="proj-vol-desc">Logistics coordination for international airshow events.</p>
+    <div class="proj-vol-tag">2008 – 2010</div>
+  </div>
+</section>
+
+<section id="certifications" class="section">
+  <div class="sec-header">
+    <span class="sec-eyebrow">Credentials</span>
+    <h2 class="sec-title">Certifications</h2>
+  </div>
+  <div class="cert-grid">
+    <div class="cert">
+      <div class="cert-name">AI Fundamentals: Foundations for Understanding AI</div>
+      <div class="cert-issuer">IBM SkillsBuild · 05.2026</div>
+    </div>
+    <div class="cert">
+      <div class="cert-name">AI Security &amp; Governance</div>
+      <div class="cert-issuer">Securiti AI · 04.2026</div>
+    </div>
+    <div class="cert">
+      <div class="cert-name">Certified SAFe 6 Agilist</div>
+      <div class="cert-issuer">Scaled Agile, Inc. · 09.2025</div>
+    </div>
+    <div class="cert">
+      <div class="cert-name">IREB® Certified Professional for Requirements Engineering</div>
+      <div class="cert-issuer">SJSI · 03.2025</div>
+    </div>
+    <div class="cert">
+      <div class="cert-name">RPA Developer with UiPath</div>
+      <div class="cert-issuer">Udacity · 04.2021</div>
+    </div>
+    <div class="cert">
+      <div class="cert-name">Business Analytics</div>
+      <div class="cert-issuer">Udacity · 01.2021</div>
+    </div>
+    <div class="cert">
+      <div class="cert-name">ITIL Foundation Certificate in IT Service Management</div>
+      <div class="cert-issuer">2017</div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-inner">
-    <div class="contact-layout">
-      <div>
-        <h2 class="contact-headline">Open to new<br><em>opportunities</em></h2>
-        <p class="contact-sub">Looking for roles in business analysis, product ownership, or AI governance — where I can bridge strategy and delivery in complex, cross-functional environments.</p>
-        <a href="mailto:wasiak.dorota@gmail.com" class="btn btn-dark">Send an email</a>
-        <div class="langs">
-          <span class="lang-pill">Polish — Native</span>
-          <span class="lang-pill">English — Advanced</span>
-          <span class="lang-pill">Swedish — Basic</span>
-        </div>
+<section id="education" class="section">
+  <div class="sec-header">
+    <span class="sec-eyebrow">Academic background</span>
+    <h2 class="sec-title">Education</h2>
+  </div>
+  <div class="edu-item">
+    <div>
+      <div class="edu-degree">Post-graduate studies · Management Information Systems and Services</div>
+      <div class="edu-school">SGH Warsaw School of Economics</div>
+    </div>
+    <div class="edu-date">2016 – 2017</div>
+  </div>
+  <div class="edu-item">
+    <div>
+      <div class="edu-degree">Master's degree · Social Psychology</div>
+      <div class="edu-school">Collegium Civitas</div>
+    </div>
+    <div class="edu-date">2009 – 2011</div>
+  </div>
+  <div class="edu-item">
+    <div>
+      <div class="edu-degree">Bachelor's degree · Political Marketing</div>
+      <div class="edu-school">Łukaszewski University</div>
+    </div>
+    <div class="edu-date">2004 – 2007</div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="contact-grid">
+    <div>
+      <h2 class="contact-heading">Open to new<br><em>opportunities</em></h2>
+      <p class="contact-sub">Looking for roles in business analysis, product ownership, or AI governance — where I can bridge strategy and delivery in complex, cross-functional environments.</p>
+      <a href="mailto:wasiak.dorota@gmail.com" class="contact-btn">Send an email</a>
+      <div class="lang-pills">
+        <span class="lang-pill">Polish — Native</span>
+        <span class="lang-pill">English — Advanced</span>
+        <span class="lang-pill">Swedish — Basic</span>
       </div>
-      <div class="contact-details">
-        <div class="contact-row">
-          <span class="contact-row-label">Email</span>
-          <a href="mailto:wasiak.dorota@gmail.com">wasiak.dorota@gmail.com</a>
-        </div>
-        <div class="contact-row">
-          <span class="contact-row-label">Phone</span>
-          <span>076 301 0449</span>
-        </div>
-        <div class="contact-row">
-          <span class="contact-row-label">LinkedIn</span>
-          <a href="https://www.linkedin.com/in/dorota-wasiak/" target="_blank">in/dorota-wasiak ↗</a>
-        </div>
-        <div class="contact-row">
-          <span class="contact-row-label">Location</span>
-          <span>Göteborg, Sweden</span>
-        </div>
+    </div>
+    <div class="contact-rows">
+      <div class="contact-row">
+        <span class="contact-label">Email</span>
+        <a href="mailto:wasiak.dorota@gmail.com" class="contact-value">wasiak.dorota@gmail.com</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Phone</span>
+        <span class="contact-value">076 301 0449</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">LinkedIn</span>
+        <a href="https://www.linkedin.com/in/dorota-wasiak/" class="contact-value" target="_blank" rel="noopener">in/dorota-wasiak ↗</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">GitHub</span>
+        <a href="https://dorota-wasiak.github.io" class="contact-value" target="_blank" rel="noopener">dorota-wasiak.github.io ↗</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">Göteborg, Sweden</span>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <span class="footer-text">© 2025 Dorota Wasiak</span>
-  <span class="footer-text">Senior Business Analyst · Digital Product Owner · Data & AI Governance</span>
+  <span class="footer-name">Dorota Wasiak · Göteborg</span>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/dorota-wasiak/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/dorota-wasiak" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+  </div>
 </footer>
 
 <script>
-  function setPortfolioFilter(category) {
-    document.querySelectorAll('.portfolio-filter button').forEach(function(button) {
-      button.classList.toggle('active', button.dataset.filter === category);
-    });
-    document.querySelectorAll('.portfolio-card').forEach(function(card) {
-      card.style.display = category === 'all' || card.dataset.category === category ? 'block' : 'none';
-    });
-  }
+// Portfolio filter tabs
+const tabs = document.querySelectorAll('.tab');
+const cards = document.querySelectorAll('.port-card[data-category]');
 
-  document.querySelectorAll('.portfolio-filter button').forEach(function(button) {
-    button.addEventListener('click', function() {
-      setPortfolioFilter(button.dataset.filter);
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const filter = tab.dataset.filter;
+    cards.forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.classList.remove('hidden');
+        if (filter !== 'all' && card.classList.contains('featured')) {
+          card.style.gridColumn = 'span 1';
+          card.style.display = 'flex';
+          card.style.flexDirection = 'column';
+        } else if (filter === 'all') {
+          card.style.gridColumn = '';
+          card.style.display = '';
+          card.style.flexDirection = '';
+        }
+      } else {
+        card.classList.add('hidden');
+      }
     });
   });
+});
 
-  setPortfolioFilter('all');
+// Active nav on scroll
+const sections = document.querySelectorAll('section[id], footer');
+const navItems = document.querySelectorAll('.topnav-item');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navItems.forEach(item => item.classList.remove('active'));
+      const active = document.querySelector(`.topnav-item[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, {rootMargin: '-40% 0px -55% 0px'});
+
+sections.forEach(s => observer.observe(s));
 </script>
 </body>
 </html>
