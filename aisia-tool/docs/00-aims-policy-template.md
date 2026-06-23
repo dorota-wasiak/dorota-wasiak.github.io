@@ -2,7 +2,7 @@
 
 **Document type:** Organisational Policy Template
 **Author:** Dorota Wasiak
-**Status:** Template — ready for organisational customisation
+**Status:** Template - ready for organisational customisation
 **Last updated:** June 2026
 **Related documents:** [01-business-case.md](01-business-case.md) | [02-business-requirements.md](02-business-requirements.md)
 
@@ -62,28 +62,28 @@ Consistent with international standards and the EU regulatory framework:
 
 [Company Name] has determined the external and internal issues that are relevant to its purpose and that affect its ability to achieve the intended outcomes of its AI Management System.
 
-[Company Name]'s AI initiatives support its strategic objectives of *[insert: e.g. operational efficiency / customer experience improvement / product innovation — to be confirmed by Top Management]*. The AIMS is designed to ensure that AI is adopted in a way that is consistent with these objectives while managing associated risks responsibly.
+[Company Name]'s AI initiatives support its strategic objectives of *[insert: e.g. operational efficiency / customer experience improvement / product innovation - to be confirmed by Top Management]*. The AIMS is designed to ensure that AI is adopted in a way that is consistent with these objectives while managing associated risks responsibly.
 
 ### Internal issues considered include:
 
 | Factor | Description |
 |---|---|
-| Organizational structure | e.g. centralised / decentralised; number of business units using AI — to be defined |
-| AI maturity level | e.g. early adoption / scaling / optimising — current state assessment to be completed |
-| Existing governance frameworks | e.g. ISO 27001 for information security, GDPR compliance programme, existing data governance — list applicable frameworks |
-| Culture and awareness | e.g. level of AI literacy across teams; appetite for innovation vs. risk aversion — to be assessed |
-| Available resources and competences | e.g. in-house data science capability, legal/compliance capacity, ethics expertise — to be inventoried |
-| Technology landscape | e.g. AI tools currently in use or under evaluation — reference AI Tools Register if available |
+| Organizational structure | e.g. centralised / decentralised; number of business units using AI - to be defined |
+| AI maturity level | e.g. early adoption / scaling / optimising - current state assessment to be completed |
+| Existing governance frameworks | e.g. ISO 27001 for information security, GDPR compliance programme, existing data governance - list applicable frameworks |
+| Culture and awareness | e.g. level of AI literacy across teams; appetite for innovation vs. risk aversion - to be assessed |
+| Available resources and competences | e.g. in-house data science capability, legal/compliance capacity, ethics expertise - to be inventoried |
+| Technology landscape | e.g. AI tools currently in use or under evaluation - reference AI Tools Register if available |
 
 ### External issues considered include:
 
 | Factor | Description |
 |---|---|
 | Legal and regulatory environment | EU AI Act; GDPR; *[insert sector-specific regulations if applicable, e.g. financial services, healthcare]* |
-| Market and competitive context | e.g. industry adoption of AI; customer expectations regarding AI transparency — to be defined |
+| Market and competitive context | e.g. industry adoption of AI; customer expectations regarding AI transparency - to be defined |
 | Technology trends | e.g. rapid development of generative AI; increasing availability of third-party AI services |
 | Societal expectations | Growing public and media scrutiny of AI ethics, bias, and accountability |
-| Third-party dependencies | e.g. reliance on external AI vendors such as OpenAI, Microsoft, Google — list key providers |
+| Third-party dependencies | e.g. reliance on external AI vendors such as OpenAI, Microsoft, Google - list key providers |
 
 ### 3.1 Understanding the Needs and Expectations of Interested Parties
 
@@ -137,7 +137,7 @@ Ensure all AI systems in use comply with applicable legal and regulatory require
 |---|---|
 | **What** | Conduct an AI system inventory; classify each system by EU AI Act risk category; document compliance status |
 | **Who** | AI Ethics Board, Legal/Compliance, IT |
-| **When** | [Date] — initial inventory; [Date] — ongoing review cycle |
+| **When** | [Date] - initial inventory; [Date] - ongoing review cycle |
 | **Resources** | Internal legal review + external audit (if applicable) |
 | **Measure** | % of AI systems with completed risk classification and compliance documentation |
 
@@ -149,7 +149,7 @@ Reduce the risk of discriminatory outcomes from AI systems by implementing regul
 |---|---|
 | **What** | Define bias testing criteria per use case; conduct baseline assessment; implement corrective actions |
 | **Who** | Development Teams, AI Ethics Board |
-| **When** | [Date] — criteria defined; [Date] — first assessments completed |
+| **When** | [Date] - criteria defined; [Date] - first assessments completed |
 | **Resources** | Data quality tools, internal data science resources |
 | **Measure** | Number of high-risk AI systems with documented bias assessment; number of identified issues resolved |
 
@@ -173,7 +173,7 @@ Ensure that all employees involved in the AI lifecycle have completed required t
 |---|---|
 | **What** | Define training requirements by role; deploy training modules; track completion |
 | **Who** | HR, AI Ethics Board, Department Heads |
-| **When** | [Date] — curriculum defined; [Date] — first cohort completed |
+| **When** | [Date] - curriculum defined; [Date] - first cohort completed |
 | **Resources** | LMS platform; internal or external training content |
 | **Measure** | % training completion by role; post-training assessment scores |
 
@@ -185,7 +185,7 @@ Establish and test an AI incident response process to ensure that adverse AI eve
 |---|---|
 | **What** | Define incident categories; document response procedures; conduct tabletop exercise |
 | **Who** | IT Security, AI Ethics Board, Operations |
-| **When** | [Date] — procedures documented; [Date] — first exercise completed |
+| **When** | [Date] - procedures documented; [Date] - first exercise completed |
 | **Resources** | Existing IT incident management infrastructure |
 | **Measure** | Time-to-detect and time-to-resolve for AI incidents; number of incidents escalated per quarter |
 
@@ -215,24 +215,24 @@ Risk classification is performed prior to deployment and reviewed at least on an
 
 When assigning a risk level, the system owner shall consider the following factors:
 
-- **Intended purpose** — What decision or action does the system influence, and who is affected?
-- **Autonomy level** — Does the system act autonomously or support human decision-making?
-- **Data sensitivity** — Does the system process personal data or data about vulnerable groups?
-- **Scale of deployment** — How many individuals or processes are affected?
-- **Reversibility** — Can harm caused by the system be undone?
-- **Regulatory context** — Does the system fall under EU AI Act Annex III?
+- **Intended purpose** - What decision or action does the system influence, and who is affected?
+- **Autonomy level** - Does the system act autonomously or support human decision-making?
+- **Data sensitivity** - Does the system process personal data or data about vulnerable groups?
+- **Scale of deployment** - How many individuals or processes are affected?
+- **Reversibility** - Can harm caused by the system be undone?
+- **Regulatory context** - Does the system fall under EU AI Act Annex III?
 
 Classification is documented in the AI System Register *[link to be inserted]* and approved by the AI Ethics Board prior to deployment.
 
 ### 6.3 AI System Impact Assessment (AISIA)
 
-[Company Name] requires that an AI System Impact Assessment (AISIA) be conducted for all AI systems classified as High Risk or above (see Section 6.1), and for any system where there is reasonable potential for significant impact on individuals, groups, or society — regardless of initial risk classification.
+[Company Name] requires that an AI System Impact Assessment (AISIA) be conducted for all AI systems classified as High Risk or above (see Section 6.1), and for any system where there is reasonable potential for significant impact on individuals, groups, or society - regardless of initial risk classification.
 
 The AISIA is a formal, documented process conducted prior to deployment and reviewed at each significant system change or at least on an annual basis.
 
 ### 6.4 AISIA Purpose
 
-The AISIA evaluates the societal, ethical, and fundamental rights consequences of deploying an AI system. Where risk assessment identifies what could go wrong technically, the impact assessment asks who could be harmed and how — including effects that may not be immediately visible or measurable.
+The AISIA evaluates the societal, ethical, and fundamental rights consequences of deploying an AI system. Where risk assessment identifies what could go wrong technically, the impact assessment asks who could be harmed and how - including effects that may not be immediately visible or measurable.
 
 #### 6.4.1 AISIA Trigger Conditions
 
@@ -246,7 +246,7 @@ An AISIA is required when any of the following apply:
 | System is deployed at scale affecting a large population | Customer-facing automation; tools used by all employees |
 | Significant change to an existing AI system | New data source, new use case, model retraining |
 
-> **Portfolio note:** These trigger conditions are implemented directly in Section 2 (Trigger Conditions) of the AISIA tool — see the [AISIA Business Requirements Document](02-business-requirements.md) for the corresponding requirements specification.
+> **Portfolio note:** These trigger conditions are implemented directly in Section 2 (Trigger Conditions) of the AISIA tool - see the [AISIA Business Requirements Document](02-business-requirements.md) for the corresponding requirements specification.
 
 #### 6.4.2 Assessment Process
 
@@ -257,7 +257,7 @@ An AISIA is required when any of the following apply:
 5. **Approval and Sign-off:** The completed AISIA is reviewed and approved by *[AI Ethics Board / Risk Owner]* before deployment is authorized.
 6. **Monitoring and Review:** Post-deployment, the system owner monitors for actual impacts and reports any deviations. Assessment is reviewed annually or upon material change.
 
-**Relationship to GDPR DPIA:** Where an AI system processes personal data and a DPIA is required under GDPR Article 35, the AISIA and DPIA may be conducted jointly to avoid duplication. DPIA requirements take precedence for data protection aspects; the AISIA extends scope to broader societal and ethical dimensions. *[Reference to internal DPIA procedure — to be inserted]*
+**Relationship to GDPR DPIA:** Where an AI system processes personal data and a DPIA is required under GDPR Article 35, the AISIA and DPIA may be conducted jointly to avoid duplication. DPIA requirements take precedence for data protection aspects; the AISIA extends scope to broader societal and ethical dimensions. *[Reference to internal DPIA procedure - to be inserted]*
 
 ---
 
@@ -282,10 +282,10 @@ The organization is committed to the following core values in all AI initiatives
 
 [Company Name] will maintain an AI Ethics Board to provide ongoing ethical oversight of AI initiatives. This board will design and implement an approval process for new AI tools in the workplace by evaluating proposed AI projects, addressing ethical issues, and ensuring alignment with [Company Name]'s principles and values. As of *[Effective Date]*, the members of the AI Ethics Board are:
 
-- *[Name, Title — AI-related Responsibilities]*
-- *[Name, Title — AI-related Responsibilities]*
-- *[Board Member #1: Name, Title — AI-related Responsibilities]*
-- *[Board Member #2: Name, Title — AI-related Responsibilities]*
+- *[Name, Title - AI-related Responsibilities]*
+- *[Name, Title - AI-related Responsibilities]*
+- *[Board Member #1: Name, Title - AI-related Responsibilities]*
+- *[Board Member #2: Name, Title - AI-related Responsibilities]*
 
 ### 7.2 AI Ethical Guidelines
 
@@ -327,7 +327,7 @@ AI systems will be regularly audited and monitored for performance, accuracy, bi
 
 [Company Name] has established an incident response plan for incidents involving AI systems. The plan outlines the procedures for reporting, investigating and resolving issues such as data breaches, biased outcomes and system failures.
 
-1. **Detection and reporting:** Any employee who identifies an AI-related incident must report it immediately to *[designated contact / team — to be defined]*.
+1. **Detection and reporting:** Any employee who identifies an AI-related incident must report it immediately to *[designated contact / team - to be defined]*.
 2. **Assessment and containment:** The incident response team assesses the severity, applies immediate containment measures, and notifies the AI Ethics Board.
 3. **Investigation and resolution:** Root cause analysis is conducted; corrective actions are implemented and documented.
 4. **Post-incident review:** Lessons learned are documented and used to update policy, procedures, or training as appropriate.
@@ -363,11 +363,11 @@ Employees will receive training and guidance on the responsible use of AI techno
 All AI systems and their use must comply with applicable laws, regulations, and industry standards. This includes but is not limited to data protection laws, intellectual property rights, and ethical guidelines. As of *[Effective Date]*, employees should refer to the following regulations governing AI use at [Company Name]:
 
 - EU AI Act (Regulation (EU) 2024/1689)
-- General Data Protection Regulation — GDPR (Regulation (EU) 2016/679)
-- ISO/IEC 42001:2023 — AI Management Systems
-- *[Sector-specific regulation — to be added per organisational context]*
+- General Data Protection Regulation - GDPR (Regulation (EU) 2016/679)
+- ISO/IEC 42001:2023 - AI Management Systems
+- *[Sector-specific regulation - to be added per organisational context]*
 
-> **Note:** Annex A of ISO/IEC 42001:2023 defines AI-specific controls. Controls applicable to [Company Name] are identified in the Statement of Applicability (SoA). *[Reference to SoA document — to be inserted]*
+> **Note:** Annex A of ISO/IEC 42001:2023 defines AI-specific controls. Controls applicable to [Company Name] are identified in the Statement of Applicability (SoA). *[Reference to SoA document - to be inserted]*
 
 ---
 
@@ -377,7 +377,7 @@ All AI systems and their use must comply with applicable laws, regulations, and 
 
 - Employees have the right to be informed when AI systems are used in decisions that directly affect their employment, performance evaluation, or working conditions.
 - Employees may request a human review of any AI-assisted decision that affects them.
-- Concerns about AI use may be raised through *[designated channel — to be defined]* without risk of retaliation.
+- Concerns about AI use may be raised through *[designated channel - to be defined]* without risk of retaliation.
 
 ### 13.1 Offboarding and AI Access
 
@@ -391,14 +391,14 @@ This policy is reviewed at least annually or when significant technological or l
 
 | Activity | Frequency / Owner |
 |---|---|
-| **AIMS Policy review** | Annual — AI Ethics Board + Top Management |
-| **AI System Register review** | Annual + upon material system change — System Owners |
-| **Risk classification review** | Annual + upon material system change — AI Ethics Board |
-| **AISIA review** | Annual + upon material system change — System Owners |
-| **Bias and fairness audits** | *[Quarterly / Annual — to be defined]* — Development Teams |
-| **Training completion review** | Annual — HR + AI Ethics Board |
-| **Incident log review** | Quarterly — IT Security + AI Ethics Board |
-| **Management review meeting** | Annual — Top Management |
+| **AIMS Policy review** | Annual - AI Ethics Board + Top Management |
+| **AI System Register review** | Annual + upon material system change - System Owners |
+| **Risk classification review** | Annual + upon material system change - AI Ethics Board |
+| **AISIA review** | Annual + upon material system change - System Owners |
+| **Bias and fairness audits** | *[Quarterly / Annual - to be defined]* - Development Teams |
+| **Training completion review** | Annual - HR + AI Ethics Board |
+| **Incident log review** | Quarterly - IT Security + AI Ethics Board |
+| **Management review meeting** | Annual - Top Management |
 
 | | |
 |---|---|
