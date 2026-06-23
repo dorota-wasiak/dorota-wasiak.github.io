@@ -9,7 +9,7 @@
 ---
 
 > **About this document**
-> This is a reusable AIMS Policy template, designed to be adapted by any organisation establishing AI governance under ISO/IEC 42001:2023. Placeholders such as `[Company Name]`, `[Date]`, and `[Name, Title]` are intentional and should be completed during organisational adoption. This template establishes the governance framework that AISIA — the AI System Impact Assessment tool also presented in this portfolio — operationalises in practice. AISIA's trigger conditions and assessment process (Section 6.4) are drawn directly from this policy.
+> This is a reusable AIMS Policy template, designed to be adapted by any organisation establishing AI governance under ISO/IEC 42001:2023. Placeholders such as `[Company Name]`, `[Date]`, and `[Name, Title]` are intentional and should be completed during organisational adoption. This template establishes the governance framework that AISIA - the AI System Impact Assessment tool also presented in this portfolio - operationalises in practice. AISIA's trigger conditions and assessment process (Section 6.4) are drawn directly from this policy.
 
 ---
 
