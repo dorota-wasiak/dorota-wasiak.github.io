@@ -233,12 +233,12 @@ This matrix demonstrates bidirectional traceability across the entire business l
 
 | Business Objective | Business Requirement(s) | Stakeholder Requirement(s) | Primary Stakeholder(s) |
 |---|---|---|---|
-| **BO-001** — Structured, auditable assessment | BR-005, BR-006, BR-008, BR-009, BR-014, BR-016 | SR-001, SR-009, SR-010 | AI Governance Lead, End Users |
-| **BO-002** — Compliance readiness | BR-001, BR-002, BR-003, BR-004 | SR-004, SR-005, SR-006, SR-007 | DPO, Legal/Compliance |
-| **BO-003** — Reduce ad hoc practices | BR-005, BR-009, BR-017 | SR-001 | AI Governance Lead, End Users |
-| **BO-004** — Inform decision-makers | BR-007, BR-010, BR-011, BR-012 | SR-002, SR-003, SR-008 | System Owner, AI Ethics Board |
-| **BO-005** — Defensible audit trail | BR-002, BR-008, BR-011, BR-012, BR-013, BR-015 | SR-002, SR-007, SR-008, SR-011 | Legal/Compliance, IT Security |
-| **BO-006** — Cross-functional collaboration | BR-004, BR-011, BR-016 | SR-004, SR-005 | DPO, multiple stakeholders |
+| **BO-001** - Structured, auditable assessment | BR-005, BR-006, BR-008, BR-009, BR-014, BR-016 | SR-001, SR-009, SR-010 | AI Governance Lead, End Users |
+| **BO-002** - Compliance readiness | BR-001, BR-002, BR-003, BR-004 | SR-004, SR-005, SR-006, SR-007 | DPO, Legal/Compliance |
+| **BO-003** - Reduce ad hoc practices | BR-005, BR-009, BR-017 | SR-001 | AI Governance Lead, End Users |
+| **BO-004** - Inform decision-makers | BR-007, BR-010, BR-011, BR-012 | SR-002, SR-003, SR-008 | System Owner, AI Ethics Board |
+| **BO-005** - Defensible audit trail | BR-002, BR-008, BR-011, BR-012, BR-013, BR-015 | SR-002, SR-007, SR-008, SR-011 | Legal/Compliance, IT Security |
+| **BO-006** - Cross-functional collaboration | BR-004, BR-011, BR-016 | SR-004, SR-005 | DPO, multiple stakeholders |
 
 ---
 
