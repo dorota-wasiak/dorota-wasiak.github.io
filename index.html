@@ -96,12 +96,14 @@ body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:var(--text);
 .pv-teal{background:var(--teal-dark)}
 .pv-amber{background:var(--amber-dark)}
 .pv-green{background:var(--green-dark)}
+.pv-purple{background:var(--purple-dark)}
 .port-icon{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
 .port-vtitle{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#fff}
 .port-body{padding:12px 14px;display:flex;flex-direction:column;gap:8px}
 .port-desc{font-size:11.5px;color:var(--text2);line-height:1.55}
 .port-footer{display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px solid var(--border);font-size:11px}
 .port-live{color:var(--text3)}
+.port-tag{font-size:11px;color:var(--text3)}
 .port-link{color:var(--teal-dark);font-weight:500;text-decoration:none}
 .port-link:hover{text-decoration:underline}
 .port-soon{color:var(--amber-dark);background:var(--amber-light);padding:2px 8px;border-radius:10px;border:1px solid var(--amber)}
@@ -362,6 +364,21 @@ footer{background:var(--teal-dark)}
         <div class="port-footer">
           <span class="port-live">In progress</span>
           <span class="port-soon">FRD coming soon</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="port-card" data-category="ai-governance">
+      <div class="port-visual pv-purple">
+        <div class="port-icon"><i class="ti ti-gavel" aria-hidden="true"></i></div>
+        <div class="port-vtitle">AIMS Policy</div>
+      </div>
+      <div class="port-body">
+        <p class="port-desc">Reusable AI Management System policy template — governance framework that AISIA operationalises, aligned with ISO/IEC 42001:2023.</p>
+        <a href="https://github.com/dorota-wasiak/dorota-wasiak.github.io/blob/main/aisia-tool/docs/00-aims-policy-template.md" class="docs-link" target="_blank" rel="noopener">View policy →</a>
+        <div class="port-footer">
+          <span class="port-live">Template</span>
+          <span class="port-tag">ISO 42001 · Governance</span>
         </div>
       </div>
     </div>
