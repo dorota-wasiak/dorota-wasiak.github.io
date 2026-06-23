@@ -1,5 +1,3 @@
-# dorota-wasiak.github.io
-
 ### Hi, I'm Dorota
  
 **Senior Business Analyst & Digital Product Owner** based in Göteborg, Sweden - 15 years of experience in bridging the gap between human behaviour and technical systems in the automotive, logistics, supply chain and healthcare industries.
