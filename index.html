@@ -97,6 +97,9 @@ body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:var(--text);
 .pv-amber{background:var(--amber-dark)}
 .pv-green{background:var(--green-dark)}
 .pv-purple{background:var(--purple-dark)}
+.pv-policy{background:#a9870c}
+.pv-reqdocs{background:#40692f}
+.pv-risk{background:#7b2a31}
 .port-icon{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
 .port-vtitle{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#fff}
 .port-body{padding:12px 14px;display:flex;flex-direction:column;gap:8px}
@@ -348,23 +351,24 @@ footer{background:var(--teal-dark)}
     </div>
 
     <div class="port-card" data-category="ai-governance">
-      <div class="port-visual pv-amber">
-        <div class="port-icon"><i class="ti ti-list-check" aria-hidden="true"></i></div>
-        <div class="port-vtitle">Risk Register</div>
+      <div class="port-visual pv-policy">
+        <div class="port-icon"><i class="ti ti-gavel" aria-hidden="true"></i></div>
+        <div class="port-vtitle">AIMS Policy</div>
       </div>
       <div class="port-body">
-        <p class="port-desc">Structured risk register for tracking AI system risks, owners and mitigations.</p>
+        <p class="port-desc">Reusable AI Management System policy template — governance framework that AISIA operationalises, aligned with ISO/IEC 42001:2023.</p>
+        <a href="https://github.com/dorota-wasiak/dorota-wasiak.github.io/blob/main/aisia-tool/docs/00-aims-policy-template.md" class="docs-link" target="_blank" rel="noopener">View policy →</a>
         <div class="port-footer">
-          <span></span>
-          <span class="port-soon">Coming soon</span>
+          <span class="port-live">Template</span>
+          <span class="port-tag">ISO 42001 · Governance</span>
         </div>
       </div>
     </div>
 
     <div class="port-card" data-category="business-analysis">
-      <div class="port-visual pv-green">
+      <div class="port-visual pv-reqdocs">
         <div class="port-icon"><i class="ti ti-sitemap" aria-hidden="true"></i></div>
-        <div class="port-vtitle">Requirements</div>
+        <div class="port-vtitle">Requirements Documentation</div>
       </div>
       <div class="port-body">
         <p class="port-desc">IREB-aligned Business Requirements Document - objectives, stakeholder requirements, scope and traceability matrix.</p>
@@ -377,16 +381,15 @@ footer{background:var(--teal-dark)}
     </div>
 
     <div class="port-card" data-category="ai-governance">
-      <div class="port-visual pv-purple">
-        <div class="port-icon"><i class="ti ti-gavel" aria-hidden="true"></i></div>
-        <div class="port-vtitle">AIMS Policy</div>
+      <div class="port-visual pv-risk">
+        <div class="port-icon"><i class="ti ti-list-check" aria-hidden="true"></i></div>
+        <div class="port-vtitle">Risk Register</div>
       </div>
       <div class="port-body">
-        <p class="port-desc">Reusable AI Management System policy template — governance framework that AISIA operationalises, aligned with ISO/IEC 42001:2023.</p>
-        <a href="https://github.com/dorota-wasiak/dorota-wasiak.github.io/blob/main/aisia-tool/docs/00-aims-policy-template.md" class="docs-link" target="_blank" rel="noopener">View policy →</a>
+        <p class="port-desc">Structured risk register for tracking AI system risks, owners and mitigations.</p>
         <div class="port-footer">
-          <span class="port-live">Template</span>
-          <span class="port-tag">ISO 42001 · Governance</span>
+          <span></span>
+          <span class="port-soon">Coming soon</span>
         </div>
       </div>
     </div>
