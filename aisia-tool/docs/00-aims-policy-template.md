@@ -258,40 +258,22 @@ An AISIA is required when any of the following apply:
 6. **Monitoring and Review:** Post-deployment, the system owner monitors for actual impacts and reports any deviations. Assessment is reviewed annually or upon material change.
 ```mermaid
 flowchart LR
-    %% Definicje stylów dla Twoich kolorów (zielony i pomarańczowy)
+    %% Definicje stylów dla kolorów
     classDef greenCard fill:#40692f,stroke:#FFFFFF,stroke-width:2px,color:#fff;
     classDef orangeCard fill:#d37213,stroke:#FFFFFF,stroke-width:2px,color:#fff;
-    
-    %% Ukrycie teł dla podgrup, żeby zachować czysty wygląd
-    style rzad1 fill:none,stroke:none;
-    style rzad2 fill:none,stroke:none;
 
-    %% PIERWSZY RZĄD (Kolumna 1 - kroki 1-3 w pionie)
-    subgraph rzad1 [" "]
-        direction TB
-        A("1. System description<br/><span style='font-size:11px;opacity:0.8;'>Document scope, purpose, risk class</span>")
-        B("2. Trigger conditions<br/><span style='font-size:11px;opacity:0.8;'>Confirm assessment is required</span>")
-        C("3. Impact assessment<br/><span style='font-size:11px;opacity:0.8;'>Rate severity and likelihood</span>")
-        
-        A --> B
-        B --> C
-    end
-    
-    %% DRUGI RZĄD (Kolumna 2 - kroki 4-6 w pionie)
-    subgraph rzad2 [" "]
-        direction TB
-        D("4. Deployment decision<br/><span style='font-size:11px;opacity:0.8;'>Approve, condition, or reject</span>")
-        E("5. Monitoring plan<br/><span style='font-size:11px;opacity:0.8;'>Define post-deployment review</span>")
-        F("6. Approval & sign-off<br/><span style='font-size:11px;opacity:0.8;'>Ethics Board and owner sign-off</span>")
-        
-        D --> E
-        E --> F
-    end
-    
-    %% Połączenie między rzędami (z kroku 3 do kroku 4)
-    C --> D
+    %% Definicje kafelków w jednej linii z opisami
+    A("1. System description<br/><span style='font-size:11px;opacity:0.8;'>Document scope, purpose, risk class</span>")
+    B("2. Trigger conditions<br/><span style='font-size:11px;opacity:0.8;'>Confirm assessment is required</span>")
+    C("3. Impact assessment<br/><span style='font-size:11px;opacity:0.8;'>Rate severity and likelihood</span>")
+    D("4. Deployment decision<br/><span style='font-size:11px;opacity:0.8;'>Approve, condition, or reject</span>")
+    E("5. Monitoring plan<br/><span style='font-size:11px;opacity:0.8;'>Define post-deployment review</span>")
+    F("6. Approval & sign-off<br/><span style='font-size:11px;opacity:0.8;'>Ethics Board and owner sign-off</span>")
 
-    %% Przypisanie kolorów do odpowiednich kafelków
+    %% Połączenia w jednym ciągu
+    A --> B --> C --> D --> E --> F
+
+    %% Przypisanie stylów kolorystycznych
     class A,B,C,E,F greenCard;
     class D greenCard;
 ```
