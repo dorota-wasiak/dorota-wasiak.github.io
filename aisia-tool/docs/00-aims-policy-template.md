@@ -258,11 +258,10 @@ An AISIA is required when any of the following apply:
 6. **Monitoring and Review:** Post-deployment, the system owner monitors for actual impacts and reports any deviations. Assessment is reviewed annually or upon material change.
 ```mermaid
 flowchart LR
-    %% Definicje stylów dla kolorów
+    
     classDef greenCard fill:#40692f,stroke:#FFFFFF,stroke-width:2px,color:#fff;
     classDef orangeCard fill:#d37213,stroke:#FFFFFF,stroke-width:2px,color:#fff;
 
-    %% Definicje kafelków w jednej linii z opisami
     A("1. System description<br/><span style='font-size:11px;opacity:0.8;'>Document scope, purpose, risk class</span>")
     B("2. Trigger conditions<br/><span style='font-size:11px;opacity:0.8;'>Confirm assessment is required</span>")
     C("3. Impact assessment<br/><span style='font-size:11px;opacity:0.8;'>Rate severity and likelihood</span>")
@@ -270,10 +269,9 @@ flowchart LR
     E("5. Monitoring plan<br/><span style='font-size:11px;opacity:0.8;'>Define post-deployment review</span>")
     F("6. Approval & sign-off<br/><span style='font-size:11px;opacity:0.8;'>Ethics Board and owner sign-off</span>")
 
-    %% Połączenia w jednym ciągu
+   
     A --> B --> C --> D --> E --> F
 
-    %% Przypisanie stylów kolorystycznych
     class A,B,C,E,F greenCard;
     class D greenCard;
 ```
