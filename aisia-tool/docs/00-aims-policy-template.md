@@ -256,7 +256,25 @@ An AISIA is required when any of the following apply:
 4. **Mitigation Measures:** For each identified impact, document the mitigation action, responsible owner, and target completion date.
 5. **Approval and Sign-off:** The completed AISIA is reviewed and approved by *[AI Ethics Board / Risk Owner]* before deployment is authorized.
 6. **Monitoring and Review:** Post-deployment, the system owner monitors for actual impacts and reports any deviations. Assessment is reviewed annually or upon material change.
+```mermaid
+flowchart LR
+    
+    classDef greenCard fill:#40692f,stroke:#FFFFFF,stroke-width:2px,color:#fff;
+    classDef orangeCard fill:#d37213,stroke:#FFFFFF,stroke-width:2px,color:#fff;
 
+    A("1. System description<br/><span style='font-size:11px;opacity:0.8;'>Document scope, purpose, risk class</span>")
+    B("2. Trigger conditions<br/><span style='font-size:11px;opacity:0.8;'>Confirm assessment is required</span>")
+    C("3. Impact assessment<br/><span style='font-size:11px;opacity:0.8;'>Rate severity and likelihood</span>")
+    D("4. Deployment decision<br/><span style='font-size:11px;opacity:0.8;'>Approve, condition, or reject</span>")
+    E("5. Monitoring plan<br/><span style='font-size:11px;opacity:0.8;'>Define post-deployment review</span>")
+    F("6. Approval & sign-off<br/><span style='font-size:11px;opacity:0.8;'>Ethics Board and owner sign-off</span>")
+
+   
+    A --> B --> C --> D --> E --> F
+
+    class A,B,C,E,F greenCard;
+    class D greenCard;
+```
 **Relationship to GDPR DPIA:** Where an AI system processes personal data and a DPIA is required under GDPR Article 35, the AISIA and DPIA may be conducted jointly to avoid duplication. DPIA requirements take precedence for data protection aspects; the AISIA extends scope to broader societal and ethical dimensions. *[Reference to internal DPIA procedure - to be inserted]*
 
 ---
