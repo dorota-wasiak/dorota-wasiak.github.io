@@ -51,16 +51,29 @@ html[data-theme="light"]{
 }
 .theme-toggle{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid var(--border2);border-radius:var(--radius);background:var(--bg);color:var(--text2);cursor:pointer;transition:all .15s;font-size:15px}
 .theme-toggle:hover{background:var(--bg2);border-color:var(--accent);color:var(--accent)}
+.site-header .theme-toggle,.site-header .clear-data-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.85)}
+.site-header .theme-toggle:hover,.site-header .clear-data-btn:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.4);color:#fff}
+.site-header .auto-save-status{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.85)}
 html{scroll-behavior:smooth}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg3);color:var(--text);font-size:14px;line-height:1.6;min-height:100vh}
 .page{max-width:900px;margin:0 auto;padding:2rem 1.25rem 4rem}
 
 /* Header */
-.site-header{background:var(--bg);border-bottom:1px solid var(--border);padding:1rem 1.25rem;position:sticky;top:0;z-index:100}
-.site-header-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.site-header h1{font-size:15px;font-weight:600;color:var(--text)}
-.site-header span{font-size:12px;color:var(--text2)}
+.site-header{background:#0d4d63;padding:1.5rem 1.25rem;position:sticky;top:0;z-index:100}
+.site-header-inner{max-width:900px;margin:0 auto}
+.site-header-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.site-header h1{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:700;color:#fff}
+.poc-pill{display:inline-block;font-size:10px;font-weight:600;color:#fff;background:#f0a020;padding:2px 9px;border-radius:10px;margin-left:8px;vertical-align:middle;text-transform:uppercase;letter-spacing:.03em}
 .header-badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge-teal{padding:3px 11px;border-radius:20px;font-size:11px;font-weight:500;border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.08)}
+html[data-theme="dark"] .site-header{background:#0a2e3a;border-bottom:1px solid #1a4a5c}
+html[data-theme="dark"] .poc-pill{color:#1a1a1a;background:#fcd34d}
+html[data-theme="dark"] .badge-teal{border-color:rgba(91,196,221,0.3);color:#7dd3e8;background:rgba(91,196,221,0.1)}
+@media(prefers-color-scheme:dark){
+  html:not([data-theme="light"]) .site-header{background:#0a2e3a;border-bottom:1px solid #1a4a5c}
+  html:not([data-theme="light"]) .poc-pill{color:#1a1a1a;background:#fcd34d}
+  html:not([data-theme="light"]) .badge-teal{border-color:rgba(91,196,221,0.3);color:#7dd3e8;background:rgba(91,196,221,0.1)}
+}
 .badge{padding:2px 9px;border-radius:20px;font-size:11px;font-weight:500;border:1px solid;white-space:nowrap}
 .badge-blue{background:var(--blue-bg);color:var(--blue-text);border-color:var(--blue-border)}
 
@@ -220,7 +233,7 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
   .score-legend{grid-template-columns:1fr}
   .trigger-item{flex-direction:column;align-items:flex-start}
   .trigger-item select{width:100%}
-  .site-header-inner{flex-direction:column;align-items:flex-start}
+  .site-header-top{flex-direction:column;align-items:flex-start;gap:10px}
 }
 
 /* Print */
@@ -254,19 +267,18 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
 
 <div class="site-header">
   <div class="site-header-inner">
-    <div>
-      <h1>AI System Impact Assessment (AISIA)</h1>
-      <span>ISO/IEC 42001:2023 · Annex A.5.2–A.5.5 · EU AI Act aligned</span>
+    <div class="site-header-top">
+      <h1>AI System Impact Assessment<span class="poc-pill">POC</span></h1>
+      <div class="header-info">
+        <div class="auto-save-status hidden" id="autoSaveStatus">Auto-saved</div>
+        <button class="theme-toggle" type="button" id="themeToggle" title="Toggle light/dark mode" aria-label="Toggle light/dark mode">◐</button>
+        <button class="clear-data-btn" type="button" id="clearDataBtn" title="Delete all saved data">Clear saved data</button>
+      </div>
     </div>
     <div class="header-badges">
-      <span class="badge badge-blue">ISO/IEC 42001:2023</span>
-      <span class="badge badge-blue">EU AI Act</span>
-      <span class="badge badge-blue">GDPR Art. 35</span>
-    </div>
-    <div class="header-info">
-      <div class="auto-save-status hidden" id="autoSaveStatus">Auto-saved</div>
-      <button class="theme-toggle" type="button" id="themeToggle" title="Toggle light/dark mode" aria-label="Toggle light/dark mode">◐</button>
-      <button class="clear-data-btn" type="button" id="clearDataBtn" title="Delete all saved data">Clear saved data</button>
+      <span class="badge-teal">ISO/IEC 42001:2023</span>
+      <span class="badge-teal">EU AI Act</span>
+      <span class="badge-teal">GDPR Art. 35</span>
     </div>
   </div>
 </div>
