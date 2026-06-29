@@ -10,7 +10,7 @@
   --bg:#ffffff;--bg2:#f8f9fa;--bg3:#f1f3f5;
   --text:#1a1a1a;--text2:#6b7280;--text3:#9ca3af;
   --border:#e5e7eb;--border2:#d1d5db;
-  --accent:#1e40af;--accent-hover:#1e3a8a;--accent-light:#eff6ff;
+  --accent:#0d4d63;--accent-hover:#0a3d4f;--accent-light:#e4f3f8;
   --red:#dc2626;--red-bg:#fef2f2;--red-border:#fecaca;--red-text:#7f1d1d;
   --amber:#d97706;--amber-bg:#fffbeb;--amber-border:#fde68a;--amber-text:#78350f;
   --green:#16a34a;--green-bg:#f0fdf4;--green-border:#bbf7d0;--green-text:#14532d;
@@ -22,13 +22,35 @@
     --bg:#1a1a1a;--bg2:#242424;--bg3:#111111;
     --text:#f0f0f0;--text2:#a0a0a0;--text3:#666;
     --border:#333;--border2:#444;
-    --accent:#3b82f6;--accent-hover:#2563eb;--accent-light:#1e2a3a;
+    --accent:#5bc4dd;--accent-hover:#7dd3e8;--accent-light:#1e2a3a;
     --red-bg:#2a1515;--red-border:#5c2020;--red-text:#fca5a5;
     --amber-bg:#2a2010;--amber-border:#5c4010;--amber-text:#fcd34d;
     --green-bg:#102a15;--green-border:#1a5c25;--green-text:#86efac;
     --blue-bg:#1e2a3a;--blue-border:#1e3a5c;--blue-text:#93c5fd;
   }
 }
+html[data-theme="dark"]{
+  --bg:#1a1a1a;--bg2:#242424;--bg3:#111111;
+  --text:#f0f0f0;--text2:#a0a0a0;--text3:#666;
+  --border:#333;--border2:#444;
+  --accent:#5bc4dd;--accent-hover:#7dd3e8;--accent-light:#1e2a3a;
+  --red-bg:#2a1515;--red-border:#5c2020;--red-text:#fca5a5;
+  --amber-bg:#2a2010;--amber-border:#5c4010;--amber-text:#fcd34d;
+  --green-bg:#102a15;--green-border:#1a5c25;--green-text:#86efac;
+  --blue-bg:#1e2a3a;--blue-border:#1e3a5c;--blue-text:#93c5fd;
+}
+html[data-theme="light"]{
+  --bg:#ffffff;--bg2:#f8f9fa;--bg3:#f1f3f5;
+  --text:#1a1a1a;--text2:#6b7280;--text3:#9ca3af;
+  --border:#e5e7eb;--border2:#d1d5db;
+  --accent:#0d4d63;--accent-hover:#0a3d4f;--accent-light:#e4f3f8;
+  --red-bg:#fef2f2;--red-border:#fecaca;--red-text:#7f1d1d;
+  --amber-bg:#fffbeb;--amber-border:#fde68a;--amber-text:#78350f;
+  --green-bg:#f0fdf4;--green-border:#bbf7d0;--green-text:#14532d;
+  --blue-bg:#eff6ff;--blue-border:#bfdbfe;--blue-text:#1e3a8a;
+}
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid var(--border2);border-radius:var(--radius);background:var(--bg);color:var(--text2);cursor:pointer;transition:all .15s;font-size:15px}
+.theme-toggle:hover{background:var(--bg2);border-color:var(--accent);color:var(--accent)}
 html{scroll-behavior:smooth}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg3);color:var(--text);font-size:14px;line-height:1.6;min-height:100vh}
 .page{max-width:900px;margin:0 auto;padding:2rem 1.25rem 4rem}
@@ -52,8 +74,45 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .step-num{display:block;font-size:17px;font-weight:700;margin-bottom:2px}
 
 /* Cards */
-.card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1rem}
-.card-title{font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:1rem;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.card{background:var(--bg);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1rem}
+.card-title{font-size:13px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:1rem;padding-bottom:8px;border-bottom:1px solid var(--border)}
+
+/* Date picker calendar icon - native black in light mode, inverted to light in dark mode */
+@media(prefers-color-scheme:dark){
+  input[type="date"]::-webkit-calendar-picker-indicator{
+    filter:invert(1);
+    cursor:pointer;
+  }
+}
+html[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator{
+  filter:invert(1);
+  cursor:pointer;
+}
+html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
+  filter:none;
+  cursor:pointer;
+}
+
+/* Conditional field note - explains why a field appeared */
+.conditional-note{font-size:11px;color:var(--accent);background:var(--accent-light);padding:8px 10px;border-radius:6px;margin:8px 0;display:none}
+.conditional-note.visible{display:block}
+.field.conditional-field{display:none}
+.field.conditional-field.visible{display:flex}
+
+/* Link toggle for Data Inputs / System Output */
+.link-toggle{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:12px;color:var(--text2)}
+.link-toggle input{width:auto;margin:0}
+.add-link-row{display:flex;align-items:center;gap:6px;margin-top:6px;cursor:pointer;font-size:12px;color:var(--accent);font-weight:500;width:fit-content;background:none;border:none;padding:0;font-family:inherit}
+.add-link-row:hover{text-decoration:underline}
+.link-field-box{margin-top:8px;padding:10px;border:1px solid var(--accent-light);background:var(--accent-light);border-radius:8px;display:flex;flex-direction:column;gap:4px}
+.link-field-box .link-field-header{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.link-field-box .link-field-header label{margin:0}
+.link-field-box .remove-link{font-size:11px;color:var(--text3);cursor:pointer;align-self:flex-end;background:none;border:none;padding:0;font-family:inherit}
+.link-field-box .remove-link:hover{color:var(--red)}
+
+/* Read-only field showing data from another section */
+.field-readonly{font-size:13px;color:var(--text);background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:7px 10px;min-height:33px;display:flex;align-items:center}
+.field-readonly.empty{color:var(--text3);font-style:italic}
 
 /* Panel */
 .panel{display:none}
@@ -206,6 +265,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
     <div class="header-info">
       <div class="auto-save-status hidden" id="autoSaveStatus">Auto-saved</div>
+      <button class="theme-toggle" type="button" id="themeToggle" title="Toggle light/dark mode" aria-label="Toggle light/dark mode">◐</button>
       <button class="clear-data-btn" type="button" id="clearDataBtn" title="Delete all saved data">Clear saved data</button>
     </div>
   </div>
@@ -214,7 +274,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 <div class="page">
 
   <div class="stepper" id="stepper" role="tablist" aria-label="Assessment sections">
-    <div class="step active" role="tab" aria-selected="true" onclick="go(0)" tabindex="0"><span class="step-num">1</span>System</div>
+    <div class="step active" role="tab" aria-selected="true" onclick="go(0)" tabindex="0"><span class="step-num">1</span>Identification</div>
     <div class="step" role="tab" onclick="go(1)" tabindex="0"><span class="step-num">2</span>Triggers</div>
     <div class="step" role="tab" onclick="go(2)" tabindex="0"><span class="step-num">3</span>Impacts</div>
     <div class="step" role="tab" onclick="go(3)" tabindex="0"><span class="step-num">4</span>Decision</div>
@@ -223,61 +283,140 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="step" role="tab" onclick="go(6)" tabindex="0"><span class="step-num">7</span>Approval</div>
   </div>
 
-  <!-- PANEL 1: System description -->
+  <!-- PANEL 1: System Description -->
   <div id="p0" class="panel visible" role="tabpanel">
     <div class="panel-header">
-      <h2>Section 1 — System description</h2>
-      <p>Document the AI system before any impact identification begins. All affected parties must be identified at this stage — including direct users, data subjects, and third parties who may be indirectly affected.</p>
+      <h2>System Description</h2>
+      <p>Document the AI system thoroughly before any impact identification begins. This includes identifying all affected parties at this stage: direct users, data subjects, and any third parties who may be indirectly affected by the system's operation.</p>
       <div class="iso-ref">ISO/IEC 42001:2023 Annex A.5.2 Step 1</div>
     </div>
     <div class="card">
-      <div class="card-title">Identification</div>
+      <div class="card-title">System Identification</div>
       <div class="g2" style="margin-bottom:12px">
-        <div class="field"><label>AISIA reference</label><input id="ref" placeholder="AISIA-001"><div class="hint">Unique reference for this assessment document</div></div>
+        <!-- DEV NOTE: AISIA reference has no uniqueness validation. Implementing it would require a backend or shared register, which is out of scope for this client-side tool. -->
+        <div class="field"><label>AISIA reference</label><input id="ref" placeholder="e.g. AISIA-001"><div class="hint">Unique reference for this assessment document</div></div>
         <div class="field"><label>System ID</label><input id="sysId" placeholder="AI-001"><div class="hint">From the AI System Register</div></div>
         <div class="field"><label>System name</label><input id="sysName" placeholder="e.g. CV Screening Tool"></div>
-        <div class="field"><label>Deployment date / planned date</label><input id="depDate" type="date"></div>
+        <div class="field"><label>Planned deployment date</label><input id="depDate" type="date"></div>
       </div>
     </div>
     <div class="card">
-      <div class="card-title">System details</div>
-      <div class="field" style="margin-bottom:12px"><label>System description</label><textarea id="sysDesc" placeholder="Brief description of what the system does"></textarea></div>
-      <div class="field" style="margin-bottom:12px"><label>Intended purpose</label><textarea id="purpose" placeholder="Specific purpose — be precise about what the system does and does not decide"></textarea><div class="hint">Include explicit statements about what the system does NOT decide</div></div>
+      <div class="card-title">Technical Specification</div>
+      <div class="field" style="margin-bottom:12px"><label>System description</label><textarea id="sysDesc"></textarea><div class="hint">Brief description of what the system does</div></div>
+      <div class="field" style="margin-bottom:12px"><label>Intended purpose</label><textarea id="purpose"></textarea><div class="hint">Specific purpose of the system. Include explicit statements about what the system does NOT decide</div></div>
       <div class="g2" style="margin-bottom:12px">
-        <div class="field"><label>Model type</label><input id="modelType" placeholder="Supervised ML / NLP / generative / rule-based…"></div>
-        <div class="field"><label>Deployment context</label><input id="depCtx" placeholder="Internal / customer-facing / public-facing"></div>
+        <div class="field">
+          <label>Model type</label>
+          <select id="modelType" onchange="toggleModelTypeOther(this.value)">
+            <option value="">— select —</option>
+            <option>Supervised Machine Learning</option>
+            <option>Unsupervised Machine Learning</option>
+            <option>Large Language Model (LLM)</option>
+            <option>Computer Vision</option>
+            <option>Natural Language Processing (non-LLM)</option>
+            <option>Reinforcement Learning</option>
+            <option>Rule-based / Expert System</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field" id="modelTypeOtherWrap" style="display:none"><label>Model type, please specify</label><input id="modelTypeOther"></div>
       </div>
-      <div class="field" style="margin-bottom:12px"><label>Data inputs</label><textarea id="dataIn" placeholder="All data inputs used by the system — include data types, sources, and whether personal data is involved"></textarea></div>
-      <div class="field"><label>System output</label><textarea id="sysOut" placeholder="What does the system output? What decisions does it influence? What human review follows?"></textarea></div>
+      <div class="field" style="margin-bottom:12px"><label>Deployment context</label><input id="depCtx"><div class="hint">e.g. internal staff-facing tool, customer-facing application, embedded in a regulated product, third-party API integration, cloud-hosted SaaS</div></div>
+      <div class="field" style="margin-bottom:12px">
+        <label>Data inputs</label>
+        <textarea id="dataIn" placeholder="e.g. CRM customer records, transaction history"></textarea>
+        <div class="hint">All data inputs used by the system, including data types, sources, and whether personal data is involved</div>
+        <button type="button" class="add-link-row" id="dataInAddLinkBtn" onclick="toggleLinkField('dataIn')">+ Add link to Data inputs source document</button>
+        <div class="link-field-box" id="dataInLinkBox" style="display:none">
+          <div class="link-field-header">
+            <label>Link to Data inputs source document</label>
+            <button type="button" class="remove-link" onclick="removeLinkField('dataIn')">✕ remove link</button>
+          </div>
+          <input id="dataInLink" placeholder="https://...">
+          <div class="hint">Paste a URL to a SharePoint, Confluence, or other reference document. Not validated by this tool.</div>
+        </div>
+      </div>
+      <div class="field" style="margin-top:24px">
+        <label>System output</label>
+        <textarea id="sysOut" placeholder="e.g. risk score, shortlist recommendation"></textarea>
+        <div class="hint">What does the system output? What decisions does it influence?</div>
+        <button type="button" class="add-link-row" id="sysOutAddLinkBtn" onclick="toggleLinkField('sysOut')">+ Add link to System output source document</button>
+        <div class="link-field-box" id="sysOutLinkBox" style="display:none">
+          <div class="link-field-header">
+            <label>Link to System output source document</label>
+            <button type="button" class="remove-link" onclick="removeLinkField('sysOut')">✕ remove link</button>
+          </div>
+          <input id="sysOutLink" placeholder="https://...">
+          <div class="hint">Paste a URL to a SharePoint, Confluence, or other reference document. Not validated by this tool.</div>
+        </div>
+      </div>
     </div>
     <div class="card">
-      <div class="card-title">EU AI Act classification</div>
+      <div class="card-title">EU AI Act Classification</div>
       <div class="g2" style="margin-bottom:12px">
         <div class="field">
           <label>Risk classification</label>
           <select id="riskCls" onchange="updateRisk()">
             <option value="">— select —</option>
-            <option value="unacceptable">Unacceptable risk — prohibited (Article 5)</option>
-            <option value="h3">High risk — Annex III (standalone system)</option>
-            <option value="h1">High risk — Annex I (embedded in regulated product)</option>
-            <option value="limited">Limited risk — transparency obligations (Article 50)</option>
+            <option value="unacceptable">Unacceptable risk</option>
+            <option value="h3">High risk — Annex III</option>
+            <option value="h1">High risk — Annex I</option>
+            <option value="limited">Limited risk</option>
             <option value="minimal">Minimal / no risk</option>
           </select>
           <span id="riskPill" class="risk-pill r-none">Not classified</span>
+          <div class="hint" id="riskHint">Select a classification to see the relevant EU AI Act article</div>
         </div>
-        <div class="field"><label>Annex III category (if applicable)</label><input id="annexRef" placeholder="e.g. 1(b): recruitment and selection of natural persons"><div class="hint">See EU AI Act Annex III for full list of high-risk categories</div></div>
+        <div></div>
+      </div>
+      <div class="conditional-note" id="annexIIINote">↳ Shown because "High risk — Annex III" is selected:</div>
+      <div class="field conditional-field" id="annexIIIField" style="margin-bottom:12px">
+        <label>Annex III category</label>
+        <select id="annexIII" onchange="document.getElementById('annexIIIOther').closest('.field').style.display=this.value==='Other'?'block':'none'">
+          <option value="">— select —</option>
+          <option>1. Biometric identification and categorisation</option>
+          <option>2. Critical infrastructure</option>
+          <option>3. Education and vocational training</option>
+          <option>4. Employment, worker management and access to self-employment</option>
+          <option>5. Access to essential private and public services</option>
+          <option>6. Law enforcement</option>
+          <option>7. Migration, asylum and border control management</option>
+          <option>8. Administration of justice and democratic processes</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="field conditional-field" id="annexIIIOtherWrap" style="margin-bottom:12px;display:none"><label>Please specify Annex III category</label><input id="annexIIIOther"></div>
+      <div class="conditional-note" id="annexINote">↳ Shown because "High risk — Annex I" is selected:</div>
+      <div class="field conditional-field" id="annexIField" style="margin-bottom:12px">
+        <label>Annex I category</label>
+        <select id="annexI" onchange="document.getElementById('annexIOther').closest('.field').style.display=this.value==='Other'?'block':'none'">
+          <option value="">— select —</option>
+          <option>Machinery (Directive 2006/42/EC)</option>
+          <option>Toys (Directive 2009/48/EC)</option>
+          <option>Medical devices (Regulation (EU) 2017/745)</option>
+          <option>In vitro diagnostic medical devices (Regulation (EU) 2017/746)</option>
+          <option>Motor vehicles and trailers</option>
+          <option>Civil aviation</option>
+          <option>Marine equipment</option>
+          <option>Rail system</option>
+          <option value="Other">Other Annex I harmonisation legislation</option>
+        </select>
+      </div>
+      <div class="field conditional-field" id="annexIOtherWrap" style="margin-bottom:12px;display:none"><label>Please specify Annex I category</label><input id="annexIOther"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Affected Parties</div>
+      <div class="g2" style="margin-bottom:12px">
+        <div class="field"><label>Direct affected parties</label><textarea id="direct"></textarea><div class="hint">Who directly interacts with or is assessed by the system?</div></div>
+        <div class="field"><label>Indirect affected parties</label><textarea id="indirect"></textarea><div class="hint">Who may be affected by system outputs without direct interaction?</div></div>
       </div>
     </div>
     <div class="card">
-      <div class="card-title">Affected parties</div>
-      <div class="g2" style="margin-bottom:12px">
-        <div class="field"><label>Direct affected parties</label><textarea id="direct" placeholder="Who directly interacts with or is assessed by the system?"></textarea></div>
-        <div class="field"><label>Indirect affected parties</label><textarea id="indirect" placeholder="Who may be affected by system outputs without direct interaction?"></textarea></div>
-      </div>
+      <div class="card-title">Sign-off</div>
       <div class="g3">
         <div class="field"><label>Assessor(s)</label><input id="assessors" placeholder="Name, role"></div>
         <div class="field"><label>Assessment date</label><input id="assessDate" type="date"></div>
-        <div class="field"><label>System owner sign-off</label><input id="sysOwner" placeholder="Name — must confirm description accuracy"></div>
+        <div class="field"><label>System owner</label><input id="sysOwner" placeholder="Full name"><div class="hint">Confirms accuracy of the system description above</div></div>
       </div>
     </div>
     <div class="nav-btns"><span></span><div class="nav-actions"><button class="btn btn-outline" onclick="resetAssessment()">Clear section</button><button class="btn btn-primary" onclick="go(1)">Next: trigger conditions →</button></div></div>
@@ -432,10 +571,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <div class="field"><label>Legal / compliance reviewer</label><input id="legalRev" placeholder="Name, role — DPO or legal advisor"></div>
       </div>
       <div class="g3">
-        <div class="field"><label>AI Ethics Board approval</label><input id="boardApp" placeholder="Name, role, date — approval status and any conditions"></div>
-        <div class="field"><label>System owner acknowledgement</label><input id="ownerAck" placeholder="Name, date — confirms accountability for post-deployment monitoring"></div>
-        <div class="field"><label>Next review date</label><input id="nextRev" type="date"></div>
+        <div class="field"><label>AI Ethics Board approval</label><input id="boardApp" placeholder="Name, role, date"><div class="hint">Approval status and any conditions attached</div></div>
+        <div class="field">
+          <label>System owner</label>
+          <div class="field-readonly empty" id="ownerAckDisplay">Not yet entered in Section 1</div>
+          <div class="hint">Same person recorded in System Description sign-off</div>
+        </div>
+        <div class="field"><label>Owner acknowledgement date</label><input id="ownerAckDate" type="date"><div class="hint">Confirms accountability for post-deployment monitoring</div></div>
       </div>
+      <div class="field" style="margin-top:12px;max-width:240px"><label>Next review date</label><input id="nextRev" type="date"></div>
     </div>
     <div class="card">
       <div class="card-title">Completion checklist</div>
@@ -500,7 +644,7 @@ function go(n){
   steps[n].setAttribute('aria-selected','true');
   cur=n;
   if(n===3) syncMetrics();
-  if(n===6) renderChecklist();
+  if(n===6){ renderChecklist(); syncOwnerDisplay(); }
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -559,13 +703,67 @@ function resetPanel(panel){
   }
 }
 
+function toggleLinkField(fieldPrefix){
+  document.getElementById(fieldPrefix+'LinkBox').style.display='flex';
+  document.getElementById(fieldPrefix+'AddLinkBtn').style.display='none';
+}
+
+function removeLinkField(fieldPrefix){
+  document.getElementById(fieldPrefix+'LinkBox').style.display='none';
+  document.getElementById(fieldPrefix+'AddLinkBtn').style.display='flex';
+  document.getElementById(fieldPrefix+'Link').value='';
+}
+
+function toggleModelTypeOther(val){
+  document.getElementById('modelTypeOtherWrap').style.display = val==='Other' ? 'block' : 'none';
+}
+
+function syncOwnerDisplay(){
+  var name=v('sysOwner');
+  var el=document.getElementById('ownerAckDisplay');
+  if(name){
+    el.textContent=name;
+    el.classList.remove('empty');
+  } else {
+    el.textContent='Not yet entered in Section 1';
+    el.classList.add('empty');
+  }
+}
+
 function updateRisk(){
   var v=document.getElementById('riskCls').value;
   var p=document.getElementById('riskPill');
-  var map={h3:['High risk — Annex III','r-high'],h1:['High risk — Annex I','r-high'],unacceptable:['Unacceptable risk — prohibited','r-high'],limited:['Limited risk','r-med'],minimal:['Minimal risk','r-low'],'':['Not classified','r-none']};
-  var info=map[v]||['Not classified','r-none'];
+  var hint=document.getElementById('riskHint');
+  var map={
+    h3:['High risk — Annex III','r-high','Article 6(2) — standalone high-risk use case under Annex III'],
+    h1:['High risk — Annex I','r-high','Article 6(1) — safety component of a product regulated under Annex I'],
+    unacceptable:['Unacceptable risk','r-high','Article 5 — prohibited under the EU AI Act'],
+    limited:['Limited risk','r-med','Article 50 — subject to transparency obligations'],
+    minimal:['Minimal risk','r-low','No specific EU AI Act obligations apply'],
+    '':['Not classified','r-none','Select a classification to see the relevant EU AI Act article']
+  };
+  var info=map[v]||map[''];
   p.textContent=info[0];
   p.className='risk-pill '+info[1];
+  hint.textContent=info[2];
+
+  var annexIIINote=document.getElementById('annexIIINote');
+  var annexIIIField=document.getElementById('annexIIIField');
+  var annexIIIOtherWrap=document.getElementById('annexIIIOtherWrap');
+  var annexINote=document.getElementById('annexINote');
+  var annexIField=document.getElementById('annexIField');
+  var annexIOtherWrap=document.getElementById('annexIOtherWrap');
+
+  var showIII = (v==='h3');
+  var showI = (v==='h1');
+
+  annexIIINote.classList.toggle('visible',showIII);
+  annexIIIField.classList.toggle('visible',showIII);
+  if(!showIII) annexIIIOtherWrap.style.display='none';
+
+  annexINote.classList.toggle('visible',showI);
+  annexIField.classList.toggle('visible',showI);
+  if(!showI) annexIOtherWrap.style.display='none';
 }
 
 function scoreInfo(n){
@@ -667,15 +865,18 @@ function getImpactData(){
 }
 
 function getData(){
+  var modelTypeVal=v('modelType')==='Other'?('Other: '+v('modelTypeOther')):v('modelType');
+  var annexIIIVal=v('annexIII')==='Other'?('Other: '+v('annexIIIOther')):v('annexIII');
+  var annexIVal=v('annexI')==='Other'?('Other: '+v('annexIOther')):v('annexI');
   return {
     meta:{reference:v('ref'),systemId:v('sysId'),systemName:v('sysName'),deploymentDate:v('depDate'),assessors:v('assessors'),assessmentDate:v('assessDate'),systemOwner:v('sysOwner')},
-    system:{description:v('sysDesc'),intendedPurpose:v('purpose'),modelType:v('modelType'),deploymentContext:v('depCtx'),dataInputs:v('dataIn'),systemOutput:v('sysOut'),riskClassification:v('riskCls'),annexReference:v('annexRef'),affectedPartiesDirect:v('direct'),affectedPartiesIndirect:v('indirect')},
+    system:{description:v('sysDesc'),intendedPurpose:v('purpose'),modelType:modelTypeVal,deploymentContext:v('depCtx'),dataInputs:v('dataIn'),dataInputsLink:v('dataInLink'),systemOutput:v('sysOut'),systemOutputLink:v('sysOutLink'),riskClassification:v('riskCls'),annexIIICategory:annexIIIVal,annexICategory:annexIVal,affectedPartiesDirect:v('direct'),affectedPartiesIndirect:v('indirect')},
     triggers:{highRisk:v('t1'),vulnerableGroups:v('t2'),rightsInfluence:v('t3'),scale:v('t4'),materialChange:v('t5'),conclusion:v('trigConc')},
     impacts:getImpactData(),
     deployment:{overallRating:v('overallRating'),recommendation:v('depRec'),conditions:v('conditions'),residualRisk:v('residual')},
     gdpr:{dpiaRequired:v('dpiaReq'),dpiaReference:v('dpiaRef'),jointAssessment:v('joint'),dpoReview:v('dpoRev'),scopeDifference:v('scopeDiff')},
     monitoring:{fairness:v('monFair'),performance:v('monPerf'),humanOversight:v('monHuman'),incidentTrigger:v('incTrig'),reviewDate:v('reviewDate'),owner:v('monOwner'),changeTriggers:v('changeTrig'),retention:v('retention')},
-    approval:{preparedBy:v('prepBy'),technicalReviewer:v('techRev'),legalReviewer:v('legalRev'),boardApproval:v('boardApp'),ownerAcknowledgement:v('ownerAck'),nextReview:v('nextRev')}
+    approval:{preparedBy:v('prepBy'),technicalReviewer:v('techRev'),legalReviewer:v('legalRev'),boardApproval:v('boardApp'),ownerAcknowledgementDate:v('ownerAckDate'),nextReview:v('nextRev')}
   };
 }
 
@@ -717,7 +918,7 @@ function exportTXT(){
     return '  ['+(n+1)+'] '+( i.description||'—')+'\n      Dimension: '+i.dimension+'\n      Severity: '+i.severity+' × Likelihood: '+i.likelihood+' = Score '+i.score+'\n      Mitigation: '+(i.mitigation||'—')+'\n      Owner: '+(i.owner||'—')+' | Status: '+(i.status||'—');
   }).join('\n\n');
   var sep='─'.repeat(56);
-  var t='AI SYSTEM IMPACT ASSESSMENT (AISIA)\nISO/IEC 42001:2023 · EU AI Act aligned\n'+sep+'\n\nReference:        '+d.meta.reference+'\nSystem:           '+d.meta.systemName+' ('+d.meta.systemId+')\nRisk class:       '+d.system.riskClassification+'\nAnnex ref:        '+d.system.annexReference+'\nAssessment date:  '+d.meta.assessmentDate+'\nAssessors:        '+d.meta.assessors+'\n\nSYSTEM DESCRIPTION\n'+sep+'\n'+d.system.description+'\n\nPURPOSE\n'+d.system.intendedPurpose+'\n\nTRIGGERS\n'+sep+'\nHigh risk: '+d.triggers.highRisk+'\nVulnerable groups: '+d.triggers.vulnerableGroups+'\nRights influence: '+d.triggers.rightsInfluence+'\nScale: '+d.triggers.scale+'\nConclusion: '+d.triggers.conclusion+'\n\nIMPACT MATRIX  ('+d.impacts.length+' impacts identified)\n'+sep+'\n'+(imp||'No impacts recorded.')+'\n\nDEPLOYMENT DECISION\n'+sep+'\nOverall rating:   '+d.deployment.overallRating+'\nRecommendation:   '+d.deployment.recommendation+'\nConditions:\n'+d.deployment.conditions+'\n\nMONITORING\n'+sep+'\nFairness metrics: '+d.monitoring.fairness+'\nOwner:            '+d.monitoring.owner+'\nReview date:      '+d.monitoring.reviewDate+'\n\nAPPROVAL\n'+sep+'\nPrepared by:      '+d.approval.preparedBy+'\nBoard approval:   '+d.approval.boardApproval+'\nNext review:      '+d.approval.nextReview;
+  var t='AI SYSTEM IMPACT ASSESSMENT (AISIA)\nISO/IEC 42001:2023 · EU AI Act aligned\n'+sep+'\n\nReference:        '+d.meta.reference+'\nSystem:           '+d.meta.systemName+' ('+d.meta.systemId+')\nRisk class:       '+d.system.riskClassification+'\nAnnex III:        '+(d.system.annexIIICategory||'—')+'\nAnnex I:          '+(d.system.annexICategory||'—')+'\nAssessment date:  '+d.meta.assessmentDate+'\nAssessors:        '+d.meta.assessors+'\n\nSYSTEM DESCRIPTION\n'+sep+'\n'+d.system.description+'\n\nPURPOSE\n'+d.system.intendedPurpose+'\n\nTRIGGERS\n'+sep+'\nHigh risk: '+d.triggers.highRisk+'\nVulnerable groups: '+d.triggers.vulnerableGroups+'\nRights influence: '+d.triggers.rightsInfluence+'\nScale: '+d.triggers.scale+'\nConclusion: '+d.triggers.conclusion+'\n\nIMPACT MATRIX  ('+d.impacts.length+' impacts identified)\n'+sep+'\n'+(imp||'No impacts recorded.')+'\n\nDEPLOYMENT DECISION\n'+sep+'\nOverall rating:   '+d.deployment.overallRating+'\nRecommendation:   '+d.deployment.recommendation+'\nConditions:\n'+d.deployment.conditions+'\n\nMONITORING\n'+sep+'\nFairness metrics: '+d.monitoring.fairness+'\nOwner:            '+d.monitoring.owner+'\nReview date:      '+d.monitoring.reviewDate+'\n\nAPPROVAL\n'+sep+'\nPrepared by:      '+d.approval.preparedBy+'\nBoard approval:   '+d.approval.boardApproval+'\nOwner ack. date:  '+d.approval.ownerAcknowledgementDate+'\nNext review:      '+d.approval.nextReview;
   var blob=new Blob([t],{type:'text/plain'});
   var a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
@@ -787,10 +988,15 @@ function restoreFromStorage(){
     document.getElementById('modelType').value=data.system.modelType||'';
     document.getElementById('depCtx').value=data.system.deploymentContext||'';
     document.getElementById('dataIn').value=data.system.dataInputs||'';
+    document.getElementById('dataInLink').value=data.system.dataInputsLink||'';
+    if(data.system.dataInputsLink) toggleLinkField('dataIn');
     document.getElementById('sysOut').value=data.system.systemOutput||'';
+    document.getElementById('sysOutLink').value=data.system.systemOutputLink||'';
+    if(data.system.systemOutputLink) toggleLinkField('sysOut');
     document.getElementById('riskCls').value=data.system.riskClassification||'';
     updateRisk();
-    document.getElementById('annexRef').value=data.system.annexReference||'';
+    document.getElementById('annexIII').value=data.system.annexIIICategory||'';
+    document.getElementById('annexI').value=data.system.annexICategory||'';
     document.getElementById('direct').value=data.system.affectedPartiesDirect||'';
     document.getElementById('indirect').value=data.system.affectedPartiesIndirect||'';
     
@@ -837,7 +1043,7 @@ function restoreFromStorage(){
     document.getElementById('techRev').value=data.approval.technicalReviewer||'';
     document.getElementById('legalRev').value=data.approval.legalReviewer||'';
     document.getElementById('boardApp').value=data.approval.boardApproval||'';
-    document.getElementById('ownerAck').value=data.approval.ownerAcknowledgement||'';
+    document.getElementById('ownerAckDate').value=data.approval.ownerAcknowledgementDate||'';
     document.getElementById('nextRev').value=data.approval.nextReview||'';
   }catch(e){
     console.warn('Failed to restore data:',e);
@@ -888,10 +1094,15 @@ document.getElementById('fileInput').addEventListener('change',function(e){
       document.getElementById('modelType').value=data.system.modelType||'';
       document.getElementById('depCtx').value=data.system.deploymentContext||'';
       document.getElementById('dataIn').value=data.system.dataInputs||'';
+      document.getElementById('dataInLink').value=data.system.dataInputsLink||'';
+    if(data.system.dataInputsLink) toggleLinkField('dataIn');
       document.getElementById('sysOut').value=data.system.systemOutput||'';
+      document.getElementById('sysOutLink').value=data.system.systemOutputLink||'';
+    if(data.system.systemOutputLink) toggleLinkField('sysOut');
       document.getElementById('riskCls').value=data.system.riskClassification||'';
       updateRisk();
-      document.getElementById('annexRef').value=data.system.annexReference||'';
+      document.getElementById('annexIII').value=data.system.annexIIICategory||'';
+      document.getElementById('annexI').value=data.system.annexICategory||'';
       document.getElementById('direct').value=data.system.affectedPartiesDirect||'';
       document.getElementById('indirect').value=data.system.affectedPartiesIndirect||'';
       
@@ -938,7 +1149,7 @@ document.getElementById('fileInput').addEventListener('change',function(e){
       document.getElementById('techRev').value=data.approval.technicalReviewer||'';
       document.getElementById('legalRev').value=data.approval.legalReviewer||'';
       document.getElementById('boardApp').value=data.approval.boardApproval||'';
-      document.getElementById('ownerAck').value=data.approval.ownerAcknowledgement||'';
+      document.getElementById('ownerAckDate').value=data.approval.ownerAcknowledgementDate||'';
       document.getElementById('nextRev').value=data.approval.nextReview||'';
       
       autoSave();
@@ -975,7 +1186,30 @@ document.addEventListener('keydown',function(e){
   }
 });
 
+// Theme toggle
+function applyTheme(theme){
+  document.documentElement.setAttribute('data-theme',theme);
+  document.getElementById('themeToggle').textContent = theme==='dark' ? '☀' : '◐';
+  localStorage.setItem('aisiaTheme',theme);
+}
+
+function initTheme(){
+  var saved=localStorage.getItem('aisiaTheme');
+  if(saved){
+    applyTheme(saved);
+  } else {
+    var prefersDark=window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(prefersDark ? 'dark' : 'light');
+  }
+}
+
+document.getElementById('themeToggle').addEventListener('click',function(){
+  var current=document.documentElement.getAttribute('data-theme');
+  applyTheme(current==='dark' ? 'light' : 'dark');
+});
+
 // Init
+initTheme();
 restoreFromStorage();
 attachAutoSaveListeners();
 if(imps.length===0) addImp();
