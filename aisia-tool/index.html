@@ -320,7 +320,7 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
         <div class="field">
           <label>Model type</label>
           <select id="modelType" onchange="toggleModelTypeOther(this.value)">
-            <option value="">— select —</option>
+            <option value="">Select...</option>
             <option>Supervised Machine Learning</option>
             <option>Unsupervised Machine Learning</option>
             <option>Large Language Model (LLM)</option>
@@ -369,10 +369,10 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
         <div class="field">
           <label>Risk classification</label>
           <select id="riskCls" onchange="updateRisk()">
-            <option value="">— select —</option>
+            <option value="">Select...</option>
             <option value="unacceptable">Unacceptable risk</option>
-            <option value="h3">High risk — Annex III</option>
-            <option value="h1">High risk — Annex I</option>
+            <option value="h3">High risk, Annex III</option>
+            <option value="h1">High risk, Annex I</option>
             <option value="limited">Limited risk</option>
             <option value="minimal">Minimal / no risk</option>
           </select>
@@ -381,11 +381,11 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
         </div>
         <div></div>
       </div>
-      <div class="conditional-note" id="annexIIINote">↳ Shown because "High risk — Annex III" is selected:</div>
+      <div class="conditional-note" id="annexIIINote">↳ Shown because "High risk, Annex III" is selected:</div>
       <div class="field conditional-field" id="annexIIIField" style="margin-bottom:12px">
         <label>Annex III category</label>
         <select id="annexIII" onchange="document.getElementById('annexIIIOther').closest('.field').style.display=this.value==='Other'?'block':'none'">
-          <option value="">— select —</option>
+          <option value="">Select...</option>
           <option>1. Biometric identification and categorisation</option>
           <option>2. Critical infrastructure</option>
           <option>3. Education and vocational training</option>
@@ -398,11 +398,11 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
         </select>
       </div>
       <div class="field conditional-field" id="annexIIIOtherWrap" style="margin-bottom:12px;display:none"><label>Please specify Annex III category</label><input id="annexIIIOther"></div>
-      <div class="conditional-note" id="annexINote">↳ Shown because "High risk — Annex I" is selected:</div>
+      <div class="conditional-note" id="annexINote">↳ Shown because "High risk, Annex I" is selected:</div>
       <div class="field conditional-field" id="annexIField" style="margin-bottom:12px">
         <label>Annex I category</label>
         <select id="annexI" onchange="document.getElementById('annexIOther').closest('.field').style.display=this.value==='Other'?'block':'none'">
-          <option value="">— select —</option>
+          <option value="">Select...</option>
           <option>Machinery (Directive 2006/42/EC)</option>
           <option>Toys (Directive 2009/48/EC)</option>
           <option>Medical devices (Regulation (EU) 2017/745)</option>
@@ -437,16 +437,16 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
   <!-- PANEL 2: Triggers -->
   <div id="p1" class="panel" role="tabpanel">
     <div class="panel-header">
-      <h2>Section 2 — Trigger conditions</h2>
+      <h2>Trigger Conditions</h2>
       <p>Confirm which trigger condition applies to this assessment. At least one trigger must apply for AISIA to be initiated. Tick all that apply.</p>
       <div class="iso-ref">ISO/IEC 42001:2023 Annex A.5.2 | AIMS Policy Section 6.4.1</div>
     </div>
     <div class="card">
-      <div class="trigger-item"><label>System classified as high risk under EU AI Act</label><select id="t1"><option value="">— select —</option><option>YES</option><option>NO</option></select></div>
-      <div class="trigger-item"><label>System processes personal data of vulnerable groups (minors, people with disabilities, etc.)</label><select id="t2"><option value="">— select —</option><option>YES</option><option>NO</option><option>POTENTIALLY</option></select></div>
-      <div class="trigger-item"><label>System output directly influences individual rights or access to services</label><select id="t3"><option value="">— select —</option><option>YES</option><option>NO</option></select></div>
-      <div class="trigger-item"><label>System deployed at scale affecting large population</label><select id="t4"><option value="">— select —</option><option>YES</option><option>NO</option></select></div>
-      <div class="trigger-item"><label>Significant change to existing AI system</label><select id="t5"><option value="">— select —</option><option>YES</option><option>NO</option><option>N/A — new system</option></select></div>
+      <div class="trigger-item"><label>System classified as high risk under EU AI Act</label><select id="t1"><option value="">Select...</option><option>YES</option><option>NO</option></select></div>
+      <div class="trigger-item"><label>System processes personal data of vulnerable groups (minors, people with disabilities, etc.)</label><select id="t2"><option value="">Select...</option><option>YES</option><option>NO</option><option>POTENTIALLY</option></select></div>
+      <div class="trigger-item"><label>System output directly influences individual rights or access to services</label><select id="t3"><option value="">Select...</option><option>YES</option><option>NO</option></select></div>
+      <div class="trigger-item"><label>System deployed at scale affecting large population</label><select id="t4"><option value="">Select...</option><option>YES</option><option>NO</option></select></div>
+      <div class="trigger-item"><label>Significant change to existing AI system</label><select id="t5"><option value="">Select...</option><option>YES</option><option>NO</option><option>N/A, new system</option></select></div>
     </div>
     <div class="card">
       <div class="field"><label>Conclusion</label><textarea id="trigConc" placeholder="Confirm AISIA is required and state primary trigger. If multiple triggers apply, list all." style="min-height:80px"></textarea></div>
@@ -492,18 +492,18 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
       <div class="g2" style="margin-bottom:12px">
         <div class="field"><label>Overall impact rating</label>
           <select id="overallRating">
-            <option value="">— select —</option>
-            <option>HIGH — multiple critical impacts; mandatory mitigation required before deployment</option>
-            <option>MEDIUM — significant impacts present; mitigation plan required</option>
-            <option>LOW — no critical impacts; accepted with monitoring</option>
+            <option value="">Select...</option>
+            <option>HIGH, multiple critical impacts; mandatory mitigation required before deployment</option>
+            <option>MEDIUM, significant impacts present; mitigation plan required</option>
+            <option>LOW, no critical impacts; accepted with monitoring</option>
           </select>
         </div>
         <div class="field"><label>Deployment recommendation</label>
           <select id="depRec">
-            <option value="">— select —</option>
-            <option>APPROVED — no critical conditions outstanding</option>
-            <option>CONDITIONAL — approved subject to completion of all mitigation measures</option>
-            <option>NOT APPROVED — critical mitigations incomplete; deployment prohibited</option>
+            <option value="">Select...</option>
+            <option>APPROVED, no critical conditions outstanding</option>
+            <option>CONDITIONAL, approved subject to completion of all mitigation measures</option>
+            <option>NOT APPROVED, critical mitigations incomplete; deployment prohibited</option>
           </select>
         </div>
       </div>
@@ -524,18 +524,18 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
       <div class="g2" style="margin-bottom:12px">
         <div class="field"><label>DPIA required?</label>
           <select id="dpiaReq">
-            <option value="">— select —</option>
-            <option>YES — system processes personal data; automated profiling element present</option>
-            <option>NO — no personal data processed</option>
-            <option>UNCERTAIN — to be confirmed with DPO</option>
+            <option value="">Select...</option>
+            <option>YES, system processes personal data; automated profiling element present</option>
+            <option>NO, no personal data processed</option>
+            <option>UNCERTAIN, to be confirmed with DPO</option>
           </select>
         </div>
         <div class="field"><label>DPIA reference</label><input id="dpiaRef" placeholder="DPIA-001 / link to DPIA document"></div>
         <div class="field"><label>Joint assessment conducted?</label>
           <select id="joint">
-            <option value="">— select —</option>
-            <option>Yes — AISIA and DPIA conducted in parallel; findings cross-referenced</option>
-            <option>No — conducted separately; explain reason below</option>
+            <option value="">Select...</option>
+            <option>Yes, AISIA and DPIA conducted in parallel; findings cross-referenced</option>
+            <option>No, conducted separately; explain reason below</option>
           </select>
         </div>
         <div class="field"><label>DPO review</label><input id="dpoRev" placeholder="DPO name and review date"></div>
@@ -747,9 +747,9 @@ function updateRisk(){
   var p=document.getElementById('riskPill');
   var hint=document.getElementById('riskHint');
   var map={
-    h3:['High risk — Annex III','r-high','Article 6(2) — standalone high-risk use case under Annex III'],
-    h1:['High risk — Annex I','r-high','Article 6(1) — safety component of a product regulated under Annex I'],
-    unacceptable:['Unacceptable risk','r-high','Article 5 — prohibited under the EU AI Act'],
+    h3:['High risk, Annex III','r-high','Article 6(2): standalone high-risk use case under Annex III'],
+    h1:['High risk, Annex I','r-high','Article 6(1): safety component of a product regulated under Annex I'],
+    unacceptable:['Unacceptable risk','r-high','Article 5: prohibited under the EU AI Act'],
     limited:['Limited risk','r-med','Article 50 — subject to transparency obligations'],
     minimal:['Minimal risk','r-low','No specific EU AI Act obligations apply'],
     '':['Not classified','r-none','Select a classification to see the relevant EU AI Act article']
@@ -790,12 +790,12 @@ function addImp(d){
   imps.push(id);
   d=d||{};
   var num=imps.length;
-  var dimOpts='<option value="">— select dimension —</option>'+DIMS.map(function(dm){return '<option'+(dm===d.dim?' selected':'')+'>'+dm+'</option>';}).join('');
-  var statOpts='<option value="">— select —</option>'+STATUSES.map(function(s){return '<option'+(s===d.status?' selected':'')+'>'+s+'</option>';}).join('');
+  var dimOpts='<option value="">- select dimension -</option>'+DIMS.map(function(dm){return '<option'+(dm===d.dim?' selected':'')+'>'+dm+'</option>';}).join('');
+  var statOpts='<option value="">Select...</option>'+STATUSES.map(function(s){return '<option'+(s===d.status?' selected':'')+'>'+s+'</option>';}).join('');
   var div=document.createElement('div');
   div.className='impact-card';
   div.id=id;
-  div.innerHTML='<div class="impact-header">'+'<div class="impact-num" id="num_'+id+'">'+num+'</div>'+'<textarea class="impact-textarea" data-f="desc" placeholder="Describe the potential harm, unintended consequence, or ethical concern">'+(d.desc||'')+'</textarea>'+'<button class="del-btn" onclick="delImp(\''+id+'\')" title="Remove impact" aria-label="Remove impact">✕</button>'+'</div>'+'<div class="score-row">'+'<div class="field"><label>Dimension</label><select data-f="dim" onchange="calcSc(\''+id+'\')">'+dimOpts+'</select></div>'+'<div class="field"><label>Severity (1–4)</label><select data-f="sev" onchange="calcSc(\''+id+'\')">'+'<option value="">—</option><option'+(d.sev==='1'?' selected':'')+'>1</option><option'+(d.sev==='2'?' selected':'')+'>2</option><option'+(d.sev==='3'?' selected':'')+'>3</option><option'+(d.sev==='4'?' selected':'')+'>4</option>'+'</select></div>'+'<div class="field"><label>Likelihood (1–4)</label><select data-f="lik" onchange="calcSc(\''+id+'\')">'+'<option value="">—</option><option'+(d.lik==='1'?' selected':'')+'>1</option><option'+(d.lik==='2'?' selected':'')+'>2</option><option'+(d.lik==='3'?' selected':'')+'>3</option><option'+(d.lik==='4'?' selected':'')+'>4</option>'+'</select></div>'+'<div class="field"><label>Score</label><div id="sc_'+id+'" class="score-box sc-none">—</div></div>'+'</div>'+'<div class="mit-row">'+'<div class="field"><label>Mitigation measure</label><textarea class="mit-textarea" data-f="mit" placeholder="Describe the mitigation actions to reduce severity or likelihood">'+(d.mit||'')+'</textarea></div>'+'<div class="field"><label>Owner</label><input data-f="owner" placeholder="Role responsible" value="'+(d.owner||'')+'" style="font-family:inherit;font-size:13px;border:1px solid var(--border);border-radius:var(--radius);padding:7px 10px;color:var(--text);background:var(--bg);width:100%"></div>'+'<div class="field"><label>Status</label><select data-f="status">'+statOpts+'</select></div>'+'</div>';
+  div.innerHTML='<div class="impact-header">'+'<div class="impact-num" id="num_'+id+'">'+num+'</div>'+'<textarea class="impact-textarea" data-f="desc" placeholder="Describe the potential harm, unintended consequence, or ethical concern">'+(d.desc||'')+'</textarea>'+'<button class="del-btn" onclick="delImp(\''+id+'\')" title="Remove impact" aria-label="Remove impact">✕</button>'+'</div>'+'<div class="score-row">'+'<div class="field"><label>Dimension</label><select data-f="dim" onchange="calcSc(\''+id+'\')">'+dimOpts+'</select></div>'+'<div class="field"><label>Severity (1–4)</label><select data-f="sev" onchange="calcSc(\''+id+'\')">'+'<option value="">-</option><option'+(d.sev==='1'?' selected':'')+'>1</option><option'+(d.sev==='2'?' selected':'')+'>2</option><option'+(d.sev==='3'?' selected':'')+'>3</option><option'+(d.sev==='4'?' selected':'')+'>4</option>'+'</select></div>'+'<div class="field"><label>Likelihood (1–4)</label><select data-f="lik" onchange="calcSc(\''+id+'\')">'+'<option value="">-</option><option'+(d.lik==='1'?' selected':'')+'>1</option><option'+(d.lik==='2'?' selected':'')+'>2</option><option'+(d.lik==='3'?' selected':'')+'>3</option><option'+(d.lik==='4'?' selected':'')+'>4</option>'+'</select></div>'+'<div class="field"><label>Score</label><div id="sc_'+id+'" class="score-box sc-none">—</div></div>'+'</div>'+'<div class="mit-row">'+'<div class="field"><label>Mitigation measure</label><textarea class="mit-textarea" data-f="mit" placeholder="Describe the mitigation actions to reduce severity or likelihood">'+(d.mit||'')+'</textarea></div>'+'<div class="field"><label>Owner</label><input data-f="owner" placeholder="Role responsible" value="'+(d.owner||'')+'" style="font-family:inherit;font-size:13px;border:1px solid var(--border);border-radius:var(--radius);padding:7px 10px;color:var(--text);background:var(--bg);width:100%"></div>'+'<div class="field"><label>Status</label><select data-f="status">'+statOpts+'</select></div>'+'</div>';
   document.getElementById('impList').appendChild(div);
   if(d.sev&&d.lik) calcSc(id);
   renderSummary();
