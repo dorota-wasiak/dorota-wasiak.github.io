@@ -449,6 +449,10 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
       <div class="trigger-item"><label>Significant change to existing AI system</label><select id="t5"><option value="">Select...</option><option>YES</option><option>NO</option><option>N/A, new system</option></select></div>
     </div>
     <div class="card">
+      <div class="card-title">Conclusion</div>
+      <div class="hint" style="margin-bottom:12px">Review and confirm the conclusion below. You can generate a draft based on your responses above, then edit as needed.</div>
+      <button type="button" class="btn btn-outline" id="generateSummaryBtn" onclick="generateTriggerSummary(false)" style="margin-bottom:12px;font-size:12px">Generate draft conclusion from responses above</button>
+      <div class="hint" id="staleSummaryWarning" style="display:none;color:var(--amber);margin-bottom:8px">⚠ Responses have changed since this summary was generated. <button type="button" onclick="generateTriggerSummary(true)" style="background:none;border:none;color:var(--amber);font-weight:600;cursor:pointer;font-size:12px;padding:0;text-decoration:underline">Regenerate</button></div>
       <div class="field"><label>Conclusion</label><textarea id="trigConc" placeholder="Confirm AISIA is required and state primary trigger. If multiple triggers apply, list all." style="min-height:80px"></textarea></div>
     </div>
     <div class="nav-btns"><button class="btn" onclick="go(0)">← Back</button><div class="nav-actions"><button class="btn btn-outline" onclick="resetAssessment()">Clear section</button><button class="btn btn-primary" onclick="go(2)">Next: impact matrix →</button></div></div>
@@ -724,6 +728,69 @@ function removeLinkField(fieldPrefix){
   document.getElementById(fieldPrefix+'LinkBox').style.display='none';
   document.getElementById(fieldPrefix+'AddLinkBtn').style.display='flex';
   document.getElementById(fieldPrefix+'Link').value='';
+}
+
+var lastGeneratedTriggerState = null;
+
+function getTriggerState(){
+  return ['t1','t2','t3','t4','t5'].map(function(id){ return v(id); }).join('|');
+}
+
+function checkStaleSummary(){
+  if(lastGeneratedTriggerState === null) return;
+  var current = getTriggerState();
+  var warning = document.getElementById('staleSummaryWarning');
+  if(warning) warning.style.display = (current !== lastGeneratedTriggerState) ? 'block' : 'none';
+}
+
+function generateTriggerSummary(force){
+  var existing = document.getElementById('trigConc').value.trim();
+  if(existing && !force){
+    if(!confirm('This will replace your existing conclusion text. Continue?')) return;
+  }
+
+  var labels = {
+    t1: 'System classified as high risk under EU AI Act',
+    t2: 'System processes personal data of vulnerable groups',
+    t3: 'System output directly influences individual rights or access to services',
+    t4: 'System deployed at scale affecting large population',
+    t5: 'Significant change to existing AI system'
+  };
+
+  var yes=[], potentially=[], no=[], empty=[];
+  Object.keys(labels).forEach(function(id){
+    var val = v(id);
+    if(val==='YES') yes.push(labels[id]);
+    else if(val==='POTENTIALLY') potentially.push(labels[id]);
+    else if(val==='NO') no.push(labels[id]);
+    else empty.push(labels[id]);
+  });
+
+  if(yes.length===0 && potentially.length===0){
+    document.getElementById('trigConc').value = 'No trigger conditions confirmed. AISIA may not be required for this system. Document the rationale for this conclusion and retain for audit purposes.';
+  } else {
+    var lines = [];
+    lines.push('AISIA is required. The following trigger conditions apply:');
+    lines.push('');
+    yes.forEach(function(l){ lines.push('  YES: '+l); });
+    potentially.forEach(function(l){ lines.push('  POTENTIALLY: '+l); });
+    if(no.length>0){
+      lines.push('');
+      no.forEach(function(l){ lines.push('  NO: '+l); });
+    }
+    if(empty.length>0){
+      lines.push('');
+      lines.push('  Not yet assessed: '+empty.join('; '));
+    }
+    lines.push('');
+    lines.push('Proceed to impact identification (Section 3).');
+    document.getElementById('trigConc').value = lines.join('\n');
+  }
+
+  lastGeneratedTriggerState = getTriggerState();
+  var warning = document.getElementById('staleSummaryWarning');
+  if(warning) warning.style.display = 'none';
+  autoSave();
 }
 
 function toggleModelTypeOther(val){
@@ -1218,6 +1285,12 @@ function initTheme(){
 document.getElementById('themeToggle').addEventListener('click',function(){
   var current=document.documentElement.getAttribute('data-theme');
   applyTheme(current==='dark' ? 'light' : 'dark');
+});
+
+// Trigger change listeners for stale summary detection
+['t1','t2','t3','t4','t5'].forEach(function(id){
+  var el = document.getElementById(id);
+  if(el) el.addEventListener('change', checkStaleSummary);
 });
 
 // Init
