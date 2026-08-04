@@ -115,6 +115,11 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
 /* Link toggle for Data Inputs / System Output */
 .link-toggle{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:12px;color:var(--text2)}
 .link-toggle input{width:auto;margin:0}
+.btn-generate{background:#2196b8;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;font-family:inherit}
+.btn-generate:hover:not(:disabled){background:#1a7a9a}
+.btn-generate:disabled{background:#b0cdd8;color:#fff;cursor:not-allowed;opacity:0.7}
+.btn-regenerate{background:#2196b8;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;margin-left:6px;transition:all .15s}
+.btn-regenerate:hover{background:#1a7a9a}
 .add-link-row{display:flex;align-items:center;gap:6px;margin-top:6px;cursor:pointer;font-size:12px;color:var(--accent);font-weight:500;width:fit-content;background:none;border:none;padding:0;font-family:inherit}
 .add-link-row:hover{text-decoration:underline}
 .link-field-box{margin-top:8px;padding:10px;border:1px solid var(--accent-light);background:var(--accent-light);border-radius:8px;display:flex;flex-direction:column;gap:4px}
@@ -451,8 +456,8 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
     <div class="card">
       <div class="card-title">Conclusion</div>
       <div class="hint" style="margin-bottom:12px">Review and confirm the conclusion below. You can generate a draft based on your responses above, then edit as needed.</div>
-      <button type="button" class="btn btn-outline" id="generateSummaryBtn" onclick="generateTriggerSummary(false)" style="margin-bottom:12px;font-size:12px">Generate draft conclusion from responses above</button>
-      <div class="hint" id="staleSummaryWarning" style="display:none;color:var(--amber);margin-bottom:8px">⚠ Responses have changed since this summary was generated. <button type="button" onclick="generateTriggerSummary(true)" style="background:none;border:none;color:var(--amber);font-weight:600;cursor:pointer;font-size:12px;padding:0;text-decoration:underline">Regenerate</button></div>
+      <button type="button" class="btn-generate" id="generateSummaryBtn" onclick="generateTriggerSummary(false)" style="margin-bottom:12px;display:none">Generate draft conclusion from responses above</button>
+      <div class="hint" id="staleSummaryWarning" style="display:none;color:var(--amber);margin-bottom:8px">⚠ Responses have changed since this summary was generated. <button type="button" class="btn-regenerate" onclick="generateTriggerSummary(true)">Regenerate</button></div>
       <div class="field"><label>Conclusion</label><textarea id="trigConc" placeholder="Confirm AISIA is required and state primary trigger. If multiple triggers apply, list all." style="min-height:80px"></textarea></div>
     </div>
     <div class="nav-btns"><button class="btn" onclick="go(0)">← Back</button><div class="nav-actions"><button class="btn btn-outline" onclick="resetAssessment()">Clear section</button><button class="btn btn-primary" onclick="go(2)">Next: impact matrix →</button></div></div>
@@ -708,6 +713,14 @@ function resetPanel(panel){
     if(typeof select.onchange==='function') select.onchange();
   });
 
+  if(panel.id==='p1'){
+    lastGeneratedTriggerState = null;
+    var btn = document.getElementById('generateSummaryBtn');
+    var warning = document.getElementById('staleSummaryWarning');
+    if(btn){ btn.style.display='none'; btn.disabled=false; }
+    if(warning) warning.style.display='none';
+  }
+
   if(panel.id==='p2'){
     imps.slice().forEach(function(id){
       var card=document.getElementById(id);
@@ -737,10 +750,31 @@ function getTriggerState(){
 }
 
 function checkStaleSummary(){
-  if(lastGeneratedTriggerState === null) return;
   var current = getTriggerState();
+  var hasAnyValue = current.split('|').some(function(v){ return v !== ''; });
   var warning = document.getElementById('staleSummaryWarning');
-  if(warning) warning.style.display = (current !== lastGeneratedTriggerState) ? 'block' : 'none';
+  var btn = document.getElementById('generateSummaryBtn');
+
+  if(!hasAnyValue){
+    // No values selected — hide everything, reset state
+    if(btn){ btn.style.display='none'; btn.disabled=false; }
+    if(warning) warning.style.display='none';
+    return;
+  }
+
+  // At least one value — show Generate button
+  if(btn) btn.style.display='block';
+
+  if(lastGeneratedTriggerState === null){
+    // Never generated — button active, no warning
+    if(btn) btn.disabled=false;
+    if(warning) warning.style.display='none';
+    return;
+  }
+
+  var isStale = (current !== lastGeneratedTriggerState);
+  if(warning) warning.style.display = isStale ? 'block' : 'none';
+  if(btn) btn.disabled = true;
 }
 
 function generateTriggerSummary(force){
@@ -790,6 +824,8 @@ function generateTriggerSummary(force){
   lastGeneratedTriggerState = getTriggerState();
   var warning = document.getElementById('staleSummaryWarning');
   if(warning) warning.style.display = 'none';
+  var btn = document.getElementById('generateSummaryBtn');
+  if(btn) btn.disabled = true;
   autoSave();
 }
 
@@ -1293,9 +1329,20 @@ document.getElementById('themeToggle').addEventListener('click',function(){
   if(el) el.addEventListener('change', checkStaleSummary);
 });
 
+// If conclusion already has text (restored from storage), treat triggers as already generated
+// so that changing a dropdown will show the stale warning
+function initStaleSummaryState(){
+  var conc = document.getElementById('trigConc');
+  if(conc && conc.value.trim()){
+    lastGeneratedTriggerState = getTriggerState();
+  }
+  checkStaleSummary();
+}
+
 // Init
 initTheme();
 restoreFromStorage();
+initStaleSummaryState();
 attachAutoSaveListeners();
 if(imps.length===0) addImp();
 </script>
