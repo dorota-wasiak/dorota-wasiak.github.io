@@ -175,8 +175,10 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
 /* Score legend */
 .score-legend{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:1rem}
 .leg{padding:10px;border-radius:var(--radius);text-align:center;border:1px solid}
-.leg-title{font-size:12px;font-weight:700}
-.leg-sub{font-size:11px;margin-top:2px}
+.leg-name{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.leg-score{font-size:11px;font-weight:500;margin-top:3px;opacity:.75}
+.leg-divider{border:none;border-top:1px solid currentColor;opacity:.2;margin:8px 0}
+.leg-sub{font-size:11px;opacity:.8}
 .leg-red{background:var(--red-bg);border-color:var(--red-border);color:var(--red-text)}
 .leg-amber{background:var(--amber-bg);border-color:var(--amber-border);color:var(--amber-text)}
 .leg-green{background:var(--green-bg);border-color:var(--green-border);color:var(--green-text)}
@@ -487,9 +489,9 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
       <div class="iso-ref-box">ISO/IEC 42001:2023 Annex A.5.2 Steps 2 - 3 | A.5.4 | A.5.5</div>
     </div>
     <div class="score-legend">
-      <div class="leg leg-red"><div class="leg-title">Score ≥ 9</div><div class="leg-sub">Mandatory mitigation before deployment</div></div>
-      <div class="leg leg-amber"><div class="leg-title">Score 4–8</div><div class="leg-sub">Mitigation plan required</div></div>
-      <div class="leg leg-green"><div class="leg-title">Score ≤ 3</div><div class="leg-sub">Accepted with monitoring</div></div>
+      <div class="leg leg-red"><div class="leg-name">Critical</div><div class="leg-score">Score ≥ 9</div><hr class="leg-divider"><div class="leg-sub">Mandatory mitigation before deployment</div></div>
+      <div class="leg leg-amber"><div class="leg-name">Significant</div><div class="leg-score">Score 4-8</div><hr class="leg-divider"><div class="leg-sub">Mitigation plan required</div></div>
+      <div class="leg leg-green"><div class="leg-name">Moderate</div><div class="leg-score">Score ≤ 3</div><hr class="leg-divider"><div class="leg-sub">Accepted with monitoring</div></div>
     </div>
     <div id="impList"></div>
     <button class="add-btn" onclick="addImp()">+ Add impact</button>
