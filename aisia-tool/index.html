@@ -139,6 +139,7 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
 .panel-header h2{font-size:18px;font-weight:600;margin-bottom:6px}
 .panel-header p{font-size:13px;color:var(--text2);line-height:1.6;max-width:660px}
 .iso-ref{font-size:11px;color:var(--text3);margin-top:4px;font-family:monospace}
+.iso-ref-box{font-size:11px;color:var(--accent);font-family:monospace;margin-top:8px;display:inline-block;padding:4px 10px;border:1px solid var(--accent);background:var(--accent-light);border-radius:6px}
 
 /* Grid */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -181,13 +182,26 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
 .leg-green{background:var(--green-bg);border-color:var(--green-border);color:var(--green-text)}
 
 /* Impact cards */
-.impact-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem;margin-bottom:10px;transition:border-color .2s}
+.impact-card{background:var(--bg);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:var(--radius-lg);padding:1rem;margin-bottom:10px;transition:border-color .2s}
 .impact-card:focus-within{border-color:var(--accent)}
-.impact-header{display:flex;align-items:flex-start;gap:8px;margin-bottom:10px}
-.impact-num{min-width:26px;height:26px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text2);flex-shrink:0;margin-top:2px}
+.impact-header{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+.impact-num{min-width:26px;height:26px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text2);flex-shrink:0}
+.impact-title-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding-right:28px}
+.impact-title-label{font-family:'Playfair Display',Georgia,serif;font-size:13px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
+.impact-title-left{display:flex;align-items:center;gap:10px}
+.impact-title-right{display:flex;align-items:center;gap:8px}
+.impact-describe{font-size:12px;font-weight:500;color:var(--text2);margin:6px 0 6px}
+.score-badge{min-width:48px;padding:5px 8px;border-radius:8px;display:flex;flex-direction:column;align-items:center;font-weight:700;font-size:15px;line-height:1;border:2px solid;flex-shrink:0}
+.score-badge .sc-sub{font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+.mit-label{font-size:12px;font-weight:500;color:var(--text2);margin-bottom:3px}
+.mit-section{margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
+.mit-sub{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.mit-desc{font-size:11px;color:var(--text3);margin-bottom:6px}
 .impact-textarea{flex:1;min-height:48px;font-family:inherit;font-size:13px;border:1px solid var(--border);border-radius:var(--radius);padding:7px 10px;color:var(--text);background:var(--bg);resize:vertical;width:100%}
 .impact-textarea:focus{outline:none;border-color:var(--accent)}
-.del-btn{padding:5px 8px;border:none;background:transparent;color:var(--text3);cursor:pointer;border-radius:var(--radius);font-size:13px;flex-shrink:0;transition:all .15s}
+.del-btn{position:absolute;top:8px;right:8px;padding:4px 7px;border:none;background:transparent;color:var(--text3);cursor:pointer;border-radius:var(--radius);font-size:13px;transition:all .15s}
+.del-btn:hover{color:var(--red);background:var(--red-bg)}
+.impact-card{background:var(--bg);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:var(--radius-lg);padding:1rem;margin-bottom:10px;transition:border-color .2s;position:relative}
 .del-btn:hover{background:var(--red-bg);color:var(--red)}
 .score-row{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:8px;align-items:end;margin-bottom:10px}
 .score-box{min-width:52px;height:38px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;border:1px solid;transition:all .2s}
@@ -195,7 +209,8 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
 .sc-amber{background:var(--amber-bg);border-color:var(--amber-border);color:var(--amber-text)}
 .sc-green{background:var(--green-bg);border-color:var(--green-border);color:var(--green-text)}
 .sc-none{background:var(--bg3);border-color:var(--border);color:var(--text3)}
-.mit-row{display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px}
+.mit-row{display:grid;grid-template-columns:1fr;gap:8px}
+.mit-sub{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .mit-textarea{font-family:inherit;font-size:13px;border:1px solid var(--border);border-radius:var(--radius);padding:7px 10px;color:var(--text);background:var(--bg);resize:vertical;min-height:52px;width:100%}
 .mit-textarea:focus{outline:none;border-color:var(--accent)}
 .add-btn{width:100%;padding:11px;border:1.5px dashed var(--border2);border-radius:var(--radius);background:transparent;color:var(--text2);font-size:13px;cursor:pointer;margin-bottom:1rem;transition:all .15s;font-family:inherit}
@@ -305,7 +320,7 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
     <div class="panel-header">
       <h2>System Description</h2>
       <p>Document the AI system thoroughly before any impact identification begins. This includes identifying all affected parties at this stage: direct users, data subjects, and any third parties who may be indirectly affected by the system's operation.</p>
-      <div class="iso-ref">ISO/IEC 42001:2023 Annex A.5.2 Step 1</div>
+      <div class="iso-ref-box">ISO/IEC 42001:2023 Annex A.5.2 Step 1</div>
     </div>
     <div class="card">
       <div class="card-title">System Identification</div>
@@ -444,7 +459,7 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
     <div class="panel-header">
       <h2>Trigger Conditions</h2>
       <p>Confirm which trigger condition applies to this assessment. At least one trigger must apply for AISIA to be initiated. Tick all that apply.</p>
-      <div class="iso-ref">ISO/IEC 42001:2023 Annex A.5.2 | AIMS Policy Section 6.4.1</div>
+      <div class="iso-ref-box">ISO/IEC 42001:2023 Annex A.5.2 | AIMS Policy Section 6.4.1</div>
     </div>
     <div class="card">
       <div class="trigger-item"><label>System classified as high risk under EU AI Act</label><select id="t1"><option value="">Select...</option><option>YES</option><option>NO</option></select></div>
@@ -466,9 +481,9 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
   <!-- PANEL 3: Impacts -->
   <div id="p2" class="panel" role="tabpanel">
     <div class="panel-header">
-      <h2>Section 3 — Impact identification and analysis</h2>
-      <p>For each identified impact, rate Severity (1–4) and Likelihood (1–4). Score = Severity × Likelihood. Consider: Fairness & Non-Discrimination, Privacy, Transparency, Accountability, Safety, Societal impact, Human oversight.</p>
-      <div class="iso-ref">ISO/IEC 42001:2023 Annex A.5.2 Steps 2–3 | A.5.4 | A.5.5</div>
+      <h2>Impact Identification and Analysis</h2>
+      <p>For each identified impact, rate Severity (1-4) and Likelihood (1-4). Score = Severity × Likelihood. Consider: Fairness & Non-Discrimination, Privacy, Transparency, Accountability, Safety, Societal impact, Human oversight.</p>
+      <div class="iso-ref-box">ISO/IEC 42001:2023 Annex A.5.2 Steps 2 - 3 | A.5.4 | A.5.5</div>
     </div>
     <div class="score-legend">
       <div class="leg leg-red"><div class="leg-title">Score ≥ 9</div><div class="leg-sub">Mandatory mitigation before deployment</div></div>
@@ -486,7 +501,7 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
     <div class="panel-header">
       <h2>Section 4 — Overall impact rating and deployment decision</h2>
       <p>Summarise assessment findings and provide a deployment recommendation. The AI Ethics Board must approve the deployment decision based on this summary.</p>
-      <div class="iso-ref">ISO/IEC 42001:2023 Annex A.5.2 Step 3 | A.5.3</div>
+      <div class="iso-ref-box">ISO/IEC 42001:2023 Annex A.5.2 Step 3 | A.5.3</div>
     </div>
     <div class="card">
       <div class="card-title">Auto-calculated from impact matrix</div>
@@ -527,7 +542,7 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
     <div class="panel-header">
       <h2>Section 5 — Relationship to GDPR DPIA</h2>
       <p>Where personal data is processed, DPIA and AISIA may be conducted jointly. DPIA takes precedence for data protection aspects; AISIA extends scope to broader societal and ethical dimensions not covered by DPIA.</p>
-      <div class="iso-ref">ISO/IEC 42001:2023 Annex A.5.2 | GDPR Article 35</div>
+      <div class="iso-ref-box">ISO/IEC 42001:2023 Annex A.5.2 | GDPR Article 35</div>
     </div>
     <div class="card">
       <div class="g2" style="margin-bottom:12px">
@@ -559,7 +574,7 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
     <div class="panel-header">
       <h2>Section 6 — Post-deployment monitoring and review plan</h2>
       <p>Post-deployment monitoring is mandatory for high risk systems. Must detect bias drift, performance degradation, and unintended consequences over time.</p>
-      <div class="iso-ref">ISO/IEC 42001:2023 Annex A.5.2 Step 6 | A.5.3</div>
+      <div class="iso-ref-box">ISO/IEC 42001:2023 Annex A.5.2 Step 6 | A.5.3</div>
     </div>
     <div class="card">
       <div class="field" style="margin-bottom:12px"><label>Fairness monitoring metrics</label><textarea id="monFair" placeholder="e.g. demographic parity ratio by gender, age, ethnicity across outputs; monitored quarterly"></textarea></div>
@@ -583,7 +598,7 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
     <div class="panel-header">
       <h2>Section 7 — Approval and sign-off</h2>
       <p>Records formal approval before deployment is authorised. No high risk system may be deployed without a completed and approved AISIA.</p>
-      <div class="iso-ref">ISO/IEC 42001:2023 Annex A.5.2 Step 5 | A.5.3</div>
+      <div class="iso-ref-box">ISO/IEC 42001:2023 Annex A.5.2 Step 5 | A.5.3</div>
     </div>
     <div class="card">
       <div class="g3" style="margin-bottom:12px">
@@ -893,12 +908,38 @@ function addImp(d){
   imps.push(id);
   d=d||{};
   var num=imps.length;
-  var dimOpts='<option value="">- select dimension -</option>'+DIMS.map(function(dm){return '<option'+(dm===d.dim?' selected':'')+'>'+dm+'</option>';}).join('');
+  var dimOpts='<option value="">Select dimension</option>'+DIMS.map(function(dm){return '<option'+(dm===d.dim?' selected':'')+'>'+dm+'</option>';}).join('');
   var statOpts='<option value="">Select...</option>'+STATUSES.map(function(s){return '<option'+(s===d.status?' selected':'')+'>'+s+'</option>';}).join('');
   var div=document.createElement('div');
   div.className='impact-card';
   div.id=id;
-  div.innerHTML='<div class="impact-header">'+'<div class="impact-num" id="num_'+id+'">'+num+'</div>'+'<textarea class="impact-textarea" data-f="desc" placeholder="Describe the potential harm, unintended consequence, or ethical concern">'+(d.desc||'')+'</textarea>'+'<button class="del-btn" onclick="delImp(\''+id+'\')" title="Remove impact" aria-label="Remove impact">✕</button>'+'</div>'+'<div class="score-row">'+'<div class="field"><label>Dimension</label><select data-f="dim" onchange="calcSc(\''+id+'\')">'+dimOpts+'</select></div>'+'<div class="field"><label>Severity (1–4)</label><select data-f="sev" onchange="calcSc(\''+id+'\')">'+'<option value="">-</option><option'+(d.sev==='1'?' selected':'')+'>1</option><option'+(d.sev==='2'?' selected':'')+'>2</option><option'+(d.sev==='3'?' selected':'')+'>3</option><option'+(d.sev==='4'?' selected':'')+'>4</option>'+'</select></div>'+'<div class="field"><label>Likelihood (1–4)</label><select data-f="lik" onchange="calcSc(\''+id+'\')">'+'<option value="">-</option><option'+(d.lik==='1'?' selected':'')+'>1</option><option'+(d.lik==='2'?' selected':'')+'>2</option><option'+(d.lik==='3'?' selected':'')+'>3</option><option'+(d.lik==='4'?' selected':'')+'>4</option>'+'</select></div>'+'<div class="field"><label>Score</label><div id="sc_'+id+'" class="score-box sc-none">—</div></div>'+'</div>'+'<div class="mit-row">'+'<div class="field"><label>Mitigation measure</label><textarea class="mit-textarea" data-f="mit" placeholder="Describe the mitigation actions to reduce severity or likelihood">'+(d.mit||'')+'</textarea></div>'+'<div class="field"><label>Owner</label><input data-f="owner" placeholder="Role responsible" value="'+(d.owner||'')+'" style="font-family:inherit;font-size:13px;border:1px solid var(--border);border-radius:var(--radius);padding:7px 10px;color:var(--text);background:var(--bg);width:100%"></div>'+'<div class="field"><label>Status</label><select data-f="status">'+statOpts+'</select></div>'+'</div>';
+  div.innerHTML=
+    '<div class="impact-header">'+
+      '<button class="del-btn" onclick="delImp(\''+id+'\')" title="Remove impact" aria-label="Remove impact">✕</button>'+
+      '<div class="impact-title-row">'+
+        '<div class="impact-title-left">'+
+          '<div class="impact-num" id="num_'+id+'">'+num+'</div>'+
+          '<div class="impact-title-label">Impact Assessment</div>'+
+        '</div>'+
+        '<div id="sc_'+id+'" class="score-badge sc-none"><span>—</span><span class="sc-sub">Score</span></div>'+
+      '</div>'+
+      '<div class="impact-describe">Describe the potential harm, unintended consequence, or ethical concern</div>'+
+      '<textarea class="impact-textarea" data-f="desc" placeholder="e.g. Recruitment AI may underrank candidates from underrepresented groups">'+(d.desc||'')+'</textarea>'+
+    '</div>'+
+    '<div class="score-row" style="margin-top:12px">'+
+      '<div class="field"><label>Dimension</label><select data-f="dim" onchange="calcSc(\''+id+'\')">' +dimOpts+'</select></div>'+
+      '<div class="field"><label>Severity (1-4)</label><select data-f="sev" onchange="calcSc(\''+id+'\')">'+'<option value="">-</option><option'+(d.sev==='1'?' selected':'')+'>1</option><option'+(d.sev==='2'?' selected':'')+'>2</option><option'+(d.sev==='3'?' selected':'')+'>3</option><option'+(d.sev==='4'?' selected':'')+'>4</option>'+'</select></div>'+
+      '<div class="field"><label>Likelihood (1-4)</label><select data-f="lik" onchange="calcSc(\''+id+'\')">'+'<option value="">-</option><option'+(d.lik==='1'?' selected':'')+'>1</option><option'+(d.lik==='2'?' selected':'')+'>2</option><option'+(d.lik==='3'?' selected':'')+'>3</option><option'+(d.lik==='4'?' selected':'')+'>4</option>'+'</select></div>'+
+    '</div>'+
+    '<div class="mit-section">'+
+      '<div class="mit-label">Mitigation measure</div>'+
+      '<div class="mit-desc">Describe the mitigation actions to reduce severity or likelihood</div>'+
+      '<textarea class="mit-textarea" data-f="mit">'+(d.mit||'')+'</textarea>'+
+      '<div class="mit-sub">'+
+        '<div class="field"><label>Owner</label><input data-f="owner" placeholder="Role responsible" value="'+(d.owner||'')+'" style="font-family:inherit;font-size:13px;border:1px solid var(--border);border-radius:var(--radius);padding:7px 10px;color:var(--text);background:var(--bg);width:100%"></div>'+
+        '<div class="field"><label>Status</label><select data-f="status">'+statOpts+'</select></div>'+
+      '</div>'+
+    '</div>';
   document.getElementById('impList').appendChild(div);
   if(d.sev&&d.lik) calcSc(id);
   renderSummary();
@@ -912,11 +953,11 @@ function calcSc(id){
   if(s&&l){
     var n=parseInt(s)*parseInt(l);
     var info=scoreInfo(n);
-    box.textContent=info.txt;
-    box.className='score-box '+info.cls;
+    box.innerHTML='<span>'+info.txt+'</span><span class="sc-sub">Score</span>';
+    box.className='score-badge '+info.cls;
   } else {
-    box.textContent='—';
-    box.className='score-box sc-none';
+    box.innerHTML='<span>\u2014</span><span class="sc-sub">Score</span>';
+    box.className='score-badge sc-none';
   }
   renderSummary();
 }
