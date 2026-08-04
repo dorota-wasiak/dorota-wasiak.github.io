@@ -330,6 +330,16 @@ input[type=hidden]{}
 .condition-del-btn:hover{color:var(--red);background:var(--red-bg)}
 .add-condition-btn{padding:8px 16px;background:#2196b8;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:background .15s}
 .add-condition-btn:hover{background:#1a7a9a}
+.no-dpia-note{background:var(--green-bg);border:1px solid var(--green-border);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--green-text);margin-top:8px;display:none}
+.no-dpia-note.visible{display:block}
+.uncertain-note{background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--amber-text);margin-top:8px;display:none}
+.uncertain-note.visible{display:block}
+.radio-opt-compact{display:flex;align-items:flex-start;justify-content:flex-start;gap:10px;padding:7px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .15s;width:100%}
+.radio-opt-compact:hover{border-color:var(--accent);background:var(--accent-light)}
+.radio-opt-compact.selected{border-color:var(--accent);background:var(--accent-light)}
+.radio-opt-compact input[type=radio]{margin-top:2px;flex-shrink:0;accent-color:var(--accent)}
+.radio-opt-compact .opt-compact-title{font-size:13px;font-weight:600;color:var(--text)}
+.radio-opt-compact .opt-compact-desc{font-size:11px;color:var(--text2);margin-top:1px}
 </style>
 </head>
 <body>
@@ -686,32 +696,117 @@ input[type=hidden]{}
   <!-- PANEL 5: GDPR -->
   <div id="p4" class="panel" role="tabpanel">
     <div class="panel-header">
-      <h2>Section 5 — Relationship to GDPR DPIA</h2>
+      <h2>GDPR &amp; DPIA Coordination</h2>
       <p>Where personal data is processed, DPIA and AISIA may be conducted jointly. DPIA takes precedence for data protection aspects; AISIA extends scope to broader societal and ethical dimensions not covered by DPIA.</p>
       <div class="iso-ref-box">ISO/IEC 42001:2023 Annex A.5.2 | GDPR Article 35</div>
     </div>
+
     <div class="card">
-      <div class="g2" style="margin-bottom:12px">
-        <div class="field"><label>DPIA required?</label>
-          <select id="dpiaReq">
-            <option value="">Select...</option>
-            <option>YES, system processes personal data; automated profiling element present</option>
-            <option>NO, no personal data processed</option>
-            <option>UNCERTAIN, to be confirmed with DPO</option>
-          </select>
-        </div>
-        <div class="field"><label>DPIA reference</label><input id="dpiaRef" placeholder="DPIA-001 / link to DPIA document"></div>
-        <div class="field"><label>Joint assessment conducted?</label>
-          <select id="joint">
-            <option value="">Select...</option>
-            <option>Yes, AISIA and DPIA conducted in parallel; findings cross-referenced</option>
-            <option>No, conducted separately; explain reason below</option>
-          </select>
-        </div>
-        <div class="field"><label>DPO review</label><input id="dpoRev" placeholder="DPO name and review date"></div>
+      <div class="card-title">DPIA Required?</div>
+      <div class="radio-group" id="dpiaReqGroup">
+        <label class="radio-opt" data-value="YES">
+          <div class="radio-opt-left">
+            <input type="radio" name="dpiaReq" value="YES">
+            <div>
+              <div class="opt-title">YES</div>
+              <div class="opt-desc">DPIA is required. Processing is likely to result in high risk to individuals under GDPR Article 35.</div>
+            </div>
+          </div>
+          <svg class="opt-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#16a34a"/><polyline points="6,12 10,16 18,8" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </label>
+        <label class="radio-opt" data-value="NO">
+          <div class="radio-opt-left">
+            <input type="radio" name="dpiaReq" value="NO">
+            <div>
+              <div class="opt-title">NO</div>
+              <div class="opt-desc">DPIA is not required. Processing does not meet the threshold for mandatory DPIA under GDPR Article 35.</div>
+            </div>
+          </div>
+          <svg class="opt-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#dc2626"/><line x1="7.5" y1="7.5" x2="16.5" y2="16.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><line x1="16.5" y1="7.5" x2="7.5" y2="16.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </label>
+        <label class="radio-opt" data-value="UNCERTAIN">
+          <div class="radio-opt-left">
+            <input type="radio" name="dpiaReq" value="UNCERTAIN">
+            <div>
+              <div class="opt-title">UNCERTAIN</div>
+              <div class="opt-desc">DPIA requirement is unclear. Consult the DPO before proceeding. Fields below remain available for partial completion.</div>
+            </div>
+          </div>
+          <svg class="opt-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#f59e0b"/><rect x="11" y="6" width="2" height="7" rx="1" fill="#fff"/><rect x="11" y="15.5" width="2" height="2.5" rx="1" fill="#fff"/></svg>
+        </label>
       </div>
-      <div class="field"><label>DPIA scope vs AISIA scope</label><textarea id="scopeDiff" placeholder="DPIA covers: lawful basis, data subject rights, retention, security controls. AISIA additionally covers: bias and fairness, societal impact, explainability, human oversight — describe how scopes complement each other"></textarea></div>
+      <input type="hidden" id="dpiaReq" value="">
+      <div class="no-dpia-note" id="noDpiaNote">No DPIA required for this system. The sections below are not applicable.</div>
+      <div class="uncertain-note" id="uncertainNote">DPIA requirement is uncertain. Consult the DPO. You may partially complete the fields below and return to finalise once confirmed.</div>
     </div>
+
+    <div id="dpiaBlock">
+      <div class="card">
+        <div class="card-title">DPIA Reference</div>
+        <div class="field">
+          <label>DPIA reference number</label>
+          <input id="dpiaRef" type="text" placeholder="e.g. DPIA-2026-004">
+          <button type="button" class="add-link-row" id="dpiaAddLinkBtn" onclick="toggleLinkField('dpia')">+ Add link to DPIA document</button>
+          <div class="link-field-box" id="dpiaLinkBox" style="display:none">
+            <div class="link-field-header">
+              <label>Link to DPIA document</label>
+              <button type="button" class="remove-link" onclick="removeLinkField('dpia')">&#x2715; remove link</button>
+            </div>
+            <input id="dpiaLink" type="text" placeholder="https://...">
+            <div class="hint">Not validated by this tool.</div>
+          </div>
+        </div>
+        <div class="divider" style="margin:12px 0"></div>
+        <div class="field" style="margin:0">
+          <label>Joint assessment conducted?</label>
+          <div class="radio-group" id="jointGroup" style="margin-bottom:4px;display:flex;flex-direction:column;gap:6px">
+            <label class="radio-opt-compact" data-value="YES">
+              <input type="radio" name="joint" value="YES">
+              <div><div class="opt-compact-title">YES</div><div class="opt-compact-desc">AISIA and DPIA conducted jointly with shared findings.</div></div>
+            </label>
+            <label class="radio-opt-compact" data-value="PARTIALLY">
+              <input type="radio" name="joint" value="PARTIALLY">
+              <div><div class="opt-compact-title">PARTIALLY</div><div class="opt-compact-desc">Conducted separately but with cross-referenced findings.</div></div>
+            </label>
+            <label class="radio-opt-compact" data-value="NO">
+              <input type="radio" name="joint" value="NO">
+              <div><div class="opt-compact-title">NO</div><div class="opt-compact-desc">Conducted separately with no formal coordination.</div></div>
+            </label>
+          </div>
+          <input type="hidden" id="joint" value="">
+          <div class="hint">Indicates whether AISIA and DPIA findings were coordinated during the assessment process.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">DPIA Scope vs AISIA Scope</div>
+        <div class="field">
+          <label>DPIA Scope</label>
+          <textarea id="dpiaScope" placeholder="e.g. Personal data processing risks"></textarea>
+          <div class="hint">Describe what the DPIA covers in relation to this system. Focus on personal data processing risks under GDPR Article 35.</div>
+        </div>
+        <div class="divider" style="margin:12px 0"></div>
+        <div class="field" style="margin:0">
+          <label>AISIA Scope</label>
+          <textarea id="aisiaScope" placeholder="e.g. Broader ethical and societal impact"></textarea>
+          <div class="hint">Describe what the AISIA covers beyond the DPIA, including ethical, societal, and governance dimensions.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">DPO Review</div>
+      <div class="g2" style="margin-bottom:14px">
+        <div class="field" style="margin:0"><label>DPO name</label><input id="dpoName" type="text" placeholder="Full name"></div>
+        <div class="field" style="margin:0"><label>Date of review</label><input id="dpoDate" type="date"></div>
+      </div>
+      <div class="field" style="margin:0">
+        <label>DPO review notes</label>
+        <textarea id="dpoRev"></textarea>
+        <div class="hint">Record any specific findings or instructions from the DPO relevant to this assessment.</div>
+      </div>
+    </div>
+
     <div class="nav-btns"><button class="btn" onclick="go(3)">← Back</button><div class="nav-actions"><button class="btn btn-outline" onclick="resetAssessment()">Clear section</button><button class="btn btn-primary" onclick="go(5)">Next: monitoring plan →</button></div></div>
   </div>
 
@@ -1066,6 +1161,41 @@ function syncResidualOwner(){
   }
 }
 
+// Section 5 — DPIA Required radio buttons
+document.querySelectorAll('#dpiaReqGroup .radio-opt').forEach(function(opt){
+  opt.addEventListener('click', function(){
+    document.querySelectorAll('#dpiaReqGroup .radio-opt').forEach(function(o){ o.classList.remove('selected'); });
+    opt.classList.add('selected');
+    var val = opt.getAttribute('data-value');
+    document.getElementById('dpiaReq').value = val;
+    var block = document.getElementById('dpiaBlock');
+    var note = document.getElementById('noDpiaNote');
+    var uNote = document.getElementById('uncertainNote');
+    note.classList.remove('visible');
+    uNote.classList.remove('visible');
+    if(val==='NO'){
+      block.style.display='none';
+      note.classList.add('visible');
+    } else if(val==='UNCERTAIN'){
+      block.style.display='block';
+      uNote.classList.add('visible');
+    } else {
+      block.style.display='block';
+    }
+    autoSave();
+  });
+});
+
+// Section 5 — Joint assessment radio buttons
+document.querySelectorAll('#jointGroup .radio-opt-compact').forEach(function(opt){
+  opt.addEventListener('click', function(){
+    document.querySelectorAll('#jointGroup .radio-opt').forEach(function(o){ o.classList.remove('selected'); });
+    opt.classList.add('selected');
+    document.getElementById('joint').value = opt.getAttribute('data-value');
+    autoSave();
+  });
+});
+
 function toggleModelTypeOther(val){
   document.getElementById('modelTypeOtherWrap').style.display = val==='Other' ? 'block' : 'none';
 }
@@ -1243,7 +1373,7 @@ function getData(){
     triggers:{highRisk:v('t1'),vulnerableGroups:v('t2'),rightsInfluence:v('t3'),scale:v('t4'),materialChange:v('t5'),conclusion:v('trigConc')},
     impacts:getImpactData(),
     deployment:{overallRating:v('overallRating'),recommendation:v('depRec'),conditions:v('conditions'),residualRisk:v('residual'),residualDate:v('residualDate')},
-    gdpr:{dpiaRequired:v('dpiaReq'),dpiaReference:v('dpiaRef'),jointAssessment:v('joint'),dpoReview:v('dpoRev'),scopeDifference:v('scopeDiff')},
+    gdpr:{dpiaRequired:v('dpiaReq'),dpiaReference:v('dpiaRef'),dpiaLink:v('dpiaLink'),jointAssessment:v('joint'),dpiaScope:v('dpiaScope'),aisiaScope:v('aisiaScope'),dpoName:v('dpoName'),dpoDate:v('dpoDate'),dpoReview:v('dpoRev')},
     monitoring:{fairness:v('monFair'),performance:v('monPerf'),humanOversight:v('monHuman'),incidentTrigger:v('incTrig'),reviewDate:v('reviewDate'),owner:v('monOwner'),changeTriggers:v('changeTrig'),retention:v('retention')},
     approval:{preparedBy:v('prepBy'),technicalReviewer:v('techRev'),legalReviewer:v('legalRev'),boardApproval:v('boardApp'),ownerAcknowledgementDate:v('ownerAckDate'),nextReview:v('nextRev')}
   };
@@ -1408,11 +1538,34 @@ function restoreFromStorage(){
     document.getElementById('residual').value=data.deployment.residualRisk||'';
     if(document.getElementById('residualDate')) document.getElementById('residualDate').value=data.deployment.residualDate||'';
     
-    document.getElementById('dpiaReq').value=data.gdpr.dpiaRequired||'';
+    // Restore DPIA Required
+    var dpiaVal=data.gdpr.dpiaRequired||'';
+    document.getElementById('dpiaReq').value=dpiaVal;
+    document.querySelectorAll('#dpiaReqGroup .radio-opt').forEach(function(opt){
+      opt.classList.toggle('selected',opt.getAttribute('data-value')===dpiaVal);
+      if(opt.getAttribute('data-value')===dpiaVal) opt.querySelector('input').checked=true;
+    });
+    var dpiaBlock=document.getElementById('dpiaBlock');
+    var noDpiaNote=document.getElementById('noDpiaNote');
+    var uncertainNote=document.getElementById('uncertainNote');
+    if(dpiaVal==='NO'){dpiaBlock.style.display='none';noDpiaNote.classList.add('visible');}
+    else if(dpiaVal==='UNCERTAIN'){dpiaBlock.style.display='block';uncertainNote.classList.add('visible');}
+    else{dpiaBlock.style.display='block';}
     document.getElementById('dpiaRef').value=data.gdpr.dpiaReference||'';
-    document.getElementById('joint').value=data.gdpr.jointAssessment||'';
+    if(data.gdpr.dpiaLink) toggleLinkField('dpia');
+    if(document.getElementById('dpiaLink')) document.getElementById('dpiaLink').value=data.gdpr.dpiaLink||'';
+    // Restore Joint Assessment
+    var jointVal=data.gdpr.jointAssessment||'';
+    document.getElementById('joint').value=jointVal;
+    document.querySelectorAll('#jointGroup .radio-opt-compact').forEach(function(opt){
+      opt.classList.toggle('selected',opt.getAttribute('data-value')===jointVal);
+      if(opt.getAttribute('data-value')===jointVal) opt.querySelector('input').checked=true;
+    });
+    if(document.getElementById('dpiaScope')) document.getElementById('dpiaScope').value=data.gdpr.dpiaScope||'';
+    if(document.getElementById('aisiaScope')) document.getElementById('aisiaScope').value=data.gdpr.aisiaScope||'';
+    if(document.getElementById('dpoName')) document.getElementById('dpoName').value=data.gdpr.dpoName||'';
+    if(document.getElementById('dpoDate')) document.getElementById('dpoDate').value=data.gdpr.dpoDate||'';
     document.getElementById('dpoRev').value=data.gdpr.dpoReview||'';
-    document.getElementById('scopeDiff').value=data.gdpr.scopeDifference||'';
     
     document.getElementById('monFair').value=data.monitoring.fairness||'';
     document.getElementById('monPerf').value=data.monitoring.performance||'';
@@ -1527,11 +1680,31 @@ document.getElementById('fileInput').addEventListener('change',function(e){
       document.getElementById('residual').value=data.deployment.residualRisk||'';
       if(document.getElementById('residualDate')) document.getElementById('residualDate').value=data.deployment.residualDate||'';
       
-      document.getElementById('dpiaReq').value=data.gdpr.dpiaRequired||'';
+      // Restore DPIA Required
+      var dpiaVal=data.gdpr.dpiaRequired||'';
+      document.getElementById('dpiaReq').value=dpiaVal;
+      document.querySelectorAll('#dpiaReqGroup .radio-opt').forEach(function(opt){
+        opt.classList.toggle('selected',opt.getAttribute('data-value')===dpiaVal);
+        if(opt.getAttribute('data-value')===dpiaVal) opt.querySelector('input').checked=true;
+      });
+      var dpiaBlock=document.getElementById('dpiaBlock');
+      if(dpiaVal==='NO'){dpiaBlock.style.display='none';document.getElementById('noDpiaNote').classList.add('visible');}
+      else if(dpiaVal==='UNCERTAIN'){dpiaBlock.style.display='block';document.getElementById('uncertainNote').classList.add('visible');}
+      else{dpiaBlock.style.display='block';}
       document.getElementById('dpiaRef').value=data.gdpr.dpiaReference||'';
-      document.getElementById('joint').value=data.gdpr.jointAssessment||'';
+      if(data.gdpr.dpiaLink) toggleLinkField('dpia');
+      if(document.getElementById('dpiaLink')) document.getElementById('dpiaLink').value=data.gdpr.dpiaLink||'';
+      var jointVal=data.gdpr.jointAssessment||'';
+      document.getElementById('joint').value=jointVal;
+      document.querySelectorAll('#jointGroup .radio-opt-compact').forEach(function(opt){
+        opt.classList.toggle('selected',opt.getAttribute('data-value')===jointVal);
+        if(opt.getAttribute('data-value')===jointVal) opt.querySelector('input').checked=true;
+      });
+      if(document.getElementById('dpiaScope')) document.getElementById('dpiaScope').value=data.gdpr.dpiaScope||'';
+      if(document.getElementById('aisiaScope')) document.getElementById('aisiaScope').value=data.gdpr.aisiaScope||'';
+      if(document.getElementById('dpoName')) document.getElementById('dpoName').value=data.gdpr.dpoName||'';
+      if(document.getElementById('dpoDate')) document.getElementById('dpoDate').value=data.gdpr.dpoDate||'';
       document.getElementById('dpoRev').value=data.gdpr.dpoReview||'';
-      document.getElementById('scopeDiff').value=data.gdpr.scopeDifference||'';
       
       document.getElementById('monFair').value=data.monitoring.fairness||'';
       document.getElementById('monPerf').value=data.monitoring.performance||'';
