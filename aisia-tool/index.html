@@ -191,8 +191,9 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
 .impact-title-left{display:flex;align-items:center;gap:10px}
 .impact-title-right{display:flex;align-items:center;gap:8px}
 .impact-describe{font-size:12px;font-weight:500;color:var(--text2);margin:6px 0 6px}
-.score-badge{min-width:48px;padding:5px 8px;border-radius:8px;display:flex;flex-direction:column;align-items:center;font-weight:700;font-size:15px;line-height:1;border:2px solid;flex-shrink:0}
-.score-badge .sc-sub{font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+.score-badge{min-width:100px;padding:6px 12px;border-radius:8px;display:flex;flex-direction:column;align-items:center;border:2px solid;flex-shrink:0;text-align:center}
+.score-badge .sc-name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;line-height:1}
+.score-badge .sc-sub{font-size:10px;font-weight:500;margin-top:3px;opacity:.8}
 .mit-label{font-size:12px;font-weight:500;color:var(--text2);margin-bottom:3px}
 .mit-section{margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
 .mit-sub{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
@@ -491,7 +492,6 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
       <div class="leg leg-green"><div class="leg-title">Score ≤ 3</div><div class="leg-sub">Accepted with monitoring</div></div>
     </div>
     <div id="impList"></div>
-    <div id="impSummary" class="imp-summary"></div>
     <button class="add-btn" onclick="addImp()">+ Add impact</button>
     <div class="nav-btns"><button class="btn" onclick="go(1)">← Back</button><button class="btn btn-primary" onclick="go(3)">Next: deployment decision →</button></div>
   </div>
@@ -742,7 +742,6 @@ function resetPanel(panel){
       if(card) card.remove();
     });
     imps=[];
-    document.getElementById('impSummary').innerHTML='';
     addImp();
   }
 }
@@ -897,10 +896,10 @@ function updateRisk(){
 }
 
 function scoreInfo(n){
-  if(n===null||n===undefined) return {cls:'sc-none',txt:'—'};
-  if(n>=9) return {cls:'sc-red',txt:n};
-  if(n>=4) return {cls:'sc-amber',txt:n};
-  return {cls:'sc-green',txt:n};
+  if(n===null||n===undefined) return {cls:'sc-none',name:'—',score:null};
+  if(n>=9) return {cls:'sc-red',name:'Critical',score:n};
+  if(n>=4) return {cls:'sc-amber',name:'Significant',score:n};
+  return {cls:'sc-green',name:'Moderate',score:n};
 }
 
 function addImp(d){
@@ -921,7 +920,7 @@ function addImp(d){
           '<div class="impact-num" id="num_'+id+'">'+num+'</div>'+
           '<div class="impact-title-label">Impact Assessment</div>'+
         '</div>'+
-        '<div id="sc_'+id+'" class="score-badge sc-none"><span>—</span><span class="sc-sub">Score</span></div>'+
+        '<div id="sc_'+id+'" class="score-badge sc-none"><span class="sc-name">—</span><span class="sc-sub">Score</span></div>'+
       '</div>'+
       '<div class="impact-describe">Describe the potential harm, unintended consequence, or ethical concern</div>'+
       '<textarea class="impact-textarea" data-f="desc" placeholder="e.g. Recruitment AI may underrank candidates from underrepresented groups">'+(d.desc||'')+'</textarea>'+
@@ -953,10 +952,10 @@ function calcSc(id){
   if(s&&l){
     var n=parseInt(s)*parseInt(l);
     var info=scoreInfo(n);
-    box.innerHTML='<span>'+info.txt+'</span><span class="sc-sub">Score</span>';
+    box.innerHTML='<span class="sc-name">'+info.name+'</span><span class="sc-sub">Score: '+info.score+'</span>';
     box.className='score-badge '+info.cls;
   } else {
-    box.innerHTML='<span>\u2014</span><span class="sc-sub">Score</span>';
+    box.innerHTML='<span class="sc-name">\u2014</span><span class="sc-sub">Score</span>';
     box.className='score-badge sc-none';
   }
   renderSummary();
@@ -984,16 +983,7 @@ function getScores(){
 }
 
 function renderSummary(){
-  var sc=getScores();
-  var cr=sc.filter(function(s){return s>=9;}).length;
-  var si=sc.filter(function(s){return s>=4&&s<9;}).length;
-  var mo=sc.filter(function(s){return s<4;}).length;
-  var el=document.getElementById('impSummary');
-  var html='';
-  if(cr) html+='<span class="sum-pill" style="background:var(--red-bg);color:var(--red-text);border-color:var(--red-border)">'+cr+' critical</span>';
-  if(si) html+='<span class="sum-pill" style="background:var(--amber-bg);color:var(--amber-text);border-color:var(--amber-border)">'+si+' significant</span>';
-  if(mo) html+='<span class="sum-pill" style="background:var(--green-bg);color:var(--green-text);border-color:var(--green-border)">'+mo+' moderate</span>';
-  el.innerHTML=html;
+  // Summary removed - classification visible directly on each impact card badge
 }
 
 function syncMetrics(){
