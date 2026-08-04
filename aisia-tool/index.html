@@ -284,6 +284,52 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
 .notification.error{background:var(--red-bg);border:1px solid var(--red-border);color:var(--red-text)}
 @keyframes slideDown{from{opacity:0;transform:translateX(-50%) translateY(-20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 #fileInput{display:none}
+
+/* Section 4 metric tiles - matching Section 3 legend style */
+.s4-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1rem}
+.s4-metric{border:1px solid;border-radius:8px;padding:10px 12px;text-align:center}
+.s4-metric .leg-name{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.s4-metric .leg-num{font-size:22px;font-weight:700;margin-top:2px;line-height:1}
+.s4-metric .leg-divider{border:none;border-top:1px solid currentColor;opacity:.2;margin:7px 0}
+.s4-metric .leg-sub{font-size:10px;opacity:.8}
+.s4-total{background:var(--accent-light);border-color:var(--accent);color:var(--accent)}
+.s4-total .leg-num{font-size:28px}
+.s4-critical{background:var(--red-bg);border-color:var(--red-border);color:var(--red-text)}
+.s4-significant{background:var(--amber-bg);border-color:var(--amber-border);color:var(--amber-text)}
+.s4-moderate{background:var(--green-bg);border-color:var(--green-border);color:var(--green-text)}
+
+/* Radio buttons */
+.radio-group{display:flex;flex-direction:column;gap:8px;margin-bottom:1rem}
+.radio-opt{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .15s}
+.radio-opt:hover{border-color:var(--accent);background:var(--accent-light)}
+.radio-opt.selected{border-color:var(--accent);background:var(--accent-light)}
+.radio-opt-left{display:flex;align-items:flex-start;gap:10px;flex:1}
+.radio-opt input[type=radio]{margin-top:3px;flex-shrink:0;accent-color:var(--accent)}
+.radio-opt .opt-title{font-size:13px;font-weight:600;color:var(--text)}
+.radio-opt .opt-desc{font-size:11px;color:var(--text2);margin-top:2px}
+.radio-opt .opt-icon{width:24px;height:24px;flex-shrink:0;display:block}
+
+/* Deployment buttons */
+.dep-group{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.dep-btn{padding:8px 18px;border-radius:8px;font-size:12px;font-weight:600;border:2px solid;cursor:pointer;background:var(--bg);transition:all .15s;font-family:inherit}
+.dep-btn.dep-approved{border-color:var(--green);color:var(--green-text)}
+.dep-btn.dep-approved.active{background:var(--green-bg)}
+.dep-btn.dep-conditional{border-color:var(--amber);color:var(--amber-text)}
+.dep-btn.dep-conditional.active{background:var(--amber-bg)}
+.dep-btn.dep-rejected{border-color:var(--red);color:var(--red-text)}
+.dep-btn.dep-rejected.active{background:var(--red-bg)}
+input[type=hidden]{}
+
+/* Conditions list */
+.conditions-list{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.condition-item{display:flex;align-items:center;gap:8px}
+.condition-num{min-width:22px;height:22px;border-radius:50%;background:var(--accent-light);color:var(--accent);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.condition-input{flex:1;border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:13px;font-family:inherit;background:var(--bg);color:var(--text)}
+.condition-input:focus{outline:none;border-color:var(--accent)}
+.condition-del-btn{background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;padding:4px 6px;border-radius:4px;flex-shrink:0}
+.condition-del-btn:hover{color:var(--red);background:var(--red-bg)}
+.add-condition-btn{padding:8px 16px;background:#2196b8;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:background .15s}
+.add-condition-btn:hover{background:#1a7a9a}
 </style>
 </head>
 <body>
@@ -501,41 +547,139 @@ html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
   <!-- PANEL 4: Decision -->
   <div id="p3" class="panel" role="tabpanel">
     <div class="panel-header">
-      <h2>Section 4 — Overall impact rating and deployment decision</h2>
+      <h2>Impact Rating and Deployment Decision</h2>
       <p>Summarise assessment findings and provide a deployment recommendation. The AI Ethics Board must approve the deployment decision based on this summary.</p>
       <div class="iso-ref-box">ISO/IEC 42001:2023 Annex A.5.2 Step 3 | A.5.3</div>
     </div>
-    <div class="card">
-      <div class="card-title">Auto-calculated from impact matrix</div>
-      <div class="g4" style="margin-bottom:0">
-        <div class="metric-card"><div class="metric-num" id="mTotal">0</div><div class="metric-lbl">total impacts</div></div>
-        <div class="metric-card"><div class="metric-num" id="mCrit" style="color:var(--red)">0</div><div class="metric-lbl">critical ≥ 9</div></div>
-        <div class="metric-card"><div class="metric-num" id="mSig" style="color:var(--amber)">0</div><div class="metric-lbl">significant 4–8</div></div>
-        <div class="metric-card"><div class="metric-num" id="mMod" style="color:var(--green)">0</div><div class="metric-lbl">moderate ≤ 3</div></div>
+
+    <div class="s4-metrics">
+      <div class="s4-metric s4-total">
+        <div class="leg-name">Total</div>
+        <div class="leg-num" id="mTotal">0</div>
+        <hr class="leg-divider">
+        <div class="leg-sub">Impacts identified</div>
+      </div>
+      <div class="s4-metric s4-critical">
+        <div class="leg-name">Critical</div>
+        <div class="leg-num" id="mCrit">0</div>
+        <hr class="leg-divider">
+        <div class="leg-sub">Score 9 and above</div>
+      </div>
+      <div class="s4-metric s4-significant">
+        <div class="leg-name">Significant</div>
+        <div class="leg-num" id="mSig">0</div>
+        <hr class="leg-divider">
+        <div class="leg-sub">Score 4 to 8</div>
+      </div>
+      <div class="s4-metric s4-moderate">
+        <div class="leg-name">Moderate</div>
+        <div class="leg-num" id="mMod">0</div>
+        <hr class="leg-divider">
+        <div class="leg-sub">Score 3 and below</div>
       </div>
     </div>
+
     <div class="card">
-      <div class="g2" style="margin-bottom:12px">
-        <div class="field"><label>Overall impact rating</label>
-          <select id="overallRating">
-            <option value="">Select...</option>
-            <option>HIGH, multiple critical impacts; mandatory mitigation required before deployment</option>
-            <option>MEDIUM, significant impacts present; mitigation plan required</option>
-            <option>LOW, no critical impacts; accepted with monitoring</option>
-          </select>
+      <div class="card-title">Overall Impact Rating</div>
+      <div class="radio-group" id="overallRatingGroup">
+        <label class="radio-opt" data-value="HIGH">
+          <div class="radio-opt-left">
+            <input type="radio" name="overallRating" value="HIGH">
+            <div>
+              <div class="opt-title">HIGH</div>
+              <div class="opt-desc">One or more critical impacts identified. Mandatory mitigation required before any deployment decision.</div>
+            </div>
+          </div>
+          <svg class="opt-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#dc2626"/><line x1="7.5" y1="7.5" x2="16.5" y2="16.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><line x1="16.5" y1="7.5" x2="7.5" y2="16.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </label>
+        <label class="radio-opt" data-value="MEDIUM">
+          <div class="radio-opt-left">
+            <input type="radio" name="overallRating" value="MEDIUM">
+            <div>
+              <div class="opt-title">MEDIUM</div>
+              <div class="opt-desc">No critical impacts, but significant impacts present. A documented mitigation plan is required.</div>
+            </div>
+          </div>
+          <svg class="opt-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#f59e0b"/><rect x="11" y="6" width="2" height="7" rx="1" fill="#fff"/><rect x="11" y="15.5" width="2" height="2.5" rx="1" fill="#fff"/></svg>
+        </label>
+        <label class="radio-opt" data-value="LOW">
+          <div class="radio-opt-left">
+            <input type="radio" name="overallRating" value="LOW">
+            <div>
+              <div class="opt-title">LOW</div>
+              <div class="opt-desc">All impacts are moderate. Accepted with ongoing monitoring. No mandatory mitigation required.</div>
+            </div>
+          </div>
+          <svg class="opt-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#16a34a"/><polyline points="6,12 10,16 18,8" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </label>
+      </div>
+      <input type="hidden" id="overallRating" value="">
+
+      <div class="card-title" style="margin-top:1.25rem">Deployment Recommendation</div>
+      <div class="radio-group" id="depRecGroup">
+        <label class="radio-opt" data-value="APPROVED">
+          <div class="radio-opt-left">
+            <input type="radio" name="depRec" value="APPROVED">
+            <div>
+              <div class="opt-title">APPROVED</div>
+              <div class="opt-desc">No critical conditions outstanding. All identified impacts are mitigated or accepted. System may proceed to deployment.</div>
+            </div>
+          </div>
+          <svg class="opt-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#16a34a"/><polyline points="6,12 10,16 18,8" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </label>
+        <label class="radio-opt" data-value="CONDITIONAL">
+          <div class="radio-opt-left">
+            <input type="radio" name="depRec" value="CONDITIONAL">
+            <div>
+              <div class="opt-title">CONDITIONAL</div>
+              <div class="opt-desc">Approved subject to completion of all mitigation measures listed in Conditions for Deployment. Deployment must not proceed until all conditions are satisfied.</div>
+            </div>
+          </div>
+          <svg class="opt-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#f59e0b"/><rect x="11" y="6" width="2" height="7" rx="1" fill="#fff"/><rect x="11" y="15.5" width="2" height="2.5" rx="1" fill="#fff"/></svg>
+        </label>
+        <label class="radio-opt" data-value="NOT APPROVED">
+          <div class="radio-opt-left">
+            <input type="radio" name="depRec" value="NOT APPROVED">
+            <div>
+              <div class="opt-title">NOT APPROVED</div>
+              <div class="opt-desc">Critical mitigations are incomplete. Deployment is prohibited until outstanding critical impacts are addressed and a revised assessment is conducted.</div>
+            </div>
+          </div>
+          <svg class="opt-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#dc2626"/><line x1="7.5" y1="7.5" x2="16.5" y2="16.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><line x1="16.5" y1="7.5" x2="7.5" y2="16.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </label>
+      </div>
+      <input type="hidden" id="depRec" value="">
+    </div>
+
+    <div class="card">
+      <div class="card-title">Conditions for Deployment</div>
+      <div class="hint" style="margin-bottom:12px">List all conditions that must be satisfied before deployment is authorised. Each condition should be specific, measurable and assigned to a named owner.</div>
+      <div class="conditions-list" id="conditionsList"></div>
+      <button type="button" class="add-condition-btn" onclick="addCondition()">+ Add condition</button>
+      <input type="hidden" id="conditions" value="">
+    </div>
+
+    <div class="card">
+      <div class="card-title">Residual Risk Acceptance</div>
+      <div class="field">
+        <label>Risk acceptance statement</label>
+        <textarea id="residual" placeholder="e.g. Risk of model drift accepted, subject to monitoring plan in Section 6."></textarea>
+        <div class="hint">Describe the residual risk that remains after all mitigations have been applied.</div>
+      </div>
+      <div class="divider" style="margin:14px 0"></div>
+      <div class="g2">
+        <div class="field">
+          <label>System owner</label>
+          <div class="field-readonly empty" id="residualOwnerDisplay">Not yet entered in Section 1</div>
+          <div class="hint">Read only - set in System Description</div>
         </div>
-        <div class="field"><label>Deployment recommendation</label>
-          <select id="depRec">
-            <option value="">Select...</option>
-            <option>APPROVED, no critical conditions outstanding</option>
-            <option>CONDITIONAL, approved subject to completion of all mitigation measures</option>
-            <option>NOT APPROVED, critical mitigations incomplete; deployment prohibited</option>
-          </select>
+        <div class="field">
+          <label>Date of acceptance</label>
+          <input type="date" id="residualDate">
         </div>
       </div>
-      <div class="field" style="margin-bottom:12px"><label>Conditions for deployment</label><textarea id="conditions" placeholder="List all conditions that must be met before deployment is authorised — number each condition"></textarea></div>
-      <div class="field"><label>Residual risk acceptance</label><textarea id="residual" placeholder="Who accepts residual risk and on what basis? What post-deployment monitoring compensates for residual risk?"></textarea></div>
     </div>
+
     <div class="nav-btns"><button class="btn" onclick="go(2)">← Back</button><div class="nav-actions"><button class="btn btn-outline" onclick="resetAssessment()">Clear section</button><button class="btn btn-primary" onclick="go(4)">Next: GDPR / DPIA →</button></div></div>
   </div>
 
@@ -682,6 +826,7 @@ function go(n){
   steps[n].setAttribute('aria-selected','true');
   cur=n;
   if(n===3) syncMetrics();
+  if(n===3){ syncResidualOwner(); }
   if(n===6){ renderChecklist(); syncOwnerDisplay(); }
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -843,6 +988,82 @@ function generateTriggerSummary(force){
   var btn = document.getElementById('generateSummaryBtn');
   if(btn) btn.disabled = true;
   autoSave();
+}
+
+// Section 4 — Overall Impact Rating radio buttons
+document.querySelectorAll('#overallRatingGroup .radio-opt').forEach(function(opt){
+  opt.addEventListener('click', function(){
+    document.querySelectorAll('#overallRatingGroup .radio-opt').forEach(function(o){ o.classList.remove('selected'); });
+    opt.classList.add('selected');
+    document.getElementById('overallRating').value = opt.getAttribute('data-value');
+    autoSave();
+  });
+});
+
+// Section 4 — Deployment Recommendation radio buttons
+document.querySelectorAll('#depRecGroup .radio-opt').forEach(function(opt){
+  opt.addEventListener('click', function(){
+    document.querySelectorAll('#depRecGroup .radio-opt').forEach(function(o){ o.classList.remove('selected'); });
+    opt.classList.add('selected');
+    document.getElementById('depRec').value = opt.getAttribute('data-value');
+    autoSave();
+  });
+});
+
+// Section 4 — Conditions list
+var conditionItems = [];
+
+function addCondition(val){
+  val = val || '';
+  var list = document.getElementById('conditionsList');
+  var num = list.children.length + 1;
+  var div = document.createElement('div');
+  div.className = 'condition-item';
+  div.innerHTML =
+    '<div class="condition-num">'+num+'</div>'+
+    '<input class="condition-input" type="text" placeholder="Enter condition..." value="'+val.replace(/"/g,'&quot;')+'" oninput="saveConditions()">'+
+    '<button type="button" class="condition-del-btn" onclick="removeCondition(this)">\u2715</button>';
+  list.appendChild(div);
+}
+
+function removeCondition(btn){
+  btn.closest('.condition-item').remove();
+  renumberConditions();
+  saveConditions();
+}
+
+function renumberConditions(){
+  document.querySelectorAll('#conditionsList .condition-item').forEach(function(item, i){
+    item.querySelector('.condition-num').textContent = i+1;
+  });
+}
+
+function saveConditions(){
+  var vals = [];
+  document.querySelectorAll('#conditionsList .condition-input').forEach(function(inp){
+    if(inp.value.trim()) vals.push(inp.value.trim());
+  });
+  document.getElementById('conditions').value = vals.join('\n');
+  autoSave();
+}
+
+function restoreConditions(text){
+  var list = document.getElementById('conditionsList');
+  list.innerHTML = '';
+  if(text && text.trim()){
+    text.split('\n').forEach(function(line){
+      if(line.trim()) addCondition(line.trim());
+    });
+  }
+}
+
+function syncResidualOwner(){
+  var name = v('sysOwner');
+  var el = document.getElementById('residualOwnerDisplay');
+  if(el){
+    if(name){ el.textContent = name; el.classList.remove('empty'); }
+    else { el.textContent = 'Not yet entered in Section 1'; el.classList.add('empty'); }
+  }
 }
 
 function toggleModelTypeOther(val){
@@ -1021,7 +1242,7 @@ function getData(){
     system:{description:v('sysDesc'),intendedPurpose:v('purpose'),modelType:modelTypeVal,deploymentContext:v('depCtx'),dataInputs:v('dataIn'),dataInputsLink:v('dataInLink'),systemOutput:v('sysOut'),systemOutputLink:v('sysOutLink'),riskClassification:v('riskCls'),annexIIICategory:annexIIIVal,annexICategory:annexIVal,affectedPartiesDirect:v('direct'),affectedPartiesIndirect:v('indirect')},
     triggers:{highRisk:v('t1'),vulnerableGroups:v('t2'),rightsInfluence:v('t3'),scale:v('t4'),materialChange:v('t5'),conclusion:v('trigConc')},
     impacts:getImpactData(),
-    deployment:{overallRating:v('overallRating'),recommendation:v('depRec'),conditions:v('conditions'),residualRisk:v('residual')},
+    deployment:{overallRating:v('overallRating'),recommendation:v('depRec'),conditions:v('conditions'),residualRisk:v('residual'),residualDate:v('residualDate')},
     gdpr:{dpiaRequired:v('dpiaReq'),dpiaReference:v('dpiaRef'),jointAssessment:v('joint'),dpoReview:v('dpoRev'),scopeDifference:v('scopeDiff')},
     monitoring:{fairness:v('monFair'),performance:v('monPerf'),humanOversight:v('monHuman'),incidentTrigger:v('incTrig'),reviewDate:v('reviewDate'),owner:v('monOwner'),changeTriggers:v('changeTrig'),retention:v('retention')},
     approval:{preparedBy:v('prepBy'),technicalReviewer:v('techRev'),legalReviewer:v('legalRev'),boardApproval:v('boardApp'),ownerAcknowledgementDate:v('ownerAckDate'),nextReview:v('nextRev')}
@@ -1167,10 +1388,25 @@ function restoreFromStorage(){
     }
     renderSummary();
     
-    document.getElementById('overallRating').value=data.deployment.overallRating||'';
-    document.getElementById('depRec').value=data.deployment.recommendation||'';
+    // Restore Overall Rating radio
+    var rating=data.deployment.overallRating||'';
+    document.getElementById('overallRating').value=rating;
+    document.querySelectorAll('#overallRatingGroup .radio-opt').forEach(function(opt){
+      opt.classList.toggle('selected', opt.getAttribute('data-value')===rating);
+      if(opt.getAttribute('data-value')===rating) opt.querySelector('input').checked=true;
+    });
+    // Restore Deployment Recommendation buttons
+    var rec=data.deployment.recommendation||'';
+    document.getElementById('depRec').value=rec;
+    document.querySelectorAll('#depRecGroup .radio-opt').forEach(function(opt){
+      opt.classList.toggle('selected', opt.getAttribute('data-value')===rec);
+      if(opt.getAttribute('data-value')===rec) opt.querySelector('input').checked=true;
+    });
+    // Restore conditions list
+    restoreConditions(data.deployment.conditions||'');
     document.getElementById('conditions').value=data.deployment.conditions||'';
     document.getElementById('residual').value=data.deployment.residualRisk||'';
+    if(document.getElementById('residualDate')) document.getElementById('residualDate').value=data.deployment.residualDate||'';
     
     document.getElementById('dpiaReq').value=data.gdpr.dpiaRequired||'';
     document.getElementById('dpiaRef').value=data.gdpr.dpiaReference||'';
@@ -1273,10 +1509,23 @@ document.getElementById('fileInput').addEventListener('change',function(e){
       }
       renderSummary();
       
-      document.getElementById('overallRating').value=data.deployment.overallRating||'';
-      document.getElementById('depRec').value=data.deployment.recommendation||'';
+      // Restore Overall Rating radio
+      var rating=data.deployment.overallRating||'';
+      document.getElementById('overallRating').value=rating;
+      document.querySelectorAll('#overallRatingGroup .radio-opt').forEach(function(opt){
+        opt.classList.toggle('selected', opt.getAttribute('data-value')===rating);
+        if(opt.getAttribute('data-value')===rating) opt.querySelector('input').checked=true;
+      });
+      var rec=data.deployment.recommendation||'';
+      document.getElementById('depRec').value=rec;
+      document.querySelectorAll('#depRecGroup .radio-opt').forEach(function(opt){
+        opt.classList.toggle('selected', opt.getAttribute('data-value')===rec);
+        if(opt.getAttribute('data-value')===rec) opt.querySelector('input').checked=true;
+      });
+      restoreConditions(data.deployment.conditions||'');
       document.getElementById('conditions').value=data.deployment.conditions||'';
       document.getElementById('residual').value=data.deployment.residualRisk||'';
+      if(document.getElementById('residualDate')) document.getElementById('residualDate').value=data.deployment.residualDate||'';
       
       document.getElementById('dpiaReq').value=data.gdpr.dpiaRequired||'';
       document.getElementById('dpiaRef').value=data.gdpr.dpiaReference||'';
