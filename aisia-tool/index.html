@@ -334,6 +334,11 @@ input[type=hidden]{}
 .no-dpia-note.visible{display:block}
 .uncertain-note{background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--amber-text);margin-top:8px;display:none}
 .uncertain-note.visible{display:block}
+.toggle-group{display:flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.toggle-btn{flex:1;padding:9px 12px;font-size:12px;font-weight:600;border:none;background:var(--bg);cursor:pointer;color:var(--text2);transition:all .15s;font-family:inherit;border-right:1px solid var(--border)}
+.toggle-btn:last-child{border-right:none}
+.toggle-btn.active{background:var(--accent-light);color:var(--accent)}
+.toggle-btn:hover:not(.active){background:var(--bg2)}
 .radio-opt-compact{display:flex;align-items:flex-start;justify-content:flex-start;gap:10px;padding:7px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .15s;width:100%}
 .radio-opt-compact:hover{border-color:var(--accent);background:var(--accent-light)}
 .radio-opt-compact.selected{border-color:var(--accent);background:var(--accent-light)}
@@ -759,19 +764,10 @@ input[type=hidden]{}
         <div class="divider" style="margin:12px 0"></div>
         <div class="field" style="margin:0">
           <label>Joint assessment conducted?</label>
-          <div class="radio-group" id="jointGroup" style="margin-bottom:4px;display:flex;flex-direction:column;gap:6px">
-            <label class="radio-opt-compact" data-value="YES">
-              <input type="radio" name="joint" value="YES">
-              <div><div class="opt-compact-title">YES</div><div class="opt-compact-desc">AISIA and DPIA conducted jointly with shared findings.</div></div>
-            </label>
-            <label class="radio-opt-compact" data-value="PARTIALLY">
-              <input type="radio" name="joint" value="PARTIALLY">
-              <div><div class="opt-compact-title">PARTIALLY</div><div class="opt-compact-desc">Conducted separately but with cross-referenced findings.</div></div>
-            </label>
-            <label class="radio-opt-compact" data-value="NO">
-              <input type="radio" name="joint" value="NO">
-              <div><div class="opt-compact-title">NO</div><div class="opt-compact-desc">Conducted separately with no formal coordination.</div></div>
-            </label>
+          <div class="toggle-group" id="jointGroup">
+            <button type="button" class="toggle-btn" data-value="YES" onclick="setJoint('YES',this)">YES</button>
+            <button type="button" class="toggle-btn" data-value="PARTIALLY" onclick="setJoint('PARTIALLY',this)">PARTIALLY</button>
+            <button type="button" class="toggle-btn" data-value="NO" onclick="setJoint('NO',this)">NO</button>
           </div>
           <input type="hidden" id="joint" value="">
           <div class="hint">Indicates whether AISIA and DPIA findings were coordinated during the assessment process.</div>
@@ -1149,9 +1145,17 @@ function restoreConditions(text){
     text.split('\n').forEach(function(line){
       if(line.trim()) addCondition(line.trim());
     });
+  } else {
+    addCondition('');
   }
 }
 
+function initConditions(){
+  var list = document.getElementById('conditionsList');
+  if(list && list.children.length === 0){
+    addCondition('');
+  }
+}
 function syncResidualOwner(){
   var name = v('sysOwner');
   var el = document.getElementById('residualOwnerDisplay');
@@ -1186,15 +1190,13 @@ document.querySelectorAll('#dpiaReqGroup .radio-opt').forEach(function(opt){
   });
 });
 
-// Section 5 — Joint assessment radio buttons
-document.querySelectorAll('#jointGroup .radio-opt-compact').forEach(function(opt){
-  opt.addEventListener('click', function(){
-    document.querySelectorAll('#jointGroup .radio-opt').forEach(function(o){ o.classList.remove('selected'); });
-    opt.classList.add('selected');
-    document.getElementById('joint').value = opt.getAttribute('data-value');
-    autoSave();
-  });
-});
+// Section 5 — Joint assessment toggle
+function setJoint(val, btn){
+  document.querySelectorAll('#jointGroup .toggle-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('joint').value = val;
+  autoSave();
+}
 
 function toggleModelTypeOther(val){
   document.getElementById('modelTypeOtherWrap').style.display = val==='Other' ? 'block' : 'none';
@@ -1557,9 +1559,8 @@ function restoreFromStorage(){
     // Restore Joint Assessment
     var jointVal=data.gdpr.jointAssessment||'';
     document.getElementById('joint').value=jointVal;
-    document.querySelectorAll('#jointGroup .radio-opt-compact').forEach(function(opt){
-      opt.classList.toggle('selected',opt.getAttribute('data-value')===jointVal);
-      if(opt.getAttribute('data-value')===jointVal) opt.querySelector('input').checked=true;
+    document.querySelectorAll('#jointGroup .toggle-btn').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-value')===jointVal);
     });
     if(document.getElementById('dpiaScope')) document.getElementById('dpiaScope').value=data.gdpr.dpiaScope||'';
     if(document.getElementById('aisiaScope')) document.getElementById('aisiaScope').value=data.gdpr.aisiaScope||'';
@@ -1696,9 +1697,8 @@ document.getElementById('fileInput').addEventListener('change',function(e){
       if(document.getElementById('dpiaLink')) document.getElementById('dpiaLink').value=data.gdpr.dpiaLink||'';
       var jointVal=data.gdpr.jointAssessment||'';
       document.getElementById('joint').value=jointVal;
-      document.querySelectorAll('#jointGroup .radio-opt-compact').forEach(function(opt){
-        opt.classList.toggle('selected',opt.getAttribute('data-value')===jointVal);
-        if(opt.getAttribute('data-value')===jointVal) opt.querySelector('input').checked=true;
+      document.querySelectorAll('#jointGroup .toggle-btn').forEach(function(btn){
+        btn.classList.toggle('active', btn.getAttribute('data-value')===jointVal);
       });
       if(document.getElementById('dpiaScope')) document.getElementById('dpiaScope').value=data.gdpr.dpiaScope||'';
       if(document.getElementById('aisiaScope')) document.getElementById('aisiaScope').value=data.gdpr.aisiaScope||'';
@@ -1798,6 +1798,7 @@ function initStaleSummaryState(){
 initTheme();
 restoreFromStorage();
 initStaleSummaryState();
+initConditions();
 attachAutoSaveListeners();
 if(imps.length===0) addImp();
 </script>
