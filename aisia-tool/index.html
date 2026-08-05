@@ -809,24 +809,96 @@ input[type=hidden]{}
   <!-- PANEL 6: Monitoring -->
   <div id="p5" class="panel" role="tabpanel">
     <div class="panel-header">
-      <h2>Section 6 — Post-deployment monitoring and review plan</h2>
+      <h2>Post-Deployment Monitoring Plan</h2>
       <p>Post-deployment monitoring is mandatory for high risk systems. Must detect bias drift, performance degradation, and unintended consequences over time.</p>
       <div class="iso-ref-box">ISO/IEC 42001:2023 Annex A.5.2 Step 6 | A.5.3</div>
     </div>
+
     <div class="card">
-      <div class="field" style="margin-bottom:12px"><label>Fairness monitoring metrics</label><textarea id="monFair" placeholder="e.g. demographic parity ratio by gender, age, ethnicity across outputs; monitored quarterly"></textarea></div>
-      <div class="field" style="margin-bottom:12px"><label>Performance monitoring metrics</label><textarea id="monPerf" placeholder="e.g. precision and recall against actual outcomes; monitored per deployment cycle"></textarea></div>
-      <div class="field" style="margin-bottom:12px"><label>Human oversight metrics</label><textarea id="monHuman" placeholder="e.g. % of AI outputs reviewed by human; % of AI recommendations overridden; override reasons logged"></textarea></div>
-    </div>
-    <div class="card">
-      <div class="g2" style="margin-bottom:12px">
-        <div class="field"><label>Scheduled review date</label><input id="reviewDate" type="date"></div>
-        <div class="field"><label>Monitoring owner</label><input id="monOwner" placeholder="Role responsible for post-deployment monitoring"></div>
-        <div class="field"><label>Incident reporting trigger</label><textarea id="incTrig" placeholder="What events trigger an unplanned AISIA review?" style="min-height:52px"></textarea></div>
-        <div class="field"><label>Retention period</label><input id="retention" placeholder="e.g. 5 years — per AIMS records retention policy"></div>
+      <div class="card-title">Monitoring Metrics</div>
+
+      <div class="field" style="margin-bottom:20px">
+        <label>Fairness monitoring metrics</label>
+        <textarea id="monFair" placeholder="e.g. demographic parity ratio"></textarea>
+        <div class="hint">Metrics used to detect bias or discriminatory outcomes in system outputs.</div>
+        <button type="button" class="add-link-row" id="monFairAddLinkBtn" onclick="toggleLinkField('monFair')">+ Add link to fairness metrics document</button>
+        <div class="link-field-box" id="monFairLinkBox" style="display:none">
+          <div class="link-field-header">
+            <label>Link to fairness metrics document</label>
+            <button type="button" class="remove-link" onclick="removeLinkField('monFair')">✕ remove link</button>
+          </div>
+          <input id="monFairLink" type="text" placeholder="https://...">
+          <div class="hint">Not validated by this tool.</div>
+        </div>
       </div>
-      <div class="field"><label>Material change triggers</label><textarea id="changeTrig" placeholder="e.g. new training data source; model retraining; change in intended use; change in affected population; new regulatory guidance"></textarea></div>
+
+      <div class="divider"></div>
+
+      <div class="field" style="margin-bottom:20px">
+        <label>Performance monitoring metrics</label>
+        <textarea id="monPerf" placeholder="e.g. accuracy, false positive rate"></textarea>
+        <div class="hint">Technical metrics used to monitor model performance in production.</div>
+        <button type="button" class="add-link-row" id="monPerfAddLinkBtn" onclick="toggleLinkField('monPerf')">+ Add link to performance metrics document</button>
+        <div class="link-field-box" id="monPerfLinkBox" style="display:none">
+          <div class="link-field-header">
+            <label>Link to performance metrics document</label>
+            <button type="button" class="remove-link" onclick="removeLinkField('monPerf')">✕ remove link</button>
+          </div>
+          <input id="monPerfLink" type="text" placeholder="https://...">
+          <div class="hint">Not validated by this tool.</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="field" style="margin:0">
+        <label>Human oversight metrics</label>
+        <textarea id="monHuman" placeholder="e.g. override rate, review completion rate"></textarea>
+        <div class="hint">Metrics used to monitor the effectiveness of human oversight of the system.</div>
+        <button type="button" class="add-link-row" id="monHumanAddLinkBtn" onclick="toggleLinkField('monHuman')">+ Add link to oversight metrics document</button>
+        <div class="link-field-box" id="monHumanLinkBox" style="display:none">
+          <div class="link-field-header">
+            <label>Link to oversight metrics document</label>
+            <button type="button" class="remove-link" onclick="removeLinkField('monHuman')">✕ remove link</button>
+          </div>
+          <input id="monHumanLink" type="text" placeholder="https://...">
+          <div class="hint">Not validated by this tool.</div>
+        </div>
+      </div>
     </div>
+
+    <div class="card">
+      <div class="card-title">Review and Escalation</div>
+
+      <div class="field" style="margin-bottom:20px">
+        <label>Incident reporting trigger</label>
+        <textarea id="incTrig" placeholder="e.g. bias metric exceeds defined threshold"></textarea>
+        <div class="hint">Specific conditions that require immediate incident reporting and review, such as performance degradation or adverse outcomes affecting individual rights.</div>
+      </div>
+
+      <div class="field" style="margin-bottom:20px">
+        <label>Material change triggers</label>
+        <textarea id="changeTrig" placeholder="e.g. change to training data or model architecture"></textarea>
+        <div class="hint">Conditions that would require a new AISIA, such as changes to the model, data, deployment context, or regulatory classification.</div>
+      </div>
+
+      <div class="field" style="margin-bottom:20px">
+        <label>Retention period</label>
+        <input id="retention" type="text" style="max-width:400px" placeholder="e.g. 10 years (EU AI Act, high risk)">
+      </div>
+
+      <div class="g2">
+        <div class="field" style="margin:0">
+          <label>Scheduled review date</label>
+          <input id="reviewDate" type="date">
+        </div>
+        <div class="field" style="margin:0">
+          <label>Monitoring owner</label>
+          <input id="monOwner" placeholder="Name">
+        </div>
+      </div>
+    </div>
+
     <div class="nav-btns"><button class="btn" onclick="go(4)">← Back</button><div class="nav-actions"><button class="btn btn-outline" onclick="resetAssessment()">Clear section</button><button class="btn btn-primary" onclick="go(6)">Next: approval & export →</button></div></div>
   </div>
 
@@ -1376,7 +1448,7 @@ function getData(){
     impacts:getImpactData(),
     deployment:{overallRating:v('overallRating'),recommendation:v('depRec'),conditions:v('conditions'),residualRisk:v('residual'),residualDate:v('residualDate')},
     gdpr:{dpiaRequired:v('dpiaReq'),dpiaReference:v('dpiaRef'),dpiaLink:v('dpiaLink'),jointAssessment:v('joint'),dpiaScope:v('dpiaScope'),aisiaScope:v('aisiaScope'),dpoName:v('dpoName'),dpoDate:v('dpoDate'),dpoReview:v('dpoRev')},
-    monitoring:{fairness:v('monFair'),performance:v('monPerf'),humanOversight:v('monHuman'),incidentTrigger:v('incTrig'),reviewDate:v('reviewDate'),owner:v('monOwner'),changeTriggers:v('changeTrig'),retention:v('retention')},
+    monitoring:{fairness:v('monFair'),fairnessLink:v('monFairLink'),performance:v('monPerf'),performanceLink:v('monPerfLink'),humanOversight:v('monHuman'),humanOversightLink:v('monHumanLink'),incidentTrigger:v('incTrig'),reviewDate:v('reviewDate'),owner:v('monOwner'),changeTriggers:v('changeTrig'),retention:v('retention')},
     approval:{preparedBy:v('prepBy'),technicalReviewer:v('techRev'),legalReviewer:v('legalRev'),boardApproval:v('boardApp'),ownerAcknowledgementDate:v('ownerAckDate'),nextReview:v('nextRev')}
   };
 }
@@ -1569,8 +1641,14 @@ function restoreFromStorage(){
     document.getElementById('dpoRev').value=data.gdpr.dpoReview||'';
     
     document.getElementById('monFair').value=data.monitoring.fairness||'';
+    if(data.monitoring.fairnessLink) toggleLinkField('monFair');
+    if(document.getElementById('monFairLink')) document.getElementById('monFairLink').value=data.monitoring.fairnessLink||'';
     document.getElementById('monPerf').value=data.monitoring.performance||'';
+    if(data.monitoring.performanceLink) toggleLinkField('monPerf');
+    if(document.getElementById('monPerfLink')) document.getElementById('monPerfLink').value=data.monitoring.performanceLink||'';
     document.getElementById('monHuman').value=data.monitoring.humanOversight||'';
+    if(data.monitoring.humanOversightLink) toggleLinkField('monHuman');
+    if(document.getElementById('monHumanLink')) document.getElementById('monHumanLink').value=data.monitoring.humanOversightLink||'';
     document.getElementById('reviewDate').value=data.monitoring.reviewDate||'';
     document.getElementById('monOwner').value=data.monitoring.owner||'';
     document.getElementById('incTrig').value=data.monitoring.incidentTrigger||'';
@@ -1707,8 +1785,14 @@ document.getElementById('fileInput').addEventListener('change',function(e){
       document.getElementById('dpoRev').value=data.gdpr.dpoReview||'';
       
       document.getElementById('monFair').value=data.monitoring.fairness||'';
+      if(data.monitoring.fairnessLink) toggleLinkField('monFair');
+      if(document.getElementById('monFairLink')) document.getElementById('monFairLink').value=data.monitoring.fairnessLink||'';
       document.getElementById('monPerf').value=data.monitoring.performance||'';
+      if(data.monitoring.performanceLink) toggleLinkField('monPerf');
+      if(document.getElementById('monPerfLink')) document.getElementById('monPerfLink').value=data.monitoring.performanceLink||'';
       document.getElementById('monHuman').value=data.monitoring.humanOversight||'';
+      if(data.monitoring.humanOversightLink) toggleLinkField('monHuman');
+      if(document.getElementById('monHumanLink')) document.getElementById('monHumanLink').value=data.monitoring.humanOversightLink||'';
       document.getElementById('reviewDate').value=data.monitoring.reviewDate||'';
       document.getElementById('monOwner').value=data.monitoring.owner||'';
       document.getElementById('incTrig').value=data.monitoring.incidentTrigger||'';
