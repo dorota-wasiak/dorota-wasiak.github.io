@@ -345,6 +345,19 @@ input[type=hidden]{}
 .radio-opt-compact input[type=radio]{margin-top:2px;flex-shrink:0;accent-color:var(--accent)}
 .radio-opt-compact .opt-compact-title{font-size:13px;font-weight:600;color:var(--text)}
 .radio-opt-compact .opt-compact-desc{font-size:11px;color:var(--text2);margin-top:1px}
+
+@media print {
+  .site-header,.stepper,.nav-btns,.exp-btn,.add-btn,.del-btn,.add-link-row,.remove-link,
+  .theme-toggle,.clear-data-btn,#themeToggle,#clearDataBtn,button{display:none!important}
+  .panel{display:block!important;page-break-after:always}
+  .card{border:1px solid #ddd;break-inside:avoid;margin-bottom:12px}
+  .site-header-top,.header-badges{display:none!important}
+  body{background:#fff;font-size:12px}
+  .panel-header h2{color:#0d4d63;font-size:16px}
+  .iso-ref-box{border:1px solid #ccc;background:#f0f8fb}
+  .card-title{color:#0d4d63}
+  @page{margin:1.5cm;size:A4}
+}
 </style>
 </head>
 <body>
@@ -377,6 +390,7 @@ input[type=hidden]{}
     <div class="step" role="tab" onclick="go(4)" tabindex="0"><span class="step-num">5</span>GDPR</div>
     <div class="step" role="tab" onclick="go(5)" tabindex="0"><span class="step-num">6</span>Monitoring</div>
     <div class="step" role="tab" onclick="go(6)" tabindex="0"><span class="step-num">7</span>Approval</div>
+    <div class="step" role="tab" onclick="go(7)" tabindex="0"><span class="step-num">8</span>Export</div>
   </div>
 
   <!-- PANEL 1: System Description -->
@@ -901,60 +915,78 @@ input[type=hidden]{}
 
     <div class="nav-btns"><button class="btn" onclick="go(4)">← Back</button><div class="nav-actions"><button class="btn btn-outline" onclick="resetAssessment()">Clear section</button><button class="btn btn-primary" onclick="go(6)">Next: approval & export →</button></div></div>
   </div>
-
-  <!-- PANEL 7: Approval -->
+  <!-- PANEL 7: Final Review & Approval -->
   <div id="p6" class="panel" role="tabpanel">
     <div class="panel-header">
-      <h2>Section 7 — Approval and sign-off</h2>
+      <h2>Final Review &amp; Approval</h2>
       <p>Records formal approval before deployment is authorised. No high risk system may be deployed without a completed and approved AISIA.</p>
       <div class="iso-ref-box">ISO/IEC 42001:2023 Annex A.5.2 Step 5 | A.5.3</div>
     </div>
     <div class="card">
-      <div class="g3" style="margin-bottom:12px">
-        <div class="field"><label>Prepared by</label><input id="prepBy" placeholder="Name, role, date"></div>
-        <div class="field"><label>Technical reviewer</label><input id="techRev" placeholder="Name, role — development team lead"></div>
-        <div class="field"><label>Legal / compliance reviewer</label><input id="legalRev" placeholder="Name, role — DPO or legal advisor"></div>
+      <div class="card-title">Reviewers</div>
+      <div class="g2" style="margin-bottom:14px">
+        <div class="field"><label>Prepared by</label><input id="prepBy" placeholder="Full name"></div>
+        <div class="field"><label>Preparation date</label><input id="prepDate" type="date"></div>
       </div>
-      <div class="g3">
-        <div class="field"><label>AI Ethics Board approval</label><input id="boardApp" placeholder="Name, role, date"><div class="hint">Approval status and any conditions attached</div></div>
+      <div class="field" style="margin-bottom:14px"><label>Technical reviewer</label><input id="techRev" placeholder="Full name"></div>
+      <div class="field" style="margin-bottom:14px"><label>Legal / compliance reviewer</label><input id="legalRev" placeholder="Full name"></div>
+      <div class="field"><label>AI Ethics Board approval</label><input id="boardApp" placeholder="Full name"><div class="hint">Record name of approver and any conditions attached</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">System Owner Sign-off</div>
+      <div class="g2">
         <div class="field">
           <label>System owner</label>
           <div class="field-readonly empty" id="ownerAckDisplay">Not yet entered in Section 1</div>
-          <div class="hint">Same person recorded in System Description sign-off</div>
+          <div class="hint">Read only - set in System Description</div>
         </div>
-        <div class="field"><label>Owner acknowledgement date</label><input id="ownerAckDate" type="date"><div class="hint">Confirms accountability for post-deployment monitoring</div></div>
+        <div class="field"><label>Acknowledgement date</label><input id="ownerAckDate" type="date"><div class="hint">Confirms accountability for post-deployment monitoring</div></div>
       </div>
-      <div class="field" style="margin-top:12px;max-width:240px"><label>Next review date</label><input id="nextRev" type="date"></div>
     </div>
     <div class="card">
-      <div class="card-title">Completion checklist</div>
+      <div class="card-title">Next Review Date</div>
+      <div class="field-readonly empty" id="nextRevDisplay" style="max-width:240px;font-size:13px;padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg2);color:var(--text2)">Not yet set in Monitoring Plan</div>
+      <div class="hint" style="margin-top:4px">Read only - set in Section 6 Monitoring Plan</div>
+    </div>
+    <div class="nav-btns"><button class="btn" onclick="go(5)">← Back</button><div class="nav-actions"><button class="btn btn-outline" onclick="resetAssessment()">Clear section</button><button class="btn btn-primary" onclick="go(7)">Checklist &amp; Export →</button></div></div>
+  </div>
+
+  <!-- PANEL 8: Checklist & Export -->
+  <div id="p7" class="panel" role="tabpanel">
+    <div class="panel-header">
+      <h2>Checklist &amp; Export</h2>
+      <p>Verify all sections are complete before exporting. Export as PDF for formal record-keeping and audit trail.</p>
+      <div class="iso-ref-box">ISO/IEC 42001:2023 Annex A.5.2 Step 5 | A.5.3</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Completion Checklist</div>
       <div id="checklist"></div>
-      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      <div class="progress-bar" style="margin-top:12px"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
       <div id="progressLabel" style="font-size:12px;color:var(--text2);margin-top:8px"></div>
     </div>
     <div class="card">
       <div class="card-title">Export</div>
-      <p style="font-size:13px;color:var(--text2);margin-bottom:12px">Export your completed assessment for formal record-keeping and audit trail.</p>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Export your completed assessment for formal record-keeping and audit trail.</p>
       <div class="export-row">
-        <button class="exp-btn" onclick="importJSON()">
-          <svg viewBox="0 0 24 24"><path d="M21 15v-4a2 2 0 0 0-2-2h-7V7m0 10v6m0-6L9 7m3 0l3 3"/></svg>
-          Import JSON
+        <button class="exp-btn" onclick="exportPDF()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Export as PDF
         </button>
         <button class="exp-btn" onclick="exportJSON()">
-          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
           Export JSON
         </button>
-        <button class="exp-btn" onclick="exportTXT()">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          Export plain text
+        <button class="exp-btn" onclick="importJSON()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v-4a2 2 0 00-2-2h-7V7M12 17v-6m0 6l-3-3m3 3l3-3"/></svg>
+          Import JSON
         </button>
         <button class="exp-btn" onclick="copyJSON()">
-          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-          <span id="copyLabel">Copy JSON to clipboard</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          <span id="copyLabel">Copy JSON</span>
         </button>
       </div>
     </div>
-    <div class="nav-btns"><button class="btn" onclick="go(5)">← Back</button><span></span></div>
+    <div class="nav-btns"><button class="btn" onclick="go(6)">← Back</button><span></span></div>
   </div>
 
 </div><!-- /page -->
@@ -990,7 +1022,8 @@ function go(n){
   cur=n;
   if(n===3) syncMetrics();
   if(n===3){ syncResidualOwner(); }
-  if(n===6){ renderChecklist(); syncOwnerDisplay(); }
+  if(n===6){ syncOwnerDisplay(); syncNextRevDisplay(); }
+  if(n===7){ renderChecklist(); }
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -1274,6 +1307,15 @@ function toggleModelTypeOther(val){
   document.getElementById('modelTypeOtherWrap').style.display = val==='Other' ? 'block' : 'none';
 }
 
+function syncNextRevDisplay(){
+  var date = v('reviewDate');
+  var el = document.getElementById('nextRevDisplay');
+  if(el){
+    if(date){ el.textContent = date; el.classList.remove('empty'); el.style.color='var(--text)'; }
+    else { el.textContent = 'Not yet set in Monitoring Plan'; el.classList.add('empty'); el.style.color='var(--text2)'; }
+  }
+}
+
 function syncOwnerDisplay(){
   var name=v('sysOwner');
   var el=document.getElementById('ownerAckDisplay');
@@ -1449,22 +1491,22 @@ function getData(){
     deployment:{overallRating:v('overallRating'),recommendation:v('depRec'),conditions:v('conditions'),residualRisk:v('residual'),residualDate:v('residualDate')},
     gdpr:{dpiaRequired:v('dpiaReq'),dpiaReference:v('dpiaRef'),dpiaLink:v('dpiaLink'),jointAssessment:v('joint'),dpiaScope:v('dpiaScope'),aisiaScope:v('aisiaScope'),dpoName:v('dpoName'),dpoDate:v('dpoDate'),dpoReview:v('dpoRev')},
     monitoring:{fairness:v('monFair'),fairnessLink:v('monFairLink'),performance:v('monPerf'),performanceLink:v('monPerfLink'),humanOversight:v('monHuman'),humanOversightLink:v('monHumanLink'),incidentTrigger:v('incTrig'),reviewDate:v('reviewDate'),owner:v('monOwner'),changeTriggers:v('changeTrig'),retention:v('retention')},
-    approval:{preparedBy:v('prepBy'),technicalReviewer:v('techRev'),legalReviewer:v('legalRev'),boardApproval:v('boardApp'),ownerAcknowledgementDate:v('ownerAckDate'),nextReview:v('nextRev')}
+    approval:{preparedBy:v('prepBy'),preparationDate:v('prepDate'),technicalReviewer:v('techRev'),legalReviewer:v('legalRev'),boardApproval:v('boardApp'),ownerAcknowledgementDate:v('ownerAckDate')}
   };
 }
 
 function renderChecklist(){
   var imp=getImpactData();
   var checks=[
-    ['System name entered',!!v('sysName')],
-    ['Risk classification set',!!v('riskCls')],
-    ['Affected parties identified',!!(v('direct')||v('indirect'))],
-    ['Triggers assessed',!!(v('t1')&&v('t3'))],
-    ['At least one impact recorded',imps.length>0],
-    ['All impacts have scores',imps.length>0&&imp.every(function(i){return i.score!=='—';})],
-    ['Deployment recommendation set',!!v('depRec')],
-    ['Monitoring plan defined',!!(v('monFair')&&v('monOwner'))],
-    ['Board approval recorded',!!v('boardApp')]
+    ['1. Identification - System name and risk classification entered',!!(v('sysName')&&v('riskCls'))],
+    ['1. Identification - Affected parties identified',!!(v('direct')||v('indirect'))],
+    ['2. Trigger Conditions - Trigger conclusion recorded',!!v('trigConc')],
+    ['3. Impacts - At least one impact recorded with score',imps.length>0&&imp.every(function(i){return i.score!=='—';})],
+    ['4. Decision - Overall rating and deployment recommendation set',!!(v('overallRating')&&v('depRec'))],
+    ['5. GDPR - DPIA requirement assessed',!!v('dpiaReq')],
+    ['6. Monitoring - Monitoring owner and review date set',!!(v('monOwner')&&v('reviewDate'))],
+    ['7. Approval - Prepared by recorded',!!v('prepBy')],
+    ['7. Approval - Board approval recorded',!!v('boardApp')]
   ];
   var done=checks.filter(function(c){return c[1];}).length;
   var html=checks.map(function(c){
@@ -1474,6 +1516,10 @@ function renderChecklist(){
   var pct=Math.round(done/checks.length*100);
   document.getElementById('progressFill').style.width=pct+'%';
   document.getElementById('progressLabel').textContent=done+' of '+checks.length+' sections complete ('+pct+'%)';
+}
+
+function exportPDF(){
+  window.print();
 }
 
 function exportJSON(){
@@ -1656,11 +1702,11 @@ function restoreFromStorage(){
     document.getElementById('changeTrig').value=data.monitoring.changeTriggers||'';
     
     document.getElementById('prepBy').value=data.approval.preparedBy||'';
+    if(document.getElementById('prepDate')) document.getElementById('prepDate').value=data.approval.preparationDate||'';
     document.getElementById('techRev').value=data.approval.technicalReviewer||'';
     document.getElementById('legalRev').value=data.approval.legalReviewer||'';
     document.getElementById('boardApp').value=data.approval.boardApproval||'';
     document.getElementById('ownerAckDate').value=data.approval.ownerAcknowledgementDate||'';
-    document.getElementById('nextRev').value=data.approval.nextReview||'';
   }catch(e){
     console.warn('Failed to restore data:',e);
   }
@@ -1804,8 +1850,7 @@ document.getElementById('fileInput').addEventListener('change',function(e){
       document.getElementById('legalRev').value=data.approval.legalReviewer||'';
       document.getElementById('boardApp').value=data.approval.boardApproval||'';
       document.getElementById('ownerAckDate').value=data.approval.ownerAcknowledgementDate||'';
-      document.getElementById('nextRev').value=data.approval.nextReview||'';
-      
+        
       autoSave();
       showNotification('Assessment loaded successfully.','success');
       go(0);
