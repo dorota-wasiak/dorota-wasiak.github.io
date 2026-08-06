@@ -83,7 +83,7 @@ The tool calculates a risk score for each identified impact based on severity an
 
 ***In scope***
 
- - Guided completion of a full AI System Impact Assessment across seven structured sections
+ - Guided completion of a full AI System Impact Assessment across eight structured sections
  - Risk scoring matrix with automatic calculation of severity and likelihood scores
  - Identification and flagging of high-risk impacts requiring mandatory mitigation before deployment
  - Assignment of risk ownership and mitigation status for each identified impact
