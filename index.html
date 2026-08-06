@@ -111,8 +111,18 @@ body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:var(--text);
 .port-link{color:var(--teal-dark);font-weight:500;text-decoration:none}
 .port-link:hover{text-decoration:underline}
 .port-soon{color:var(--amber-dark);background:var(--amber-light);padding:2px 8px;border-radius:10px;border:1px solid var(--amber)}
-.docs-link{font-size:11px;color:var(--text3);text-decoration:underline;display:inline-block}
-.docs-link:hover{color:var(--teal-dark)}
+.docs-link{font-size:11px;font-weight:500;color:var(--teal-dark);text-decoration:none;display:inline-block;border:1px solid var(--teal-dark);border-radius:6px;padding:4px 10px;transition:all .15s}
+.docs-link:hover{background:var(--teal-dark);color:#fff}
+.port-card-featured{border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color .2s;display:flex;flex-direction:row;grid-column:1/-1}
+.port-card-featured:hover{border-color:var(--teal)}
+.port-card-featured .port-visual{min-width:200px;min-height:130px;flex-shrink:0}
+.port-card-featured .port-body{display:flex;flex-direction:column;gap:10px;padding:1.25rem;flex:1}
+.port-card-featured .port-desc{font-size:12px;color:var(--text2);line-height:1.6;flex:1}
+.port-card-featured .port-footer{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--border)}
+.open-tool-btn{font-size:12px;font-weight:600;color:#fff;background:var(--teal-dark);text-decoration:none;border-radius:6px;padding:7px 14px;display:inline-flex;align-items:center;gap:5px;transition:all .15s}
+.open-tool-btn:hover{background:var(--teal)}
+.open-tool-btn svg{width:12px;height:12px;flex-shrink:0}
+
 
 .timeline{display:flex;flex-direction:column;gap:2.5rem}
 .t-entry{display:grid;grid-template-columns:170px 1fr;gap:2.5rem}
@@ -344,17 +354,19 @@ footer{background:var(--teal-dark)}
   </div>
 
   <div class="port-grid">
-    <div class="port-card" data-category="ai-governance">
+    <div class="port-card-featured" data-category="ai-governance">
       <div class="port-visual pv-teal">
         <div class="port-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
         <div class="port-vtitle">AISIA Tool<span class="poc-pill">POC</span></div>
       </div>
       <div class="port-body">
-        <p class="port-desc">AI System Impact Assessment — ISO/IEC 42001:2023 and EU AI Act. Seven structured sections with auto-scoring and export.</p>
-        <a href="https://github.com/dorota-wasiak/dorota-wasiak.github.io/blob/main/aisia-tool/docs/01-business-case.md" class="docs-link" target="_blank" rel="noopener">View documentation →</a>
+        <p class="port-desc">A fully interactive AI System Impact Assessment tool aligned with ISO/IEC 42001:2023 and EU AI Act. Eight structured sections with auto-scoring, conditional logic and PDF export.</p>
         <div class="port-footer">
-          <span class="port-live">Live</span>
-          <a href="/aisia-tool/" class="port-link" target="_blank" rel="noopener">Open tool →</a>
+          <a href="https://github.com/dorota-wasiak/dorota-wasiak.github.io/blob/main/aisia-tool/docs/01-business-case.md" class="docs-link" target="_blank" rel="noopener">View documentation →</a>
+          <a href="/aisia-tool/" class="open-tool-btn" target="_blank" rel="noopener">
+            Open tool
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -649,27 +661,31 @@ enhancements.</p>
   </div>
 </section>
 
+<section id="languages" class="section" style="padding-top:0">
+  <div style="border-top:1px solid var(--border);padding-top:2rem">
+    <span class="sec-eyebrow">Communication</span>
+    <h2 class="sec-title" style="margin-bottom:1rem">Languages</h2>
+    <div class="lang-pills">
+      <span class="lang-pill">Polish — Native</span>
+      <span class="lang-pill">English — Advanced</span>
+      <span class="lang-pill">Swedish — Basic</span>
+    </div>
+  </div>
+</section>
+
 <section id="contact" class="section">
   <div class="contact-grid">
     <div>
       <h2 class="contact-heading">Open to new<br><em>opportunities</em></h2>
       <p class="contact-sub">Looking for roles in business analysis, product ownership, or AI governance - where I can bridge strategy and delivery in complex, cross-functional environments.</p>
       <a href="mailto:wasiak.dorota@gmail.com" class="contact-btn">Send an email</a>
-      <div class="lang-pills">
-        <span class="lang-pill">Polish — Native</span>
-        <span class="lang-pill">English — Advanced</span>
-        <span class="lang-pill">Swedish — Basic</span>
-      </div>
     </div>
     <div class="contact-rows">
       <div class="contact-row">
         <span class="contact-label">Email</span>
         <a href="mailto:wasiak.dorota@gmail.com" class="contact-value">wasiak.dorota@gmail.com</a>
       </div>
-      <div class="contact-row">
-        <span class="contact-label">Phone</span>
-        <span class="contact-value">076 301 0449</span>
-      </div>
+
       <div class="contact-row">
         <span class="contact-label">LinkedIn</span>
         <a href="https://www.linkedin.com/in/dorota-wasiak/" class="contact-value" target="_blank" rel="noopener">in/dorota-wasiak ↗</a>
