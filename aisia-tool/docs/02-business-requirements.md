@@ -95,7 +95,7 @@ This section outlines the key stakeholders within the AISIA ecosystem and define
   Full capability to export the complete assessment state into a portable JSON format and import it back to resume work or review.
 
 - **Audit-Ready Document Export:**
-  Generation of a clean, standardised plain text report capturing all answers, timestamps, and entered rationales, suitable for formal record-keeping and audit trail purposes.
+  Generation of a clean, standardised plain text and PDF export report capturing all answers, timestamps, and entered rationales, suitable for formal record-keeping and audit trail purposes.
 
 - **Strict Client-Side Isolation:**
   100% client-side execution within the user's browser web session. Absolutely no server-side storage, database hosting, or outbound data transmission of assessment content.
