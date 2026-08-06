@@ -330,6 +330,14 @@ input[type=hidden]{}
 .condition-del-btn:hover{color:var(--red);background:var(--red-bg)}
 .add-condition-btn{padding:8px 16px;background:#2196b8;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:background .15s}
 .add-condition-btn:hover{background:#1a7a9a}
+.doc-toolbar{background:var(--bg);border-bottom:1px solid var(--border);padding:8px 1.5rem;display:flex;align-items:center;justify-content:flex-end;gap:8px}
+.doc-btn{padding:6px 14px;font-size:12px;font-weight:500;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:inherit;transition:all .15s}
+.doc-btn svg{width:13px;height:13px;flex-shrink:0}
+.doc-btn-import{background:#2196b8;color:#fff;border:none}
+.doc-btn-import:hover{background:#1a7a9a}
+.doc-btn-clear{background:#fef2f2;color:#dc2626;border:1px solid #fecaca}
+.doc-btn-clear:hover{background:#fee2e2;border-color:#dc2626}
+
 .no-dpia-note{background:var(--green-bg);border:1px solid var(--green-border);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--green-text);margin-top:8px;display:none}
 .no-dpia-note.visible{display:block}
 .uncertain-note{background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--amber-text);margin-top:8px;display:none}
@@ -369,7 +377,6 @@ input[type=hidden]{}
       <div class="header-info">
         <div class="auto-save-status hidden" id="autoSaveStatus">Auto-saved</div>
         <button class="theme-toggle" type="button" id="themeToggle" title="Toggle light/dark mode" aria-label="Toggle light/dark mode">◐</button>
-        <button class="clear-data-btn" type="button" id="clearDataBtn" title="Delete all saved data">Clear saved data</button>
       </div>
     </div>
     <div class="header-badges">
@@ -378,6 +385,16 @@ input[type=hidden]{}
       <span class="badge-teal">GDPR Art. 35</span>
     </div>
   </div>
+</div>
+<div class="doc-toolbar">
+  <button class="doc-btn doc-btn-import" type="button" onclick="importJSON()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v-4a2 2 0 00-2-2h-7V7M12 17v-6m0 6l-3-3m3 3l3-3"/></svg>
+    Import JSON
+  </button>
+  <button class="doc-btn doc-btn-clear" type="button" id="clearDataBtn" title="Clear all assessment data">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+    Clear all
+  </button>
 </div>
 
 <div class="page">
@@ -524,7 +541,7 @@ input[type=hidden]{}
     <div class="card">
       <div class="card-title">Sign-off</div>
       <div class="g3">
-        <div class="field"><label>Assessor(s)</label><input id="assessors" placeholder="Name, role"></div>
+        <div class="field"><label>Assessor(s)</label><input id="assessors" placeholder="Full name"></div>
         <div class="field"><label>Assessment date</label><input id="assessDate" type="date"></div>
         <div class="field"><label>System owner</label><input id="sysOwner" placeholder="Full name"><div class="hint">Confirms accuracy of the system description above</div></div>
       </div>
@@ -908,7 +925,7 @@ input[type=hidden]{}
         </div>
         <div class="field" style="margin:0">
           <label>Monitoring owner</label>
-          <input id="monOwner" placeholder="Name">
+          <input id="monOwner" placeholder="Full name">
         </div>
       </div>
     </div>
@@ -975,14 +992,6 @@ input[type=hidden]{}
         <button class="exp-btn" onclick="exportJSON()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
           Export JSON
-        </button>
-        <button class="exp-btn" onclick="importJSON()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v-4a2 2 0 00-2-2h-7V7M12 17v-6m0 6l-3-3m3 3l3-3"/></svg>
-          Import JSON
-        </button>
-        <button class="exp-btn" onclick="copyJSON()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-          <span id="copyLabel">Copy JSON</span>
         </button>
       </div>
     </div>
@@ -1174,7 +1183,7 @@ function generateTriggerSummary(force){
       lines.push('  Not yet assessed: '+empty.join('; '));
     }
     lines.push('');
-    lines.push('Proceed to impact identification (Section 3).');
+  
     document.getElementById('trigConc').value = lines.join('\n');
   }
 
