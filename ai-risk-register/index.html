@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Risk Register | ISO/IEC 42001:2023 | Dorota Wasiak</title>
+<meta name="description" content="Structured risk register methodology and template for tracking AI system risks, owners and mitigations, aligned with ISO/IEC 23894, ISO/IEC 42001 and the EU AI Act.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#ffffff;--bg2:#f8f9fa;--bg3:#f1f3f5;
+  --text:#1a1a1a;--text2:#6b7280;--text3:#9ca3af;
+  --border:#e5e7eb;--border2:#d1d5db;
+  --accent:#0d4d63;--accent-hover:#0a3d4f;--accent-light:#e4f3f8;
+  --red:#dc2626;--red-bg:#fef2f2;--red-border:#fecaca;--red-text:#7f1d1d;
+  --amber:#d97706;--amber-bg:#fffbeb;--amber-border:#fde68a;--amber-text:#78350f;
+  --green:#16a34a;--green-bg:#f0fdf4;--green-border:#bbf7d0;--green-text:#14532d;
+  --radius:8px;--radius-lg:12px;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#1a1a1a;--bg2:#242424;--bg3:#111111;
+    --text:#f0f0f0;--text2:#a0a0a0;--text3:#666;
+    --border:#333;--border2:#444;
+    --accent:#5bc4dd;--accent-hover:#7dd3e8;--accent-light:#1e2a3a;
+    --red-bg:#2a1515;--red-border:#5c2020;--red-text:#fca5a5;
+    --amber-bg:#2a2010;--amber-border:#5c4010;--amber-text:#fcd34d;
+    --green-bg:#102a15;--green-border:#1a5c25;--green-text:#86efac;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1a1a1a;--bg2:#242424;--bg3:#111111;
+  --text:#f0f0f0;--text2:#a0a0a0;--text3:#666;
+  --border:#333;--border2:#444;
+  --accent:#5bc4dd;--accent-hover:#7dd3e8;--accent-light:#1e2a3a;
+  --red-bg:#2a1515;--red-border:#5c2020;--red-text:#fca5a5;
+  --amber-bg:#2a2010;--amber-border:#5c4010;--amber-text:#fcd34d;
+  --green-bg:#102a15;--green-border:#1a5c25;--green-text:#86efac;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg3);color:var(--text);line-height:1.6;font-size:15px}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:700;color:var(--text)}
+code,.mono{font-family:'JetBrains Mono',monospace}
+a{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+/* Header (AISIA-style solid bar) */
+header.site{background:#0d4d63;padding:0;position:sticky;top:0;z-index:10}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) header.site{background:#0a2e3a}}
+:root[data-theme="dark"] header.site{background:#0a2e3a}
+.topbar{padding:14px 0}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.85);text-decoration:none;font-size:13px}
+.back-link:hover{color:#fff}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap}
+.badge{font-size:11px;letter-spacing:.02em;color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);padding:3px 11px;border-radius:20px;white-space:nowrap}
+
+.hero{padding:40px 0 44px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.7);margin:0 0 10px;font-weight:600}
+.hero h1{font-size:clamp(28px,4vw,38px);margin:0 0 14px;line-height:1.15;color:#fff}
+.hero p.lead{font-size:15.5px;color:rgba(255,255,255,.85);max-width:680px;margin:0 0 22px}
+.hero p.lead a{color:#fff;text-decoration:underline}
+.hero-meta{display:flex;gap:28px;flex-wrap:wrap;margin-top:22px}
+.hero-meta div{font-size:12.5px;color:rgba(255,255,255,.65)}
+.hero-meta strong{display:block;color:#fff;font-size:14px;font-weight:600;margin-bottom:2px}
+
+section{padding:48px 0;border-bottom:1px solid var(--border)}
+section:last-of-type{border-bottom:none}
+.section-label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin:0 0 8px;font-weight:600}
+.section-title{font-size:24px;margin:0 0 12px}
+.section-intro{color:var(--text2);max-width:700px;margin:0 0 30px;font-size:14.5px}
+
+/* Workflow */
+.workflow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.workflow .step{padding:18px 16px;border:1px solid var(--border);background:var(--bg);border-radius:var(--radius)}
+.workflow .step .num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);margin-bottom:8px;font-weight:600}
+.workflow .step h4{margin:0 0 6px;font-size:14.5px;font-weight:600;color:var(--text);font-family:'Inter',sans-serif}
+.workflow .step p{margin:0;font-size:12.5px;color:var(--text2)}
+
+/* Matrix */
+.matrix-wrap{display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start}
+.matrix{border-collapse:collapse;flex:0 0 auto}
+.matrix th,.matrix td{border:1px solid var(--border);text-align:center;font-size:13px}
+.matrix th{color:var(--text2);font-weight:500;padding:8px;background:var(--bg2)}
+.matrix td{width:60px;height:42px;font-family:'JetBrains Mono',monospace;font-weight:600}
+.matrix .axis-label{writing-mode:vertical-rl;transform:rotate(180deg);font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.04em}
+.matrix .x-label{font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.04em}
+.cell-moderate{background:var(--green-bg);color:var(--green-text)}
+.cell-significant{background:var(--amber-bg);color:var(--amber-text)}
+.cell-critical{background:var(--red-bg);color:var(--red-text)}
+.tier-legend{display:flex;flex-direction:column;gap:14px;min-width:250px}
+.tier-card{border:1px solid var(--border);border-left:3px solid var(--tier-color);border-radius:var(--radius);padding:13px 15px;background:var(--bg)}
+.tier-card .tier-name{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--tier-color)}
+.tier-card .tier-score{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3);margin:2px 0 6px}
+.tier-card p{margin:0;font-size:12.5px;color:var(--text2)}
+.tier-critical{--tier-color:var(--red)}
+.tier-significant{--tier-color:var(--amber)}
+.tier-moderate{--tier-color:var(--green)}
+
+/* Category grid */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.cat-card{border:1px solid var(--border);background:var(--bg);border-radius:var(--radius);padding:15px 17px}
+.cat-card h4{margin:0 0 6px;font-size:14px;font-family:'Inter',sans-serif;font-weight:600}
+.cat-card p{margin:0;font-size:12.5px;color:var(--text2)}
+
+/* Treatment */
+.treat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.treat-card{border:1px solid var(--border);border-radius:var(--radius);padding:15px;text-align:center;background:var(--bg)}
+.treat-card .t-title{font-weight:600;font-size:14px;margin-bottom:4px;color:var(--accent)}
+.treat-card p{margin:0;font-size:12px;color:var(--text2)}
+
+/* Register table */
+.table-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius)}
+table.register{border-collapse:collapse;width:100%;min-width:920px;font-size:12.5px;background:var(--bg)}
+table.register th{background:var(--bg2);color:var(--text2);text-align:left;padding:10px 12px;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap;border-bottom:1px solid var(--border)}
+table.register td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text2)}
+table.register tr:last-child td{border-bottom:none}
+table.register td.id{font-family:'JetBrains Mono',monospace;color:var(--text3);white-space:nowrap}
+table.register td.desc{max-width:220px;color:var(--text)}
+.tier-pill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid}
+.pill-critical{background:var(--red-bg);color:var(--red-text);border-color:var(--red-border)}
+.pill-significant{background:var(--amber-bg);color:var(--amber-text);border-color:var(--amber-border)}
+.pill-moderate{background:var(--green-bg);color:var(--green-text);border-color:var(--green-border)}
+.status-pill{font-size:11px;color:var(--text3)}
+
+/* Download CTA */
+.cta-box{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:26px 28px}
+.cta-box h3{margin:0 0 6px;font-size:18px}
+.cta-box p{margin:0;color:var(--text2);font-size:13.5px;max-width:480px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-weight:600;font-size:13.5px;padding:10px 20px;border-radius:var(--radius);text-decoration:none;white-space:nowrap;border:1px solid var(--accent);transition:background .15s}
+.btn:hover{background:var(--accent-hover)}
+.btn-ghost{background:var(--bg);border:1px solid var(--border2);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light)}
+.cta-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+.source-note{font-size:12px;color:var(--text3);margin-top:14px}
+
+footer{padding:32px 0;text-align:center;font-size:12px;color:var(--text3)}
+
+@media (max-width:800px){
+  .workflow{grid-template-columns:1fr}
+  .treat-row{grid-template-columns:1fr 1fr}
+  .matrix-wrap{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="topbar">
+    <div class="wrap">
+      <a class="back-link" href="https://dorota-wasiak.github.io/#portfolio">&larr; Back to portfolio</a>
+      <div class="badge-row">
+        <span class="badge">ISO/IEC 23894</span>
+        <span class="badge">ISO/IEC 42001:2023 &middot; 6.1.3</span>
+        <span class="badge">EU AI Act &middot; Art. 9</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero">
+    <div class="wrap">
+      <p class="eyebrow">AI Governance Portfolio</p>
+      <h1>AI Risk Register</h1>
+      <p class="lead">A structured register for tracking risks across AI systems: how they're identified, scored, assigned an owner, mitigated and reviewed over time. Built to sit alongside <a href="https://dorota-wasiak.github.io/aisia-tool/">AISIA</a>, the AI System Impact Assessment tool, but usable on its own for any AI system inventory.</p>
+      <div class="hero-meta">
+        <div><strong>Purpose</strong>Continuous risk tracking, not a one-time assessment</div>
+        <div><strong>Scope</strong>Any AI system, model or vendor-supplied AI component</div>
+        <div><strong>Format</strong>Methodology below &middot; downloadable Excel template</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="why">
+  <div class="wrap">
+    <p class="section-label">Why a separate register</p>
+    <h2 class="section-title">An assessment is a snapshot. A register is a ledger.</h2>
+    <p class="section-intro">
+      An impact assessment such as AISIA answers one question at one point in time: should this system be deployed, and under what conditions? A risk register answers a different question, continuously: of everything we said we'd manage, what's still open, who owns it, and is it still accurate? Under ISO/IEC 42001:2023 clause 6.1.3 and the EU AI Act's Article 9 risk management system, organisations operating AI are expected to maintain exactly this: a living record, reviewed on a schedule, not a document filed away after go-live.
+    </p>
+    <p class="section-intro" style="margin-bottom:0">
+      Risks land on this register from several sources: an AISIA assessment identifying a significant or critical impact, a DPIA finding, a post-deployment monitoring alert, an audit finding, an incident, or a new regulatory obligation. Wherever a risk originates, it follows the same lifecycle below.
+    </p>
+  </div>
+</section>
+
+<section id="workflow">
+  <div class="wrap">
+    <p class="section-label">Methodology &middot; Step 1</p>
+    <h2 class="section-title">Risk lifecycle</h2>
+    <p class="section-intro">Five stages, repeated for every risk on the register. Nothing is closed until residual risk is documented and accepted by an owner.</p>
+    <div class="workflow">
+      <div class="step"><div class="num">01</div><h4>Identify</h4><p>Sourced from AISIA, DPIA, audits, monitoring alerts or incidents.</p></div>
+      <div class="step"><div class="num">02</div><h4>Assess</h4><p>Rate likelihood and severity, 1&ndash;4 each. Score = likelihood &times; severity.</p></div>
+      <div class="step"><div class="num">03</div><h4>Treat</h4><p>Choose avoid, mitigate, transfer or accept. Assign an owner and target date.</p></div>
+      <div class="step"><div class="num">04</div><h4>Monitor</h4><p>Track status until mitigation is verified, not just marked complete.</p></div>
+      <div class="step"><div class="num">05</div><h4>Review</h4><p>Re-score on a fixed schedule or when the system materially changes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="scoring">
+  <div class="wrap">
+    <p class="section-label">Methodology &middot; Step 2</p>
+    <h2 class="section-title">Scoring matrix</h2>
+    <p class="section-intro">Likelihood and severity are each rated 1&ndash;4. The product gives a risk score from 1 to 16, grouped into three tiers, the same thresholds used in AISIA's impact rating, so a risk carries a consistent meaning whether it was raised during an assessment or added directly to the register.</p>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <tr>
+          <th></th>
+          <th></th>
+          <th colspan="4" class="x-label">Severity &rarr;</th>
+        </tr>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>1<br>Minor</th>
+          <th>2<br>Moderate</th>
+          <th>3<br>Major</th>
+          <th>4<br>Severe</th>
+        </tr>
+        <tr>
+          <th rowspan="4" class="axis-label">Likelihood</th>
+          <th>4 &middot; Almost certain</th>
+          <td class="cell-significant">4</td>
+          <td class="cell-significant">8</td>
+          <td class="cell-critical">12</td>
+          <td class="cell-critical">16</td>
+        </tr>
+        <tr>
+          <th>3 &middot; Likely</th>
+          <td class="cell-moderate">3</td>
+          <td class="cell-significant">6</td>
+          <td class="cell-critical">9</td>
+          <td class="cell-critical">12</td>
+        </tr>
+        <tr>
+          <th>2 &middot; Possible</th>
+          <td class="cell-moderate">2</td>
+          <td class="cell-significant">4</td>
+          <td class="cell-significant">6</td>
+          <td class="cell-significant">8</td>
+        </tr>
+        <tr>
+          <th>1 &middot; Unlikely</th>
+          <td class="cell-moderate">1</td>
+          <td class="cell-moderate">2</td>
+          <td class="cell-moderate">3</td>
+          <td class="cell-significant">4</td>
+        </tr>
+      </table>
+      <div class="tier-legend">
+        <div class="tier-card tier-critical">
+          <div class="tier-name">Critical</div>
+          <div class="tier-score">Score &ge; 9</div>
+          <p>Mandatory mitigation before deployment or continued operation. Escalate to system owner and AI Ethics Board immediately.</p>
+        </div>
+        <div class="tier-card tier-significant">
+          <div class="tier-name">Significant</div>
+          <div class="tier-score">Score 4&ndash;8</div>
+          <p>Documented mitigation plan required, with a named owner and target date. Reviewed at every scheduled cycle.</p>
+        </div>
+        <div class="tier-card tier-moderate">
+          <div class="tier-name">Moderate</div>
+          <div class="tier-score">Score &le; 3</div>
+          <p>Accepted with ongoing monitoring. No mandatory mitigation, but still tracked and re-scored on review.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="categories">
+  <div class="wrap">
+    <p class="section-label">Methodology &middot; Step 3</p>
+    <h2 class="section-title">Risk categories</h2>
+    <p class="section-intro">Categories follow ISO/IEC 23894's AI risk sources and the EU AI Act's requirements, adapted into nine practical groupings a business analyst can apply without a data science background.</p>
+    <div class="cat-grid">
+      <div class="cat-card"><h4>Bias &amp; fairness</h4><p>Discriminatory or disparate outcomes across protected groups.</p></div>
+      <div class="cat-card"><h4>Data quality &amp; governance</h4><p>Incomplete, unrepresentative or poorly lineage-tracked training data.</p></div>
+      <div class="cat-card"><h4>Privacy</h4><p>Personal data exposure, re-identification, unlawful processing.</p></div>
+      <div class="cat-card"><h4>Security &amp; robustness</h4><p>Adversarial inputs, model drift, resilience to manipulation.</p></div>
+      <div class="cat-card"><h4>Transparency &amp; explainability</h4><p>Inability to explain a decision to the person affected by it.</p></div>
+      <div class="cat-card"><h4>Human oversight</h4><p>Insufficient ability for a human to review, override or halt the system.</p></div>
+      <div class="cat-card"><h4>Accountability &amp; governance</h4><p>Unclear ownership, missing sign-off, no escalation path.</p></div>
+      <div class="cat-card"><h4>Third-party &amp; vendor</h4><p>Risk inherited from a vendor model, API or embedded AI component.</p></div>
+      <div class="cat-card"><h4>Legal &amp; regulatory</h4><p>Non-compliance with the EU AI Act, GDPR or sector-specific law.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="treatment">
+  <div class="wrap">
+    <p class="section-label">Methodology &middot; Step 4</p>
+    <h2 class="section-title">Treatment options</h2>
+    <p class="section-intro">Every risk on the register is assigned one treatment. "Mitigate" is the default for significant and critical risks; the other three are valid, deliberate choices, not fallbacks.</p>
+    <div class="treat-row">
+      <div class="treat-card"><div class="t-title">Avoid</div><p>Change scope, data or deployment so the risk no longer applies.</p></div>
+      <div class="treat-card"><div class="t-title">Mitigate</div><p>Reduce likelihood or severity through a specific, owned control.</p></div>
+      <div class="treat-card"><div class="t-title">Transfer</div><p>Shift exposure via contract, insurance or a vendor SLA.</p></div>
+      <div class="treat-card"><div class="t-title">Accept</div><p>Document residual risk and get sign-off from the system owner.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="example">
+  <div class="wrap">
+    <p class="section-label">Worked example</p>
+    <h2 class="section-title">Example register</h2>
+    <p class="section-intro">Four entries below are documented, publicly reported cases (two from healthcare, two from supply chain and logistics) rescored against this register's matrix. Two remain illustrative examples. The downloadable template includes all six as a starting reference plus blank rows with the scoring formulas already in place.</p>
+    <div class="table-scroll">
+      <table class="register">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>AI system</th>
+            <th>Category</th>
+            <th>Risk description</th>
+            <th>L &times; S</th>
+            <th>Tier</th>
+            <th>Owner</th>
+            <th>Status</th>
+            <th>Ref. year</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="id">RR-EX-01</td>
+            <td>Health risk-prediction algorithm</td>
+            <td>Bias &amp; fairness</td>
+            <td class="desc">Widely used commercial algorithm under-scored Black patients' care needs because it predicted cost rather than illness, reducing access to extra care for affected patients.</td>
+            <td class="mono">3 &times; 4 = 12</td>
+            <td><span class="tier-pill pill-critical">Critical</span></td>
+            <td>Public case study</td>
+            <td class="status-pill">Documented finding</td>
+            <td>2019</td>
+          </tr>
+          <tr>
+            <td class="id">RR-EX-02</td>
+            <td>Epic Sepsis Model (ESM)</td>
+            <td>Security &amp; robustness</td>
+            <td class="desc">Proprietary sepsis-prediction model built into hospital EHR software missed most sepsis cases across independent external validations, despite broad clinical deployment.</td>
+            <td class="mono">4 &times; 4 = 16</td>
+            <td><span class="tier-pill pill-critical">Critical</span></td>
+            <td>Public case study</td>
+            <td class="status-pill">Documented finding</td>
+            <td>2021</td>
+          </tr>
+          <tr>
+            <td class="id">RR-EX-03</td>
+            <td>Zillow Offers / Zestimate</td>
+            <td>Data quality &amp; governance</td>
+            <td class="desc">Home-pricing model trained on a stable market couldn't adapt to a rapid shift, causing systematic overpayment for properties and a &gt;$500M write-down.</td>
+            <td class="mono">2 &times; 3 = 6</td>
+            <td><span class="tier-pill pill-significant">Significant</span></td>
+            <td>Public case study</td>
+            <td class="status-pill">Business unit discontinued</td>
+            <td>2021</td>
+          </tr>
+          <tr>
+            <td class="id">RR-EX-04</td>
+            <td>Warehouse productivity system</td>
+            <td>Human oversight</td>
+            <td class="desc">Algorithmic pace-tracking set productivity targets and triggered automated warnings with minimal human review, contributing to elevated injury rates.</td>
+            <td class="mono">3 &times; 4 = 12</td>
+            <td><span class="tier-pill pill-critical">Critical</span></td>
+            <td>Public case study</td>
+            <td class="status-pill">Under regulatory review</td>
+            <td>2024</td>
+          </tr>
+          <tr>
+            <td class="id">RR-EX-05</td>
+            <td>Customer Support Chatbot</td>
+            <td>Transparency &amp; explainability</td>
+            <td class="desc">Users are not told they are interacting with an AI system before escalation to a human.</td>
+            <td class="mono">3 &times; 2 = 6</td>
+            <td><span class="tier-pill pill-significant">Significant</span></td>
+            <td>Product Owner, CX</td>
+            <td class="status-pill">Mitigated</td>
+            <td>2027</td>
+          </tr>
+          <tr>
+            <td class="id">RR-EX-06</td>
+            <td>Third-Party Document OCR API</td>
+            <td>Third-party &amp; vendor</td>
+            <td class="desc">Vendor has not disclosed retraining schedule or data retention terms for uploaded documents.</td>
+            <td class="mono">2 &times; 3 = 6</td>
+            <td><span class="tier-pill pill-significant">Significant</span></td>
+            <td>Procurement / Legal</td>
+            <td class="status-pill">In progress</td>
+            <td>2026</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source-note">L = Likelihood (1&ndash;4), S = Severity (1&ndash;4). RR-EX-05 and RR-EX-06 are illustrative, not tied to a real deployment. RR-EX-01&ndash;RR-EX-04 are rescored from these public sources:</p>
+    <p class="source-note" style="margin-top:6px">
+      RR-EX-01 &middot; Obermeyer, Powers, Vogeli &amp; Mullainathan, "Dissecting racial bias in an algorithm used to manage the health of populations," <em>Science</em>, 2019.<br>
+      RR-EX-02 &middot; Wong et al., "External Validation of a Widely Implemented Proprietary Sepsis Prediction Model," <em>JAMA Internal Medicine</em>, 2021; Ostermayer et al., <em>JAMIA Open</em>, 2024.<br>
+      RR-EX-03 &middot; AI Incident Database, Incident 149: "Zillow Shut Down Zillow Offers Division," <a href="https://incidentdatabase.ai/cite/149/">incidentdatabase.ai/cite/149</a>.<br>
+      RR-EX-04 &middot; U.S. Senate HELP Committee investigation into Amazon warehouse safety, December 2024.
+    </p>
+  </div>
+</section>
+
+<section id="download">
+  <div class="wrap">
+    <p class="section-label">Use it</p>
+    <h2 class="section-title">Template</h2>
+    <div class="cta-box">
+      <div>
+        <h3>AI Risk Register: Excel template</h3>
+        <p>Same fields and scoring logic as above, with dropdowns for category, likelihood, severity and status, automatic score and tier calculation, and a methodology tab. Reusable for any AI system inventory, standalone or alongside AISIA.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn" href="ai-risk-register-template.xlsx" download>Download template (.xlsx)</a>
+        <a class="btn btn-ghost" href="https://dorota-wasiak.github.io/aisia-tool/">Open AISIA tool</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built by Dorota Wasiak | AI Governance Portfolio | ISO/IEC 23894 &middot; ISO/IEC 42001:2023 &middot; EU AI Act
+</footer>
+
+</body>
+</html>
